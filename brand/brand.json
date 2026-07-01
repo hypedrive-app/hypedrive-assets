@@ -20,5 +20,28 @@
   },
   "cornerRadius": {
     "appIconRatio": 0.22
-  }
+  },
+  "apps": {
+    "creator": {
+      "accent": "#e11d48",
+      "gradient": "linear-gradient(135deg, #fb7185 0%, #e11d48 100%)",
+      "family": "rose"
+    },
+    "brand": {
+      "accent": "#10b981",
+      "gradient": "linear-gradient(135deg, #34d399 0%, #10b981 100%)",
+      "family": "emerald"
+    },
+    "admin": {
+      "accent": "#2563eb",
+      "gradient": "linear-gradient(135deg, #818cf8 0%, #3b82f6 100%)",
+      "family": "indigo"
+    },
+    "storefront": {
+      "accent": "#10b981",
+      "gradient": "linear-gradient(135deg, #34d399 0%, #10b981 100%)",
+      "family": "emerald"
+    }
+  },
+  "note": "Neutral wordmark/icon use the rose (creator/flagship) accent. Per-app assets (wordmark-<app>, icon-<app>, app-icon-<app>) use that app's accent gradient."
 }

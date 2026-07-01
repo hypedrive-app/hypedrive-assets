@@ -30,3 +30,16 @@ https://cdn.jsdelivr.net/gh/hypedrive-app/hypedrive-assets@main/logos/wordmark.s
 - `favicon-tile.svg` — dark tile with a **larger** chevron, tuned to stay legible at 16px (source for `favicons/`).
 - `icon-dark.svg` — bare dark chevron for light UIs.
 - `wordmark.png` / `wordmark-dark.png` / `icon.png` — raster fallbacks (SVG preferred).
+
+## Per-app accent colours
+The neutral `wordmark.svg` / `icon.svg` use the **rose** (creator/flagship) accent.
+Per-app variants carry that app's own accent gradient:
+
+| App | Accent | Family |
+|---|---|---|
+| creator | `#e11d48` | rose |
+| brand | `#10b981` | emerald |
+| admin | `#2563eb` | indigo / blue |
+| storefront | `#10b981` | emerald |
+
+Files: `wordmark-<app>.svg`, `icon-<app>.svg`, `app-icon-<app>.svg`. Machine-readable in `brand/brand.json` → `apps`.
