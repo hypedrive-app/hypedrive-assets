@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 12 62 88" fill="none" shape-rendering="geometricPrecision">
+  <title>Hypedrive Creator</title>
+  <defs>
+    <linearGradient id="accent" x1="24" y1="16" x2="78" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fb7185" />
+      <stop offset="1" stop-color="#e11d48" />
+    </linearGradient>
+  </defs>
+  <path d="M24 16H46L78 56L46 96H24L44 56L24 16Z" fill="url(#accent)" />
+</svg>
