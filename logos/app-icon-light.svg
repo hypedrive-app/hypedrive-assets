@@ -6,7 +6,7 @@
       <stop offset="1" stop-color="#e11d48" />
     </linearGradient>
   </defs>
-  <rect width="1024" height="1024" rx="224" fill="#09090b" />
+  <rect width="1024" height="1024" rx="224" fill="#ffffff" />
   <g transform="translate(211.1 181.6) scale(5.9)">
     <path d="M24 16H46L78 56L46 96H24L44 56L24 16Z" fill="url(#accent)" />
   </g>
