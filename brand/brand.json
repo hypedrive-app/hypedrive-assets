@@ -1,0 +1,24 @@
+{
+  "name": "Hypedrive",
+  "tagline": "The creator commerce platform",
+  "colors": {
+    "ink": "#18181b",
+    "surface": "#09090b",
+    "white": "#ffffff",
+    "accent": {
+      "from": "#fb7185",
+      "mid": "#f43f5e",
+      "to": "#e11d48"
+    },
+    "accentSolid": "#e11d48"
+  },
+  "gradient": {
+    "css": "linear-gradient(135deg, #fb7185 0%, #f43f5e 50%, #e11d48 100%)"
+  },
+  "typography": {
+    "fontFamily": "-apple-system, 'Segoe UI', Roboto, sans-serif"
+  },
+  "cornerRadius": {
+    "appIconRatio": 0.22
+  }
+}

@@ -25,3 +25,8 @@ Dark `#18181b` (text) · rose gradient `#fb7185 → #e11d48` (arrow). Keep clear
 ```
 https://cdn.jsdelivr.net/gh/hypedrive-app/hypedrive-assets@main/logos/wordmark.svg
 ```
+
+## Added
+- `favicon-tile.svg` — dark tile with a **larger** chevron, tuned to stay legible at 16px (source for `favicons/`).
+- `icon-dark.svg` — bare dark chevron for light UIs.
+- `wordmark.png` / `wordmark-dark.png` / `icon.png` — raster fallbacks (SVG preferred).
