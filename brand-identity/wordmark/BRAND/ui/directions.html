@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Hypedrive: two directions</title>
+<style>
+@font-face{font-family:'Geist';src:url(../source/fonts/Geist.ttf) format('truetype');font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Geist',system-ui,sans-serif;background:#e9eaee;color:#121417;-webkit-font-smoothing:antialiased;padding:48px 56px 64px;width:1000px}
+.row{margin-bottom:56px}
+.row h2{font-size:28px;font-weight:700;letter-spacing:-.03em}
+.row p{font-size:15px;color:#525459;margin:6px 0 28px;max-width:900px;line-height:1.45}
+.phones{display:flex;gap:56px}
+figure{display:flex;flex-direction:column;align-items:center;gap:14px}
+figcaption{font-size:14px;font-weight:500;color:#525459}
+.phone{width:412px;height:866px;border-radius:62px;background:#0d0e12;padding:11px;box-shadow:0 0 0 2px #2a2c31,0 30px 60px -20px rgba(18,20,23,.35)}
+.scr{position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;background:var(--bg)}
+.isl{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:34px;border-radius:20px;background:#000;z-index:20}
+.sbar{position:absolute;top:0;left:0;right:0;height:54px;display:flex;justify-content:space-between;align-items:center;padding:6px 34px 0 44px;z-index:15;font-weight:600;font-size:16px}
+.sbar .r{display:flex;gap:6px;align-items:center}
+.bat{width:26px;height:12px;border-radius:4px;border:1px solid currentColor;opacity:.9;position:relative}
+.bat:after{content:"";position:absolute;inset:1.5px;right:5px;background:currentColor;border-radius:2px}
+.hind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:136px;height:5px;border-radius:3px;background:#121417;z-index:20}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:84px;display:flex;padding:8px 8px 0;z-index:12;background:var(--tb)}
+.tabbar div{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--tbc)}
+.tabbar .on{color:var(--tbon);font-weight:600}
+.tabbar .on .ic{stroke-width:2.1}
+.tabbar .on .fill{fill:currentColor}
+.body{position:absolute;inset:0;overflow:hidden}
+img{display:block;object-fit:cover}
+.btn{display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;color:#fff;font-weight:600;font-size:17px;letter-spacing:-.01em;border:0;
+ background:linear-gradient(180deg,#3a64f2 0%,#2d58ee 55%,#264ee0 100%);
+ box-shadow:0 0 0 1px #1d43c0,inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(10,24,90,.45)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ====== A: warm editorial ====== */
+.A{--bg:#f7f4ef;--tb:#f7f4ef;--tbc:#8a867e;--tbon:#121417}
+.A .tabbar{border-top:1px solid rgba(18,20,23,.08)}
+.A .sbar{color:#121417}
+.A .pad{padding:0 16px}
+.A .hd{position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start}
+.A .hd small{font-size:13px;color:#7a766e;font-weight:500;display:block;margin-bottom:2px}
+.A .hd h1{font-size:31px;font-weight:700;letter-spacing:-.045em;line-height:1.02}
+.A .hd .ico{display:flex;gap:2px;margin-top:4px}
+.A .hd .ico span{width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.A .earn{position:absolute;top:122px;left:16px;right:16px;height:68px;background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(18,20,23,.07);padding:10px 16px;display:flex;justify-content:space-between}
+.A .earn small{font-size:12.5px;color:#7a766e;font-weight:500}
+.A .earn b{display:block;font-size:30px;letter-spacing:-.05em;font-weight:700;line-height:1;margin-top:3px}
+.A .earn em{font-style:normal;color:#0a7a47;font-weight:600;font-size:14px;align-self:flex-start;margin-top:1px}
+.A .hero{position:absolute;top:200px;left:16px;right:16px;height:184px;border-radius:24px;overflow:hidden;color:#fff}
+.A .hero img{position:absolute;inset:0;width:100%;height:100%}
+.A .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0) 25%,rgba(10,10,10,.86) 100%)}
+.A .hero .chip{position:absolute;top:12px;left:12px;z-index:2;background:rgba(255,255,255,.94);color:#121417;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px}
+.A .hero .tx{position:absolute;left:16px;right:16px;bottom:14px;z-index:2}
+.A .hero .tx small{font-size:13px;opacity:.82;font-weight:500}
+.A .hero .tx h3{font-size:27px;letter-spacing:-.04em;font-weight:700;line-height:1.05;margin:1px 0 9px}
+.A .hero .mt{display:flex;justify-content:space-between;font-size:13.5px;align-items:baseline}
+.A .hero .mt b{font-size:19px;letter-spacing:-.03em;font-weight:700}
+.A .hero .bar{height:3px;background:rgba(255,255,255,.3);border-radius:2px;margin-top:9px}
+.A .hero .bar i{display:block;height:100%;width:70%;background:#fff;border-radius:2px}
+.A .sh{display:flex;justify-content:space-between;align-items:baseline;position:absolute;left:16px;right:16px}
+.A .sh b{font-size:19px;letter-spacing:-.035em;font-weight:700}
+.A .sh span{font-size:13.5px;color:#7a766e;font-weight:500}
+.A .rail{position:absolute;left:0;right:0;display:flex;gap:10px;padding-left:16px}
+.A .rc{width:136px;flex:none;position:relative}
+.A .rc img{width:136px;height:92px;border-radius:16px}
+.A .rc b{display:block;font-size:14px;letter-spacing:-.02em;font-weight:600;margin-top:7px;line-height:1.2}
+.A .rc small{font-size:12.5px;color:#7a766e}
+.A .rc small em{font-style:normal;color:#121417;font-weight:600}
+.A .rc .tag{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.94);font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:999px}
+.A .rc .tag.k{background:#121417;color:#fff}
+.A .cats{position:absolute;left:16px;right:16px;display:flex;justify-content:space-between}
+.A .cats div{width:68px;text-align:center;font-size:12.5px;font-weight:500;color:#3b3d42}
+.A .cats img{width:56px;height:56px;border-radius:50%;margin:0 auto 4px;box-shadow:0 0 0 1px rgba(18,20,23,.08)}
+.A .prog{position:absolute;left:16px;right:16px;height:58px;background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(18,20,23,.07);display:flex;align-items:center;gap:12px;padding:0 14px 0 10px}
+.A .prog img{width:40px;height:40px;border-radius:10px}
+.A .prog b{display:block;font-size:15px;letter-spacing:-.02em;font-weight:600}
+.A .prog small{font-size:12.5px;color:#7a766e}
+.A .prog .go{margin-left:auto;font-size:13px;font-weight:600;color:#121417}
+/* A details */
+.A .ph{position:absolute;top:0;left:0;right:0;height:360px}
+.A .ph img{width:100%;height:100%;object-position:50% 50%}
+.A .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0,rgba(0,0,0,0) 22%)}
+.A .disc{position:absolute;top:58px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;z-index:5}
+.A .sheet{position:absolute;top:336px;left:0;right:0;bottom:0;background:var(--bg);border-radius:28px 28px 0 0;padding:20px 16px 0}
+.A .sheet .eyebrow{font-size:13.5px;color:#7a766e;font-weight:500}
+.A .sheet h1{font-size:36px;letter-spacing:-.055em;font-weight:700;line-height:1;margin:5px 0 6px}
+.A .sheet .sub{font-size:14.5px;color:#525459}
+.A .facts{display:flex;background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(18,20,23,.07);margin-top:16px}
+.A .facts div{flex:1;padding:12px 14px}
+.A .facts div+div{border-left:1px solid rgba(18,20,23,.08)}
+.A .facts b{display:block;font-size:24px;letter-spacing:-.045em;font-weight:700;line-height:1.1}
+.A .facts b i{font-style:normal;font-size:14px;color:#7a766e;font-weight:500;letter-spacing:-.01em}
+.A .facts small{font-size:12.5px;color:#7a766e}
+.A .bar2{margin-top:12px;font-size:13px;color:#7a766e}.A .bar2 b{color:#121417;font-weight:600}.A .bar2 i{display:block;height:4px;border-radius:2px;background:#e4dfd6;margin-top:6px}.A .bar2 u{display:block;height:100%;width:70%;border-radius:2px;background:#121417}.A .how{margin-top:16px}
+.A .how h4{font-size:17px;letter-spacing:-.035em;font-weight:700;margin-bottom:9px}
+.A .steps{display:flex;gap:10px}
+.A .steps div{flex:1;font-size:13.5px;line-height:1.3;color:#3b3d42}
+.A .steps b{display:block;font-size:30px;letter-spacing:-.05em;font-weight:700;color:#121417;line-height:1;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.A .steps b:after{content:"";display:block;height:1px;background:rgba(18,20,23,.16);margin-top:8px}
+.A .also{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:13.5px;color:#525459}
+.A .also img{width:18px;height:18px;border-radius:5px}
+.A .also span{display:flex;align-items:center;gap:5px;color:#121417;font-weight:600}
+.A .cta{position:absolute;left:0;right:0;bottom:0;height:104px;background:rgba(247,244,239,.96);border-top:1px solid rgba(18,20,23,.08);padding:12px 16px 0;display:flex;gap:16px;z-index:10}
+.A .cta small{font-size:12.5px;color:#7a766e;display:block}
+.A .cta b{font-size:28px;letter-spacing:-.05em;font-weight:700;line-height:1.05}
+.A .cta .btn{flex:1}
+
+/* ====== B: bold colour ====== */
+.B{--bg:#fff;--tb:#fff;--tbc:#67696e;--tbon:#2d58ee}
+.B .tabbar{border-top:1px solid #e3e4e9}
+.B .tabbar div{font-weight:600}
+.B .band{position:absolute;top:0;left:0;right:0;background:#152b81;color:#fff}
+.B .sbar{color:#fff}
+.B .bh{position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;color:#fff;z-index:5}
+.B .bh .l{display:flex;gap:10px;align-items:center}
+.B .bh img{width:40px;height:40px;border-radius:50%}
+.B .bh span{font-size:15px;font-weight:600;opacity:.8;display:block;line-height:1.1}
+.B .bh b{font-size:21px;letter-spacing:-.04em;font-weight:800;display:block;line-height:1.1}
+.B .bh .ico{display:flex;gap:2px}
+.B .bh .ico i{width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.B .big{position:absolute;top:104px;left:16px;right:16px;color:#fff;z-index:5}
+.B .big small{font-size:14px;font-weight:600;opacity:.75}
+.B .big b{display:block;font-size:50px;letter-spacing:-.06em;font-weight:800;line-height:1;margin-top:2px}
+.B .big em{font-style:normal;color:#89f7b9;font-weight:700;font-size:15px;position:absolute;right:0;top:2px}
+.B .hero{position:absolute;top:190px;left:16px;right:16px;height:200px;border-radius:28px;overflow:hidden;color:#fff;z-index:6;box-shadow:0 16px 28px -14px rgba(10,20,70,.55)}
+.B .hero img{position:absolute;inset:0;width:100%;height:100%}
+.B .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,40,0) 38%,rgba(8,12,40,.88) 100%)}
+.B .hero .chip{position:absolute;top:12px;left:12px;z-index:2;background:#ffc83c;color:#3b1c00;font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px}
+.B .hero .tx{position:absolute;left:18px;right:18px;bottom:16px;z-index:2}
+.B .hero .tx small{font-size:13px;opacity:.85;font-weight:600}
+.B .hero h3{font-size:30px;letter-spacing:-.05em;font-weight:800;line-height:1.02;margin:1px 0 10px}
+.B .hero .mt{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:500}
+.B .hero .mt b{font-size:22px;font-weight:800;letter-spacing:-.04em}
+.B .hero .bar{height:5px;background:rgba(255,255,255,.28);border-radius:3px;margin-top:10px}
+.B .hero .bar i{display:block;height:100%;width:70%;background:#fff;border-radius:3px}
+.B .tint{position:absolute;left:0;right:0}
+.B .sh{position:absolute;left:16px;right:16px;display:flex;justify-content:space-between;align-items:baseline}
+.B .sh b{font-size:21px;letter-spacing:-.045em;font-weight:800}
+.B .sh span{font-size:14px;font-weight:700;color:#1e52d7}
+.B .rail{position:absolute;left:0;right:0;display:flex;gap:10px;padding-left:16px}
+.B .rc{width:150px;flex:none;background:#fff;border-radius:20px;overflow:hidden;position:relative}
+.B .rc img{width:150px;height:78px}
+.B .rc div{padding:8px 11px 10px}
+.B .rc b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.025em;line-height:1.2}
+.B .rc small{font-size:13px;color:#525459}
+.B .rc small em{font-style:normal;color:#1a3dad;font-weight:800;font-size:15px;letter-spacing:-.03em}
+.B .rc .tag{position:absolute;top:8px;left:8px;background:#121417;color:#fff;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+.B .cats{position:absolute;left:16px;right:16px;display:flex;justify-content:space-between}
+.B .cats div{width:76px;text-align:center;font-size:13px;font-weight:700;color:#121417}
+.B .cats img{width:76px;height:52px;border-radius:16px;margin-bottom:4px}
+.B .prog{position:absolute;left:16px;right:16px;height:58px;background:#fff;border-radius:18px;display:flex;align-items:center;gap:12px;padding:0 14px 0 10px}
+.B .prog img{width:40px;height:40px;border-radius:12px}
+.B .prog b{display:block;font-size:15.5px;letter-spacing:-.025em;font-weight:700}
+.B .prog small{font-size:13px;color:#525459}
+.B .prog .go{margin-left:auto;font-size:13px;font-weight:700;color:#1e52d7}
+/* B details */
+.B .dband{position:absolute;top:0;left:0;right:0;height:300px;background:#152b81}
+.B .dph{position:absolute;top:108px;left:16px;right:16px;height:272px;border-radius:28px;overflow:hidden;z-index:4;box-shadow:0 18px 30px -16px rgba(10,20,70,.6)}
+.B .dph img{width:100%;height:100%}
+.B .dph .chip{position:absolute;bottom:12px;left:12px;background:#ffc83c;color:#3b1c00;font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px}
+.B .dh{position:absolute;top:56px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;color:#fff;z-index:6}
+.B .dh .disc{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center}
+.B .dh .ttl{font-size:15px;font-weight:600;opacity:.85}
+.B .dbody{position:absolute;top:392px;left:16px;right:16px}
+.B .dbody small.br{font-size:13.5px;color:#525459;font-weight:600}
+.B .dbody h1{font-size:33px;letter-spacing:-.055em;font-weight:800;line-height:1.02;margin:1px 0 4px}
+.B .dbody .sub{font-size:14.5px;color:#525459}
+.B .call{margin-top:10px;background:#152b81;color:#fff;border-radius:22px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.B .call small{font-size:13.5px;font-weight:600;opacity:.78;display:block}
+.B .call b{font-size:44px;letter-spacing:-.06em;font-weight:800;line-height:1.02}
+.B .call .r{text-align:right;font-size:13.5px;line-height:1.35;opacity:.9}
+.B .call .r b{font-size:19px;letter-spacing:-.03em;opacity:1;display:block}
+.B .tintband{position:absolute;left:0;right:0;background:#e3efff}
+.B .facts{display:flex;position:absolute;left:16px;right:16px}
+.B .facts div{flex:1}
+.B .facts b{display:block;font-size:22px;letter-spacing:-.05em;font-weight:800;line-height:1.1;color:#101d59}
+.B .facts b i{font-style:normal;font-size:13px;font-weight:600;color:#525459;letter-spacing:0}
+.B .facts .lg{display:flex;gap:6px;height:26px;align-items:center}.B .facts .lg img{width:22px;height:22px;border-radius:6px}.B .facts small{font-size:13px;color:#525459;font-weight:500}
+.B .steps{display:flex;gap:8px;position:absolute;left:16px;right:16px}
+.B .steps div{flex:1;background:#fff;border-radius:16px;padding:9px 11px 10px;font-size:13px;line-height:1.25;font-weight:600;color:#27292d}
+.B .steps b{display:flex;width:24px;height:24px;border-radius:50%;background:#121417;color:#fff;font-size:13px;align-items:center;justify-content:center;margin-bottom:6px;font-weight:700}
+.B .cta{position:absolute;left:0;right:0;bottom:0;height:100px;background:#fff;border-top:1px solid #e3e4e9;padding:12px 16px 0;z-index:10;display:flex;gap:14px}
+.B .cta .lf small{font-size:12.5px;color:#525459;display:block;font-weight:500}
+.B .cta .lf b{font-size:21px;letter-spacing:-.04em;font-weight:800;line-height:1.1}
+.B .cta .btn{flex:1;font-weight:700}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="search" viewBox="0 0 18 18"><path d="M15.75 15.75L11.64 11.64M7.75 13.25a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/></symbol>
+<symbol id="bell" viewBox="0 0 18 18"><path d="M15.75 12.75c-1.1 0-2-.9-2-2V6.5a4.75 4.75 0 0 0-9.5 0v4.25c0 1.1-.9 2-2 2h13.5ZM10.5 15.38a1.7 1.7 0 0 1-3 0"/></symbol>
+<symbol id="back" viewBox="0 0 18 18"><path d="M11.25 2.75 5 9l6.25 6.25"/></symbol>
+<symbol id="heart" viewBox="0 0 18 18"><path d="M15.2 9.22 9.72 14.92a1 1 0 0 1-1.44 0L2.8 9.22a3.9 3.9 0 0 1 5.53-5.26c.27.28.5.6.67.96 1.07-2.21 4-2.92 6-1.16 1.5 1.3 1.7 3.5.2 5.46Z"/></symbol>
+<symbol id="share" viewBox="0 0 18 18"><path d="M9 11.25V2.5M5.75 5.5 9 2.25l3.25 3.25M5.5 8.25H5A1.75 1.75 0 0 0 3.25 10v4.25c0 .97.78 1.75 1.75 1.75h8c.97 0 1.75-.78 1.75-1.75V10c0-.97-.78-1.75-1.75-1.75h-.5"/></symbol>
+<symbol id="home" viewBox="0 0 18 18"><path d="M2.5 7.6 9 2.75l6.5 4.85v6.65c0 .83-.67 1.5-1.5 1.5h-2.75v-4h-2.5v4H4c-.83 0-1.5-.67-1.5-1.5V7.6Z"/></symbol>
+<symbol id="drops" viewBox="0 0 18 18"><path d="m3.25 9v3.59c0 .4.24.76.6.92l4.75 2.07c.26.11.55.11.8 0l4.75-2.07c.37-.16.6-.52.6-.92V9M9 15.66V7.25M9.4 2.42l5.35 2.33-5.75 2.5-5.75-2.5L8.6 2.42c.25-.11.54-.11.8 0ZM9 7.25l-2.5 3L.75 7.75l2.5-3M9 7.25l2.5 3 5.75-2.5-2.5-3"/></symbol>
+<symbol id="wallet" viewBox="0 0 18 18"><path d="M1.75 8.25c0-1.1.9-2 2-2h10.5c1.1 0 2 .9 2 2M16.25 9.25h-4c-.55 0-1 .45-1 1v.5c0 .55-.45 1-1 1h-2.5c-.55 0-1-.45-1-1v-.5c0-.55-.45-1-1-1h-4"/><rect x="1.75" y="3.25" width="14.5" height="11.5" rx="2"/></symbol>
+<symbol id="you" viewBox="0 0 18 18"><circle cx="9" cy="4.5" r="2.75"/><path d="M13.76 15.52c.86-.27 1.31-1.22.95-2.05C13.74 11.28 11.55 9.75 9 9.75s-4.74 1.53-5.71 3.72c-.36.83.09 1.78.95 2.05 1.23.39 2.85.73 4.76.73s3.54-.34 4.76-.73Z"/></symbol>
+<symbol id="homef" viewBox="0 0 18 18"><path d="M2.5 7.6 9 2.75l6.5 4.85v6.65c0 .83-.67 1.5-1.5 1.5h-2.75v-4h-2.5v4H4c-.83 0-1.5-.67-1.5-1.5V7.6Z"/></symbol>
+</defs></svg>
+
+<!-- reusable fragments are written out per phone -->
+<div class="row"><h2>A · Warm editorial</h2>
+<p>Type: Geist only, 700 display sizes with tight tracking (-0.05em) and big numerals, no second face. Colour: warm off-white canvas #f7f4ef, white cards with a neutral hairline, ink type, cobalt reserved for the Apply button. Density: high, editorial. Photo-led, full-bleed hero, a rail, round category photos and a quiet progress row.</p>
+<div class="phones">
+
+<figure><div class="phone"><div class="scr A"><div class="body">
+<div class="sbar"><span>9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" width="3" height="12" rx=".8"/></svg><span class="bat"></span></span></div>
+<div class="hd"><div><small>Friday, Nov 20</small><h1>Hi, Riya</h1></div><div class="ico"><span><svg class="ic"><use href="#search"/></svg></span><span><svg class="ic"><use href="#bell"/></svg></span></div></div>
+<div class="earn"><div><small>Earned this month</small><b class="num">₹8,460</b></div><em>+24%</em></div>
+<div class="hero"><img src="assets/stock/products/p6.jpg" alt=""><span class="chip">Ends Thu</span><div class="tx"><small>Lumen Labs</small><h3>Glow serum, 30 ml</h3><div class="mt"><span>You earn <b>₹1,240</b></span><span><b style="font-size:14px">36</b> of 120 left</span></div><div class="bar"><i></i></div></div></div>
+<div class="sh" style="top:396px"><b>Ending soon</b><span>See all</span></div>
+<div class="rail" style="top:426px">
+ <div class="rc"><img src="assets/stock/products/p1.jpg" alt=""><span class="tag">Ends Thu</span><b>Night cream, 50 g</b><small>Earn <em>₹990</em> · 58 left</small></div>
+ <div class="rc"><img src="assets/stock/products/p7.jpg" alt=""><b>Daily cleanser trio</b><small>Earn <em>₹640</em> · 72 left</small></div>
+ <div class="rc"><img src="assets/stock/products/p5.jpg" alt=""><span class="tag k">Full</span><b>Clear skin set</b><small>All slots taken</small></div>
+</div>
+<div class="cats" style="top:576px">
+ <div><img src="assets/stock/products/p6.jpg" alt="">Serums</div>
+ <div><img src="assets/stock/products/p1.jpg" alt="" style="object-position:50% 60%">Creams</div>
+ <div><img src="assets/stock/products/p7.jpg" alt="" style="object-position:70% 50%">Cleansers</div>
+ <div><img src="assets/stock/products/p5.jpg" alt="">Sets</div>
+</div>
+<div class="sh" style="top:662px"><b>Your reviews in progress</b></div>
+<div class="prog" style="top:692px"><img src="assets/stock/products/p1.jpg" alt=""><div><b>Night cream, 50 g</b><small>Parcel on the way</small></div><span class="go">Track</span></div>
+</div>
+<div class="tabbar"><div class="on"><svg class="ic fill"><use href="#homef"/></svg>Home</div><div><svg class="ic"><use href="#drops"/></svg>Drops</div><div><svg class="ic"><use href="#wallet"/></svg>Wallet</div><div><svg class="ic"><use href="#you"/></svg>You</div></div>
+<div class="isl"></div><div class="hind"></div></div></div><figcaption>A · Home</figcaption></figure>
+
+<figure><div class="phone"><div class="scr A"><div class="body">
+<div class="ph"><img src="assets/stock/products/p6.jpg" alt=""></div>
+<div class="sbar" style="color:#fff"><span>9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" width="3" height="12" rx=".8"/></svg><span class="bat"></span></span></div>
+<div class="disc" style="left:16px"><svg class="ic"><use href="#back"/></svg></div>
+<div class="disc" style="right:64px"><svg class="ic"><use href="#heart"/></svg></div>
+<div class="disc" style="right:16px"><svg class="ic"><use href="#share"/></svg></div>
+<div class="sheet">
+ <div class="eyebrow">Lumen Labs · Skincare</div>
+ <h1>Glow serum, 30 ml</h1>
+ <div class="sub">Vitamin C · Vegan · Ends Thu, Nov 26</div>
+ <div class="facts"><div><b class="num">₹1,899</b><small>Worth</small></div><div><b>7 <i>days</i></b><small>Review in</small></div><div><b class="num">36 <i>of 120</i></b><small>Slots left</small></div></div>
+ <div class="bar2"><span><b>84</b> of 120 filled</span><i><u></u></i></div>
+ <div class="how"><h4>How it works</h4><div class="steps"><div><b>1</b>Apply for your slot</div><div><b>2</b>Get the parcel at home</div><div><b>3</b>Review in 7 days, get paid</div></div></div>
+ <div class="also">Also on <span><img src="assets/stock/platforms/nykaa.png" alt="">Nykaa</span><span><img src="assets/stock/platforms/amazon.png" alt="">Amazon</span></div>
+</div>
+</div>
+<div class="cta"><div><small>You earn</small><b class="num">₹1,240</b></div><div class="btn">Apply</div></div>
+<div class="isl"></div><div class="hind"></div></div></div><figcaption>A · Drop details</figcaption></figure>
+</div></div>
+
+<div class="row"><h2>B · Bold colour</h2>
+<p>Type: Geist throughout at 800, set big, with huge ₹ numerals. Colour: deep cobalt-900 blocks with white type, solid cobalt and marigold tint bands, no borders, marigold for urgency. Density: high, with stronger contrast. Photos are large and rounded, and every section sits on its own colour block.</p>
+<div class="phones">
+
+<figure><div class="phone"><div class="scr B"><div class="body">
+<div class="band" style="height:330px"></div>
+<div class="sbar"><span>9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" width="3" height="12" rx=".8"/></svg><span class="bat"></span></span></div>
+<div class="bh"><div class="l"><img src="assets/stock/people/women-68.jpg" alt=""><div><span>Friday, Nov 20</span><b>Hi, Riya</b></div></div><div class="ico"><i><svg class="ic"><use href="#search"/></svg></i><i><svg class="ic"><use href="#bell"/></svg></i></div></div>
+<div class="big"><small>Earned this month</small><em>+24%</em><b class="num">₹8,460</b></div>
+<div class="hero"><img src="assets/stock/products/p6.jpg" alt=""><span class="chip">Ends Thu</span><div class="tx"><small>Lumen Labs</small><h3>Glow serum, 30 ml</h3><div class="mt"><span>You earn <b>₹1,240</b></span><span><b style="font-size:15px">36</b> of 120 left</span></div><div class="bar"><i></i></div></div></div>
+<div class="tintband" style="top:402px;height:176px;background:#e3efff"></div>
+<div class="sh" style="top:414px"><b>Ending soon</b><span>See all</span></div>
+<div class="rail" style="top:446px">
+ <div class="rc"><img src="assets/stock/products/p1.jpg" alt=""><span class="tag">Ends Thu</span><div><b>Night cream, 50 g</b><small>Earn <em>₹990</em></small></div></div>
+ <div class="rc"><img src="assets/stock/products/p7.jpg" alt=""><div><b>Daily cleanser trio</b><small>Earn <em>₹640</em></small></div></div>
+ <div class="rc"><img src="assets/stock/products/p5.jpg" alt=""><span class="tag">Full</span><div><b>Clear skin set</b><small>All taken</small></div></div>
+</div>
+<div class="cats" style="top:590px">
+ <div><img src="assets/stock/products/p6.jpg" alt="">Serums</div>
+ <div><img src="assets/stock/products/p1.jpg" alt="" style="object-position:50% 60%">Creams</div>
+ <div><img src="assets/stock/products/p7.jpg" alt="" style="object-position:70% 50%">Cleansers</div>
+ <div><img src="assets/stock/products/p5.jpg" alt="">Sets</div>
+</div>
+<div class="tintband" style="top:664px;height:140px;background:#fff7de"></div>
+<div class="sh" style="top:674px"><b style="font-size:17px">Your reviews in progress</b></div>
+<div class="prog" style="top:702px"><img src="assets/stock/products/p1.jpg" alt=""><div><b>Night cream, 50 g</b><small>Parcel on the way</small></div><span class="go">Track</span></div>
+</div>
+<div class="tabbar"><div class="on"><svg class="ic fill"><use href="#homef"/></svg>Home</div><div><svg class="ic"><use href="#drops"/></svg>Drops</div><div><svg class="ic"><use href="#wallet"/></svg>Wallet</div><div><svg class="ic"><use href="#you"/></svg>You</div></div>
+<div class="isl"></div><div class="hind"></div></div></div><figcaption>B · Home</figcaption></figure>
+
+<figure><div class="phone"><div class="scr B"><div class="body">
+<div class="dband"></div>
+<div class="sbar"><span>9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" width="3" height="12" rx=".8"/></svg><span class="bat"></span></span></div>
+<div class="dh"><div class="disc"><svg class="ic"><use href="#back"/></svg></div><div class="disc"><svg class="ic"><use href="#heart"/></svg></div></div>
+<div class="dph"><img src="assets/stock/products/p6.jpg" alt=""></div>
+<div class="dbody">
+ <small class="br">Lumen Labs · Vitamin C · Vegan</small>
+ <h1>Glow serum, 30 ml</h1>
+ <div class="call"><div><small>You earn</small><b class="num">₹1,240</b></div><div class="r">Worth<b class="num">₹1,899</b></div></div>
+</div>
+<div class="tintband" style="top:548px;height:62px"></div>
+<div class="facts" style="top:560px"><div><b class="num">7 <i>days</i></b><small>Review in</small></div><div><b class="num">36 <i>of 120</i></b><small>Slots left</small></div><div><b class="lg"><img src="assets/stock/platforms/nykaa.png" alt=""><img src="assets/stock/platforms/amazon.png" alt=""></b><small>Also on</small></div></div>
+<div class="tintband" style="top:610px;height:140px;background:#fff7de"></div>
+<div class="sh" style="top:622px"><b style="font-size:17px">How it works</b></div>
+<div class="steps" style="top:654px"><div><b>1</b>Apply for your slot</div><div><b>2</b>Get the parcel at home</div><div><b>3</b>Review in 7 days, get paid</div></div>
+</div>
+<div class="cta"><div class="lf"><small>Ends</small><b>Thu, Nov 26</b></div><div class="btn">Apply</div></div>
+<div class="isl"></div><div class="hind"></div></div></div><figcaption>B · Drop details</figcaption></figure>
+</div></div>
+</body></html>

@@ -1,0 +1,15 @@
+.hd-display { font-family: var(--hd-font-display); font-size: 72px; line-height: 76px; font-weight: 700; font-variation-settings: 'opsz' 96; letter-spacing: -0.02em; }
+.hd-h1 { font-family: var(--hd-font-display); font-size: 48px; line-height: 54px; font-weight: 700; font-variation-settings: 'opsz' 72; letter-spacing: -0.015em; }
+.hd-h2 { font-family: var(--hd-font-display); font-size: 32px; line-height: 38px; font-weight: 700; font-variation-settings: 'opsz' 48; letter-spacing: -0.01em; }
+.hd-h3 { font-family: var(--hd-font-display); font-size: 24px; line-height: 30px; font-weight: 650; font-variation-settings: 'opsz' 32; letter-spacing: -0.005em; }
+.hd-body-l { font-family: var(--hd-font-ui); font-size: 18px; line-height: 28px; font-weight: 400; letter-spacing: 0em; }
+.hd-body { font-family: var(--hd-font-ui); font-size: 16px; line-height: 24px; font-weight: 400; letter-spacing: 0em; }
+.hd-small { font-family: var(--hd-font-ui); font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: 0em; }
+.hd-caption { font-family: var(--hd-font-ui); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0em; }
+.hd-ui-display { font-family: var(--hd-font-display); font-size: 32px; line-height: 36px; font-weight: 650; font-variation-settings: 'opsz' 96; letter-spacing: -0.03em; }
+.hd-title-1 { font-family: var(--hd-font-display); font-size: 24px; line-height: 30px; font-weight: 650; font-variation-settings: 'opsz' 48; letter-spacing: -0.024em; }
+.hd-title-2 { font-family: var(--hd-font-display); font-size: 19px; line-height: 25px; font-weight: 650; font-variation-settings: 'opsz' 32; letter-spacing: -0.018em; }
+.hd-title-3 { font-family: var(--hd-font-ui); font-size: 15px; line-height: 21px; font-weight: 600; letter-spacing: -0.012em; }
+.hd-ui-body { font-family: var(--hd-font-ui); font-size: 15px; line-height: 22px; font-weight: 400; letter-spacing: -0.006em; }
+.hd-ui-small { font-family: var(--hd-font-ui); font-size: 13px; line-height: 18px; font-weight: 400; letter-spacing: 0em; }
+.hd-ui-caption { font-family: var(--hd-font-ui); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0em; }
