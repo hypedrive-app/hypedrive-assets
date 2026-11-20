@@ -1,0 +1,1 @@
+cd /tmp/hdwm; venv/bin/python -I isoill.py /tmp/hdwm/_ills3d.html && ~/.local/share/zen/zen --headless --no-remote --profile zt/ic --screenshot /tmp/hdwm/_r.png --window-size=1500,2300 file:///tmp/hdwm/_ills3d.html >/dev/null 2>&1; echo done

@@ -1,0 +1,1 @@
+cd /tmp/hdwm && venv/bin/python -I isoill.py && ~/.local/share/zen/zen --headless --no-remote --profile /tmp/hdwm/zt/prof2 --screenshot /tmp/hdwm/_ills.png --window-size=1500,2300 file:///tmp/hdwm/_ills.html >/dev/null 2>&1; cp _ills.png _ills_r$1.png
