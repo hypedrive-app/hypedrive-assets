@@ -1,76 +1,71 @@
-"""New creator screens, part 2 (agent 3): Enrollment detail, Withdraw, Settings, Barter enrollment. Spec: CREATOR-SPEC.md."""
+"""Creator screens, part 2: Enrollment detail, Withdraw, Settings, Barter. Built from kit components (dm-ns, dm-jr, dm-ship, dm-task, dm-sb, cv-wal Ink card, eb-empty2, row, badge)."""
 from uikit2 import *
+from kit4 import _st, _kv
+BA = "assets/brand"
 
 def _bar(title="", right=""):
     t = f'<b class="n2-bt">{title}</b>' if title else '<span class="n2-bt"></span>'
     return f'<div class="xm1-bar xm1-s n2-bar">{ic("back", 22)}{t}{right}</div>'
 
-def _thumb(photo, size=56):
-    return f'<img class="n2-th" style="width:{size}px;height:{size}px" src="{PH[photo]}" alt="">'
-
-def _kv(k, v, cls=""):
-    return f'<div class="n2-kv {cls}"><span>{k}</span><b class="num">{v}</b></div>'
+def _row(lead, t, d, end=""):
+    return f'<div class="row">{lead}<div class="tx"><b>{t}</b><small>{d}</small></div>{end}</div>'
 
 def s_enrollment_detail(state="turn"):
-    """One enrollment page, two states: your turn (Glow serum, submit tasks) and their turn (Night cream, in review)."""
+    """Your turn (Glow serum, submit tasks) and their turn (Night cream, in review)."""
     review = state == "review"
-    steps = ["Joined", "Bought", "Tasks", "In review", "Paid"]
-    cur = 3 if review else 2
-    jr = ""
-    for i, s in enumerate(steps):
-        k = "done" if i < cur else ("now" if i == cur else "")
-        mark = ics("check", 12) if i < cur else ""
-        jr += f'<div class="n2-js {k}"><i>{mark}</i><span>{s}</span></div>'
-    task = lambda ico, t, d: (f'<div class="n2-row"><span class="x-tile n2-ti">{ico}</span><div class="tx"><b>{t}</b><small>{d}</small></div>{ic("chev", 16)}</div>')
+    steps = ["Proof", "Tasks", "Review", "Paid"]
+    cur = 2 if review else 1
+    jr = "".join(f'<div class="s {"done" if i < cur else ("now" if i == cur else "")}"><i>{ics("check", 12) if i < cur else f"<span class=num>{i+1}</span>"}</i><span>{s}</span></div>' for i, s in enumerate(steps))
+    tile = lambda g: f'<span class="x-tile">{g}</span>'
     if review:
-        prod = ("cream", "Night cream, 50 g", "amazon", "Amazon")
-        nxt = '<h1>In review</h1><p>Lumen Labs checks your 2 tasks · usually within 2 days</p>'
-        money = ('<small>You get back</small><b class="num">₹990</b>'
-                 '<p>You paid <span class="num">₹1,980</span> · 50% cashback</p>')
+        ns = (f'<div class="dm-ns"><img src="{PH["cream"]}" alt=""><div class="tx">{_st("mute", "", "In review")}<b>Lumen Labs is reviewing your posts</b>'
+              f'<small>{ics("clock", 14)}Usually within 2 days</small></div></div>')
+        t1 = _row(tile(soc("Instagram", 22)), "Instagram reel", "Sent 21 Nov 2026", '<span class="badge neutral">Sent</span>')
+        t2 = _row(tile(plat("amazon", 22)), "Amazon review", "Sent 21 Nov 2026", '<span class="badge neutral">Sent</span>')
+        ink = (f'<div class="cv-wal n2-ink"><small>You get back</small><div class="big"><b class="num">₹990</b></div>'
+               f'<p>50% cashback</p>'
+               f'<div class="ft">{ics("clock", 16, "#a0c6ff")}<span>You paid <span class="num">₹1,980</span> · released on approval</span></div></div>')
         foot = ""
-        t2 = task(plat("amazon", 22), "Amazon review", "Link, screenshot · 40+ words")
     else:
-        prod = ("serum", "Glow serum, 30 ml", "nykaa", "Nykaa")
-        nxt = '<h1>Submit 2 tasks</h1><p>Due in 41 days</p>'
-        money = ('<small>You get back</small><b class="num">₹1,339</b>'
-                 '<p>You paid <span class="num">₹1,899</span> · <span class="num">₹1,139</span> cashback + <span class="num">₹200</span> bonus</p>')
-        foot = '<div class="n2-bb n2-bb1"><p>0 of 2 ready · add each link and screenshots</p><button class="btn p" disabled>Submit 2 tasks</button></div>'
-        t2 = task(plat("nykaa", 22), "Nykaa review", "Link, screenshot · 40+ words")
+        ns = (f'<div class="dm-ns"><img src="{PH["serum"]}" alt=""><div class="tx">{_st("info", "", "Submit tasks")}<b>Submit 2 tasks</b>'
+              f'<small>{ics("clock", 14)}Due in 41 days</small></div></div>')
+        t1 = _row(tile(soc("Instagram", 22)), "Instagram reel", "Link, screenshots · #ad label", '<span class="badge info">To do</span>')
+        t2 = _row(tile(plat("nykaa", 22)), "Nykaa review", "Link, screenshot · 40+ words", '<span class="badge info">To do</span>')
+        ink = (f'<div class="cv-wal n2-ink"><small>You get back</small><div class="big"><b class="num">₹1,339</b></div>'
+               f'<p><span class="num">₹1,139</span> cashback + <span class="num">₹200</span> bonus</p>'
+               f'<div class="ft">{ics("clock", 16, "#a0c6ff")}<span>You paid <span class="num">₹1,899</span> · released on approval</span></div></div>')
+        foot = ('<div class="n2-sbw"><div class="dm-sb"><div class="r"><div><b>0 of 2 ready</b><small>Add each link first</small></div>'
+                '<button class="btn p lg" disabled>Submit 2 tasks</button></div></div></div>')
     body = (
         _bar() +
-        f'<div class="xm1-s n2">'
-        f'<div class="n2-prod">{_thumb(prod[0], 48)}<div class="tx"><b>{prod[1]}</b><small>Lumen Labs · {plat(prod[2], 14)}{prod[3]}</small></div></div>'
-        f'<div class="n2-card n2-next">{nxt}<div class="n2-jr">{jr}</div></div>'
-        f'<h2 class="n2-h">Tasks</h2>'
-        + task(soc("Instagram", 22), "Instagram reel", "Link, screenshots · #ad label")
-        + t2
-        + f'<div class="n2-card n2-money">{money}</div>'
-        f'</div>{foot}')
-    return phone(body, label="Enrollment · in review" if review else "Enrollment detail", sbar_color=None)
+        f'<div class="xm1-s n2 dm">{ns}<div class="dm-jr" style="--n:4">{jr}</div>'
+        f'<div class="n2-sh"><h2>Tasks</h2></div>{t1}{t2}{ink}</div>{foot}')
+    return phone(body, label="Enrollment · in review" if review else "Enrollment detail")
 
 def s_withdraw():
-    keys = "".join(f'<span class="num">{k}</span>' for k in "123456789") + '<span class="num">.</span><span class="num">0</span><span>' + ic("back", 22) + '</span>'
+    """Honest state: PAN is not verified, so the page is the blocker, with no keypad. The verified flow (amount, account, review) lives in the kit's Money section."""
     body = (
         _bar("Withdraw") +
         f'<div class="xm1-s n2 n2-wd">'
-        f'<div class="n2-amt"><b class="num">₹4,000</b><p><span class="num">₹6,820</span> available · minimum <span class="num">₹100</span></p></div>'
-        f'<div class="n2-row n2-acct">{bank("hdfc", 24, True)}<div class="tx"><b>HDFC ••6093</b><small>Fee ₹0 · usually within minutes</small></div><a class="n2-lk">Change</a></div>'
-        f'<div class="n2-row n2-pan">{ics("privacy", 18, "var(--hd-warning-strong)")}<div class="tx"><b>Verify your PAN to withdraw</b><small>Needed once before your first withdrawal</small></div></div>'
-        f'<div class="n2-keys">{keys}</div>'
-        f'</div>'
-        f'<div class="n2-bb"><button class="btn p">Verify PAN</button></div>')
+        f'<div class="card eb-empty2"><img src="{BA}/hypedrive-ill-payout-light.svg" alt=""><b class="e2t">Verify your PAN to withdraw</b>'
+        f'<p class="e2p">It takes a minute and is needed once. Your <span class="num">₹6,820</span> stays safe until you do.</p>'
+        f'<button class="btn p e2b">Verify PAN</button></div>'
+        + _row(f'<span class="x-tile">{ic("rupee", 20)}</span>', "Available", "₹1,339 on hold", '<b class="num n2-v">₹6,820</b>')
+        + _row(bank("hdfc", 24, True), "HDFC ••6093", "Fee ₹0 · usually within minutes", '<a class="n2-lk">Change</a>')
+        + f'</div>')
     return phone(body, label="Withdraw")
 
 def s_settings(theme="light"):
     dark = theme == "dark"
-    row = lambda ico, t, d, cls="": f'<div class="n2-sr">{ic(ico, 20)}<div class="tx"><b>{t}</b><small class="{cls}">{d}</small></div>{ic("chev", 16)}</div>'
-    grp = lambda h, *rows: f'<h2 class="n2-h">{h}</h2><div class="n2-card n2-list">' + "".join(rows) + '</div>'
+    row = lambda ico, t, d, cls="": f'<div class="row n2-sr">{ic(ico, 20)}<div class="tx"><b>{t}</b><small class="{cls}">{d}</small></div>{ic("chev", 16)}</div>'
+    grp = lambda h, *rows: f'<div class="n2-list">' + "".join(rows) + '</div>'
     body = (
         _bar() +
         f'<div class="xm1-s n2">'
         f'<h1 class="n2-title">Settings</h1>'
+        f'<div class="row n2-me"><img class="lead xt1-ava" src="{STOCK}/people/women-68.jpg" alt="Riya Sharma"><div class="tx"><b>Riya Sharma</b><small>@riya.glows · Kolkata</small></div></div>'
         + grp("Account",
-              row("user", "Personal info", "Riya Sharma · @riya.glows"),
+              row("user", "Personal info", "Name, date of birth"),
               row("privacy", "Verification (PAN)", "Not verified", "warn"),
               row("bank", "Payout methods", "HDFC ••6093"),
               row("pin", "Addresses", "1 saved · Kolkata"))
@@ -84,20 +79,17 @@ def s_settings(theme="light"):
     return phone(body, theme=theme, label="Settings · dark" if dark else "Settings")
 
 def s_barter():
-    def stop(k, t, d=""):
-        mark = ics("check", 12) if k == "done" else ""
-        return f'<div class="n2-vs {k}"><i>{mark}</i><div class="tx"><b>{t}</b><small>{d}</small></div></div>'
-    tl = (stop("done", "Ordered", "Shipping to 14 Park Street, Kolkata 700016")
-          + stop("now", "On the way", "Delhivery · tracking number 4471 2280")
-          + stop("", "Delivered", "Mark it received when it arrives")
-          + stop("", "Tasks", "Opens when your order arrives.")
-          + stop("", "Bonus", "+₹500 after the brand approves"))
+    steps = ["Waiting for product", "On the way", "Delivered"]
+    trk = "".join(f'<div class="s {"done" if i < 1 else ("now" if i == 1 else "")}"><i></i><span>{s}</span></div>' for i, s in enumerate(steps))
+    ship = (f'<div class="dm-ship"><div class="h"><b>Your product</b>{_st("info", "", "On the way")}</div><div class="dm-trk">{trk}</div>'
+            f'{_kv("Ship to", "14 Park Street, Kolkata 700016", "w")}{_kv("Carrier", "Delhivery")}{_kv("Tracking number", "4471 2280")}'
+            f'<button class="btn s block">Track shipment</button></div>')
+    lock = (f'<div class="dm-task lock slim"><div class="dm-th">{soc("Instagram", 24)}<div class="tx"><b>Instagram reel</b></div>{_st("mute", "lock", "Locked")}</div>'
+            f'<div class="dm-lk">{ics("lock", 16)}<span>Opens when your order arrives.</span></div></div>')
     body = (
         _bar() +
-        f'<div class="xm1-s n2">'
-        f'<div class="n2-prod">{_thumb("set", 48)}<div class="tx"><b>Clear skin set</b><small>Lumen Labs · Barter</small></div></div>'
-        f'<div class="n2-card n2-next"><h1>On the way to you</h1><p>Free product · worth <span class="num">₹2,400</span> · <span class="num">+₹500</span> bonus</p></div>'
-        f'<h2 class="n2-h">Your journey</h2><div class="n2-card n2-vj">{tl}</div>'
-        f'</div>'
-        f'<div class="n2-bb"><button class="btn p">Track shipment</button></div>')
+        f'<div class="xm1-s n2 dm">'
+        + _row(f'<img class="lead" src="{PH["set"]}" alt="">', "Clear skin set", "Worth ₹2,400 · +₹500 bonus")
+        + f'<div class="n2-moment"><img src="{BA}/hypedrive-ill-tracking-light.svg" alt=""><h1>Arriving Mon, 23 Nov</h1><p>Delhivery is bringing your Clear skin set</p></div>'
+        + ship + lock + '</div>')
     return phone(body, label="Barter enrollment")

@@ -1,7 +1,7 @@
 # final pass layer 1 (mobile screens)
 XQ1 = r"""
 /* R1: one surface — top bar, tab bar, bottom action bar and home indicator are all the screen's own white (no grey strips) */
-:root:root .phone .scr[data-theme="light"] :is(.xm1-bar, .cta, .xm3-cta, .tabbar, .home-ind) { background: var(--hd-surface) !important; }
+:root:root .phone .scr[data-theme="light"] :is(.cta, .xm3-cta, .tabbar, .home-ind) { background: var(--hd-surface) !important; }
 :root:root .phone .scr[data-theme="light"] .xm1-bar { border-top: 0 !important; }
 /* welcome: the mosaic dissolves under the status bar so the logo sits on dark */
 :root:root:root:root .phone .xm1-wel .xm1-fade { background: linear-gradient(180deg, #0d0e12 0px, rgba(13,14,18,.82) 48px, rgba(13,14,18,.38) 92px, rgba(13,14,18,0) 140px, rgba(13,14,18,0) 250px, rgba(13,14,18,.86) 400px, #0d0e12 480px) !important; }

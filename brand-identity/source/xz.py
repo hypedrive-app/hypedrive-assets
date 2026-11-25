@@ -240,7 +240,7 @@ XZ = r"""
 .xz-nil2 .xz-al { display: inline-flex; align-items: center; gap: 4px; margin-left: 2px; color: var(--hd-accent-strong, var(--hd-link)); font-weight: 600; white-space: nowrap; cursor: pointer; } .xz-nil2 .xz-al .ic { width: 15px; height: 15px; }
 
 /* bottom action bars: same surface as the screen, all the way to the bottom edge (no white band + warm strip) */
-.phone .scr[data-theme="light"] :is(.cta, .xm1-bar, .xm3-cta, [class*="xm2-"][class*="bar"], [class*="xw1-"][class*="bar"], [class*="xw2-"][class*="bar"]) { background: var(--warm, #f7f7f8) !important; box-shadow: none !important; }
+.phone .scr[data-theme="light"] :is(.cta, .xm3-cta, [class*="xm2-"][class*="bar"], [class*="xw1-"][class*="bar"], [class*="xw2-"][class*="bar"]) { background: var(--warm, #f7f7f8) !important; box-shadow: none !important; }
 .phone .scr[data-theme="light"] :is(.cta, .xm1-bar, .xm3-cta) { border-top: 1px solid var(--warm-edge, rgba(16,20,38,.09)) !important; }
 .phone .scr[data-theme="light"] .home-ind { background: var(--warm, #f7f7f8) !important; }
 .phone .scr[data-theme="light"]:has(.tabbar) .home-ind { background: rgba(247,247,248,.94) !important; }

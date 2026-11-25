@@ -20,43 +20,36 @@ def _btn(kind, label, icon=None, sm=True, extra=""):
 # ====================================================================== 5 · review queue + one submission
 def _seg(on):
     g = "on" if on == "good" else ""; n = "on" if on == "fix" else ""
-    return (f'<div class="b2-seg"><span class="{g} good">{ics("check", 16) if g else ""}Looks good</span><span class="{n} fix">Needs a change</span></div>')
+    return (f'<span class="seg v3-vd {"fix" if on == "fix" else "good"}"><span class="{g}">{ics("check", 16) if g else ""}Looks good</span><span class="{n}">{ics("alert", 16) if n else ""}Needs a change</span></span>')
 
-def _thumb(src, n=None):
-    return f'<img class="b2-shot" src="{src}" alt="">'
+def _shot(src, w=200, h=252, tag=""):
+    t = f'<span class="k">{tag}</span>' if tag else ""
+    return f'<div class="v3-shot" style="width:{w}px;height:{h}px"><img src="{src}" alt="">{t}<a class="full">{ic("eye", 16)}Full size</a></div>'
 
-def _task(glyph, title, meta, body, verdict, flagged=""):
-    return (f'<div class="b2-card b2-task{" flag" if verdict == "fix" else ""}"><div class="b2-th"><span class="x-tile b2-tl">{glyph}</span>'
-            f'<div class="b2-tt"><b>{title}</b><small>{meta}</small></div>{_seg(verdict)}</div>{body}{flagged}</div>')
+def _task(glyph, title, meta, body, verdict):
+    return (f'<div class="panel v3-task{" flag" if verdict == "fix" else ""}"><div class="th"><span class="x-tile">{glyph}</span>'
+            f'<div class="tt"><b>{title}</b><small>{meta}</small></div>{_seg(verdict)}</div>{body}</div>')
 
 def _link(url):
-    return f'<div class="b2-link">{ic("link", 16)}<span>{url}</span><a class="btn g sm">{ic("external", 16)}Open</a></div>'
+    return f'<div class="input v3-link">{ic("link", 16)}<span>{url}</span><a class="btn g sm">{ic("external", 16)}Open</a></div>'
 
 def d_queue():
-    order = ('<div class="b2-card b2-order"><b class="b2-h">Order</b>'
-             '<div class="b2-ol"><span>Product</span><b>Glow serum, 30 ml</b></div>'
-             '<div class="b2-ol"><span>Store</span><b>' + plat("nykaa", 16) + 'Nykaa</b></div>'
-             '<div class="b2-ol"><span>Order value</span><b class="num">₹1,899</b></div>'
-             '<div class="b2-ol"><span>Order ID</span><b class="b2-mono">NYK-2611-48213</b></div>'
-             '<div class="b2-ol"><span>Order date</span><b>14 Nov 2026</b></div>'
-             f'<div class="b2-ol"><span>Order check</span><b class="b2-match">{ic("check", 16)}Matches</b></div></div>')
-    rcpt = f'<div class="b2-files"><img class="b2-shot" src="{PH["bottles"]}" alt=""><a class="b2-full">{ic("eye", 16)}Full size</a></div>'
-    reel = (_link("instagram.com/reel/C-9xLm2Qa7R") +
-            f'<div class="b2-files"><img class="b2-shot" src="{PH["serum"]}" alt=""><img class="b2-shot" src="{PH["flatlay"]}" alt=""><a class="b2-full">{ic("eye", 16)}Full size</a></div>')
-    rev = (_link("nykaa.com/glow-serum-30-ml/reviews") +
-           f'<div class="b2-files"><img class="b2-shot" src="{PH["cream"]}" alt=""><a class="b2-full">{ic("eye", 16)}Full size</a></div>')
-    chips = "".join(f'<span class="b2-chip{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(["Under 40 words", "Not about the product", "Screenshot unclear", "Link doesn't open"]))
-    flagged = f'<div class="b2-why">{chips}</div>'
+    def ln(k, v, cls=""): return f'<div class="mn-ln"><span>{k}</span><span class="num {cls}">{v}</span></div>'
+    order = ('<div class="mn-lns v3-ord">' + ln("Product", "Glow serum, 30 ml") + ln("Store", plat("nykaa", 16) + " Nykaa") + ln("Order value", "₹1,899")
+             + ln("Order ID", '<span class="b2-mono">NYK-2611-48213</span>') + ln("Order date", "14 Nov 2026")
+             + ln("Order check", f'<span class="v3-ok">{ic("check", 16)}Matches</span>') + '</div>')
+    rcpt = f'<div class="v3-recv">{_shot(PH["bottles"], 200, 252)}{order}</div>'
+    reel = _link("instagram.com/reel/C-9xLm2Qa7R") + f'<div class="v3-shots fill">{_shot(PH["serum"], 200, 252, "Reel")}{_shot(PH["flatlay"], 200, 252)}{_shot(PH["mask"], 200, 252)}</div>'
+    rev = _link("nykaa.com/glow-serum-30-ml/reviews") + f'<div class="v3-shots">{_shot(PH["cream"], 200, 252)}<p class="v3-quote">“Nice texture, I use it every night.”<small>11 words, the brief asks for at least 40.</small></p></div>'
     tasks = (_task(ic("receipt", 20), "Order receipt", "Always required · Sent 18 Nov", rcpt, "good")
-             + _task(soc("Instagram", 22), "Instagram reel", "Sent 18 Nov · Link and 2 screenshots", reel, "good")
-             + _task(plat("nykaa", 22), "Nykaa review", "Sent 18 Nov · At least 40 words", rev, "fix", flagged))
-    note = (f'<div class="b2-card b2-note"><b class="b2-h">Your note to Riya</b>'
-            '<div class="b2-ta">The review is under 40 words. Please add a few lines on how the serum felt on your skin, then send it again.</div>'
-            '<small class="b2-sub">The creator gets until 25 Nov to fix these.</small></div>')
-    cost = (f'<div class="b2-card b2-cost"><b class="b2-h">Your cost</b>'
-            f'<div class="b2-ln"><span>Order funding</span><span class="num">₹1,139</span></div><div class="b2-ln"><span>Bonus funding</span><span class="num">₹200</span></div>'
-            f'<div class="b2-ln"><span>GST (18%)</span><span class="num">₹241</span></div><div class="b2-ln tot"><span>Total</span><b class="num">₹1,580</b></div>'
-            f'</div>')
+             + _task(soc("Instagram", 22), "Instagram reel", "Sent 18 Nov · Link and 3 screenshots", reel, "good")
+             + _task(plat("nykaa", 22), "Nykaa review", "Sent 18 Nov · At least 40 words", rev, "fix"))
+    chips = "".join(f'<span class="chip{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(["Under 40 words", "Not about the product", "Screenshot unclear", "Link doesn't open"]))
+    note = (f'<div class="panel v3-note"><b>Your note to Riya</b><div class="v3-chips">{chips}</div>'
+            '<div class="input textarea">The review is under 40 words. Please add a few lines on how the serum felt on your skin, then send it again.</div>'
+            '<small>The creator gets until 25 Nov to fix these.</small></div>')
+    cost = (f'<div class="mn-card mn-rc"><div class="mn-rh"><div class="mn-rt"><b>Your cost</b><small>Paid when you approve</small></div></div>'
+            f'<div class="mn-lns">{ln("Order funding", "₹1,339")}{ln("Bonus funding", "₹200")}{ln("GST (18%)", "₹241")}<div class="mn-ln"><span>Total</span><span class="num b">₹1,580</span></div></div></div>')
     bar = (f'<div class="b2-bar"><span class="b2-bt">Needs review</span><span class="b2-bn num">1 of 9</span><i class="b2-prog"><i style="width:11%"></i></i><span class="sp"></span>'
            f'{_btn("s", "Back", "back")}{_btn("s", "Next", "chev")}</div>')
     head = (f'<div class="b2-hd"><img class="b2-av" src="{PEOPLE["women-68"]}" alt=""><div class="b2-who"><div class="t-h1 b2-name">Riya Sharma</div>'
@@ -64,8 +57,8 @@ def d_queue():
             f'<div class="b2-camp"><img src="{PH["serum"]}" alt=""><div><b>Glow serum, 30 ml</b><small>Lumen Labs · Joined 14 Nov</small></div></div>{_btn("s", "Details")}</div>')
     band = (f'<div class="b2-band"><div class="b2-money"><b class="num">₹1,580</b><span>stays on hold while the creator fixes.</span></div><span class="sp"></span>'
             f'<button class="btn g">More</button><button class="btn s">Reject</button><button class="btn p">Send back 1 task</button></div>')
-    body = f'<div class="b2-body"><div class="b2-tasks">{tasks}</div><div class="b2-side">{order}{note}{cost}</div></div>'
-    page = f'<div class="b2-rv">{bar}{head}{body}{band}</div>'
+    body = f'<div class="v3-rbody v3k"><div class="v3-proof">{tasks}</div><div class="v3-decide">{note}{cost}</div></div>'
+    page = f'<div class="v3-rv">{bar}{head}{body}{band}</div>'
     return shell(NAV_ENROLL, ["Lumen Labs", "Enrollments", "Riya Sharma"], page)
 
 # ====================================================================== 6 · wallet and funding
@@ -81,32 +74,37 @@ def _inv(week, num, n, total, status):
             f'<div class="b2-iamt"><b class="num">{inr(total)}</b><small class="num">GST {inr(gst)}</small></div>{badge}<a class="btn g sm b2-dl" aria-label="Download">{ic("download", 16)}</a></div>')
 
 def d_wallet():
-    """Wallet: one balance, a quiet ledger, invoices and TDS as plain lists. Paid and Credited are the normal case, so only exceptions are marked."""
-    head = '<div class="ph"><div class="t"><div class="t-h1">Wallet</div></div></div>'
-    bal = ('<div class="bw-bal"><div class="bw-bm"><small>Available</small><b class="num">₹1,84,500</b>'
-           '<p><span class="num">₹96,320</span> on hold for creators who joined · each approval is paid from here</p></div>'
-           f'<div class="bw-act"><button class="btn s">Withdraw</button><button class="btn p">{ic("plus", 18)}Add money</button></div></div>')
-    led = lambda t, d, date, amt, cr=False: (f'<div class="bw-lr"><div class="bw-tx"><b>{t}</b><small>{d}</small></div><span class="bw-d">{date}</span>'
-                                             f'<b class="num bw-a{" cr" if cr else ""}">{amt}</b></div>')
-    ledger = ('<div class="bw-card"><div class="bw-h"><b>Activity</b><em class="bw-lk">Statements</em></div>'
-              + led("Money added", "Razorpay", "19 Nov", "+₹2,00,000", True)
-              + led("Enrollment paid", "Ananya Das · Glow serum", "19 Nov", "−₹1,580")
-              + led("On hold", "Kabir Singh · Glow serum", "18 Nov", "−₹1,580")
-              + led("Hold released", "Tanvi Shah · Clear skin set", "17 Nov", "+₹2,900", True)
-              + led("Withdrawal", "HDFC Bank ••6093", "12 Nov", "−₹50,000")
-              + led("Refund", "Order cancelled", "10 Nov", "+₹1,580", True)
-              + led("Adjustment", "Hypedrive", "9 Nov", "+₹320", True) + '</div>')
-    dl = ic("download", 16)
-    inv = lambda wk, num, n, amt, void=False: (f'<div class="bw-lr{" void" if void else ""}"><div class="bw-tx"><b>{wk}</b><small>{num} · {n} enrollments{" · Void" if void else ""}</small></div>'
-                                              f'<b class="num bw-a">{amt}</b><span class="bw-ic">{dl}</span></div>')
-    invoices = ('<div class="bw-card"><div class="bw-h"><b>Invoices</b><span><span class="num">₹18,42,300</span> invoiced in FY 2026-27</span></div>'
-                + inv("9 – 15 Nov", "LL/2627/0042", 31, "₹1,41,120") + inv("2 – 8 Nov", "LL/2627/0041", 27, "₹1,22,780")
-                + inv("26 Oct – 1 Nov", "LL/2627/0040", 24, "₹1,09,950") + inv("19 – 25 Oct", "LL/2627/0039", 22, "₹98,360", True) + '</div>')
-    q = lambda n, d, act="": f'<div class="bw-lr"><div class="bw-tx"><b>{n}</b><small>{d}</small></div>{act}</div>'
-    tds = ('<div class="bw-card"><div class="bw-h"><b>TDS certificates</b><span><span class="num">₹23,240</span> credited of <span class="num">₹34,860</span></span></div>'
-           + q("Q3 Oct – Dec", "Due by 31 Jan 2027", '<em class="bw-lk">Send certificate</em>')
-           + q("Q2 Jul – Sep", "Credited 12 Nov") + q("Q1 Apr – Jun", "Credited 12 Aug") + '</div>')
-    page = f'{head}{bal}<div class="bw-grid"><div>{ledger}</div><div class="bw-side">{invoices}{tds}</div></div>'
+    """Wallet: the Ink balance (the kit's money hero), the kit's movement rows as the ledger, invoices and TDS as kit rows."""
+    from kit5 import _mrow, _tile, _b
+    hero = (f'<div class="mn-hero ink v3-whero"><div class="v3-wl"><div class="mn-hl">Available</div><div class="mn-hn num">₹1,84,500</div>'
+            f'<a class="mn-hold"><span class="num">₹96,320</span>&nbsp;on hold for creators who joined · each approval is paid from here</a></div>'
+            f'<div class="mn-hb"><button class="btn inv">Withdraw</button><button class="btn p">{ic("plus", 16)}Add money</button></div></div>')
+    rows = "".join([
+        _mrow("plus", "Money added", "Razorpay · 19 Nov 2026", "+₹2,00,000"),
+        _mrow("check", "Enrollment paid", "Ananya Das · Glow serum · 19 Nov 2026", "−₹1,580", out=True),
+        _mrow("clock", "On hold", "Kabir Singh · Glow serum · 18 Nov 2026", "−₹1,580", out=True),
+        _mrow("refresh", "Hold released", "Tanvi Shah · Clear skin set · 17 Nov 2026", "+₹2,900"),
+        _mrow("bank", "Withdrawal", "HDFC Bank ••6093 · 12 Nov 2026", "−₹50,000", out=True),
+        _mrow("receipt", "Refund", "Order cancelled · 10 Nov 2026", "+₹1,580"),
+        _mrow("sliders", "Adjustment", "Hypedrive · 9 Nov 2026", "+₹320"),
+    ])
+    chips = "".join(f'<span class="mn-chip{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(["All", "Money in", "Money out", "On hold"]))
+    ledger = (f'<div><div class="v3-sechd"><h2>Activity</h2><em class="v3-lk">Statements</em></div><div class="mn-chips" style="margin-bottom:12px">{chips}</div>'
+              f'<div class="mn-card mn-list">{rows}</div></div>')
+    def irow(wk, num, n, amt, void=False):
+        sub = f'<span class="b2-mono">{num}</span> · ' + ("Void" if void else f"{n} enrollments")
+        return (f'<div class="mn-row">{_tile(ic("receipt", 18))}<div class="mn-rt"><b>{wk}</b><small>{sub}</small></div>'
+                f'<span class="mn-amt out num{" off" if void else ""}">{inr(amt)}</span><span class="v3-dlb">{ic("download", 16)}</span></div>')
+    inv = (f'<div><div class="v3-sechd"><h2>Invoices</h2><span><b class="num">₹18,42,300</b> in FY 2026-27</span></div><div class="mn-card mn-list">'
+           + irow("9 – 15 Nov", "LL/2627/0042", 31, 141120) + irow("2 – 8 Nov", "LL/2627/0041", 27, 122780)
+           + irow("26 Oct – 1 Nov", "LL/2627/0040", 24, 109950) + irow("19 – 25 Oct", "LL/2627/0039", 22, 98360, True) + '</div></div>')
+    q = lambda n, d, tail="": f'<div class="mn-row"><div class="mn-rt"><b>{n}</b><small>{d}</small></div>{tail}</div>'
+    tds = (f'<div><div class="v3-sechd"><h2>TDS certificates</h2><span><b class="num">₹23,240</b> credited</span></div><div class="mn-card mn-list">'
+           + q("Q3 Oct – Dec", "Due by 31 Jan 2027", '<em class="v3-lk">Send certificate</em>')
+           + q("Q2 Jul – Sep", "Credited 12 Nov") + q("Q1 Apr – Jun", "Credited 12 Aug") + '</div></div>')
+    head = ('<div class="v3-head"><div class="t"><h1 class="b1-h1">Wallet</h1><p class="b1-sub">Your balance covers about <b>116 approvals</b> at ₹1,580.</p></div>'
+            f'<button class="btn s md">{ic("more", 16)}</button></div>')
+    page = f'<div class="b1-wrap tall v3k">{head}{hero}<div class="v3-wgrid">{ledger}<div class="v3-wside">{inv}{tds}</div></div></div>'
     return shell(NAV_WALLET, ["Lumen Labs", "Wallet"], page)
 
 # ====================================================================== 7 · team and settings
@@ -115,28 +113,29 @@ ROLES = [("Owner", "Everything, and the only one who can hand the brand on."), (
          ("Finance manager", "Runs the wallet, withdrawals, invoices and bank accounts. Sees campaigns."), ("Viewer", "Sees everything, changes nothing.")]
 
 def d_team():
+    from kit5 import _mrow
     def mrow(photo, name, you, mail, role, seen):
         fixed = role == "Owner"
-        ctl = f'<span class="b2-role fixed">{role}</span>' if fixed else f'<span class="b2-role q">{role}{ic("down", 16)}</span>'
-        return (f'<div class="b2-mrow"><img class="b2-av44" src="{PEOPLE[photo]}" alt=""><div class="b2-tt"><b>{name}{"<em>You</em>" if you else ""}</b><small>{mail}</small></div>'
-                f'<div class="b2-rc">{ctl}</div><span class="b2-seen">{seen}</span></div>')
+        ctl = f'<span class="chip">{role}</span>' if fixed else f'<span class="chip">{role}{ic("down", 14)}</span>'
+        return (f'<div class="row v3-mem"><img class="lead" src="{PEOPLE[photo]}" alt=""><div class="tx"><b>{name}{"<em>You</em>" if you else ""}</b><small>{mail}</small></div>'
+                f'<div class="v3-rc">{ctl}</div><span class="v3-seen">{seen}</span></div>')
     members = "".join([mrow("women-44", "Neha Kapoor", True, "neha@lumenlabs.in", "Owner", "Active now"),
                        mrow("men-12", "Arjun Mehta", False, "arjun@lumenlabs.in", "Campaign manager", "Active today"),
                        mrow("women-65", "Divya Rao", False, "divya@lumenlabs.in", "Finance manager", "Active yesterday"),
                        mrow("men-32", "Sanjay Iyer", False, "sanjay@lumenlabs.in", "Viewer", "Active 3 days ago")])
-    link = (f'<div class="b2-card b2-linkc"><div class="b2-tt"><b>Invite link</b><small>Anyone with it joins as the role you pick.</small></div>'
-            f'<span class="b2-role">Viewer{ic("down", 16)}</span><button class="btn s sm">{ic("copy", 16)}Copy invite link</button><em class="b2-lk">Turn off link</em></div>')
+    inv = (f'<div class="row v3-mem"><span class="x-tile">{ic("mail", 20)}</span><div class="tx"><b>aman@lumenlabs.in</b><small>Sent on WhatsApp · Expires in 7 days</small></div>'
+           f'<div class="v3-rc"><span class="chip">Campaign manager</span></div><span class="v3-acts"><em>Resend</em><em>Cancel invite</em></span></div>')
+    link = (f'<div class="panel v3-linkc"><div class="tx"><b>Invite link</b><small>Anyone with it joins as the role you pick.</small></div>'
+            f'<span class="chip">Viewer{ic("down", 14)}</span><div class="input n-copy"><span class="n-val">hypedrive.in/join/lumen-labs</span><button class="btn s">{ic("copy", 16)}Copy invite link</button></div><em class="v3-lk">Turn off link</em></div>')
     rail_item = lambda i, t, on=False: f'<div class="b2-ri{" on" if on else ""}">{ics(i, 18) if on else ic(i, 18)}{t}</div>'
     rail = ('<div class="b2-rail"><div class="b2-rg">Workspace</div>' + rail_item("settings", "Workspace") + rail_item("users", "Team", True) + rail_item("receipt", "Tax")
             + rail_item("bank", "Bank account") + rail_item("bell", "Notifications") + '<div class="b2-rg">You</div>' + rail_item("user", "Profile") + rail_item("lock", "Security") + '</div>')
-    head = (f'<div class="ph"><div class="t"><div class="t-h1">Team</div><p>4 members. Only an owner or admin manages people and settings.</p></div>'
+    head = (f'<div class="v3-head"><div class="t"><h1 class="b1-h1">Team</h1><p class="b1-sub">4 members and 1 invite waiting. Only an owner or admin manages people and settings.</p></div>'
             f'<button class="btn p sm">{ic("plus", 16)}Invite members</button></div>')
-    inv = (f'<div class="b2-mrow"><span class="x-tile b2-tl">{ic("mail", 20)}</span><div class="b2-tt"><b>aman@lumenlabs.in</b><small>Sent on WhatsApp · Expires in 7 days</small></div>'
-           f'<div class="b2-rc"><span class="b2-role fixed">Campaign manager</span></div><span class="b2-acts"><em class="b2-lk">Resend</em><em class="b2-lk">Cancel invite</em></span></div>')
-    roles = '<div class="bw-card">' + "".join(f'<div class="bw-lr"><div class="bw-tx"><b>{r}</b><small>{d}</small></div></div>' for r, d in ROLES) + '</div>'
-    sec = lambda t, n, body: f'<div class="b2-sec"><div class="b2-sech"><b>{t}</b><span class="num">{n}</span></div>{body}</div>'
-    main = (f'<div class="b2-tmain">{head}{sec("Members", 4, "<div class=b2-mlist>" + members + "</div>")}{sec("Invites", 1, "<div class=b2-mlist>" + inv + "</div>")}{link}'
-            f'<div class="b2-sec"><div class="b2-sech"><b>Roles</b><span>Pick one for each member and invite</span></div>{roles}</div></div>')
+    roles = '<div class="mn-card mn-list">' + "".join(f'<div class="mn-row"><div class="mn-rt"><b>{r}</b><small>{d}</small></div></div>' for r, d in ROLES) + '</div>'
+    sh = lambda t, n="": f'<div class="v3-sechd"><h2>{t}</h2><span>{n}</span></div>'
+    main = (f'<div class="v3-tmain v3k">{head}{sh("Members", "4")}'
+            f'<div class="stack v3-mlist" style="gap:8px">{members}</div>{sh("Invites", "1")}<div class="stack">{inv}</div>{link}{sh("Roles", "Pick one for each member and invite")}{roles}</div>')
     return shell(NAV_TEAM, ["Lumen Labs", "Team"], f'<div class="b2-split">{rail}{main}</div>')
 
 SCREENS = [("Brand · Review queue", d_queue), ("Brand · Wallet", d_wallet), ("Brand · Team", d_team)]

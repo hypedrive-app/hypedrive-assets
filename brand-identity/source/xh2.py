@@ -152,3 +152,63 @@ XH2 += """
 :root:root:root:root .phone .scr[data-theme="dark"]:has(.c4) .home-ind { background: var(--hd-surface) !important; }
 :root:root:root:root .phone .sheet.jf .jf-x { background: none !important; box-shadow: none !important; border: 0 !important; color: var(--hd-fg); }
 """
+
+# ---- v1: kit components (dm-*, mn-*) widened from `.sec.dm` / `.mn-sec` so they work in phone screens ----
+import re as _re
+def _v1_widen():
+    import xr3, xr4
+    out = []
+    for css in (xr3.XR3, xr4.XR4):
+        css = _re.sub(r'/\*.*?\*/', '', css, flags=_re.S)
+        for m in _re.finditer(r'([^{}@]+)\{([^{}]*)\}', css):
+            sel, body = m.group(1).strip(), m.group(2)
+            parts = [s.strip() for s in sel.split(',')]
+            keep = []
+            for s in parts:
+                for pre in ('.sec.dm ', '.mn-sec '):
+                    if s.startswith(pre) and s[len(pre):].startswith(('.dm-', '.mn-')): keep.append(':root:root .phone ' + s[len(pre):])
+            if keep: out.append(', '.join(keep) + ' {' + body + '}')
+    return '\n'.join(out)
+XH2 += "\n/* widened kit rules */\n" + _v1_widen() + """
+/* v1 layout only */
+:root:root .phone .dm-jr .s { font-size: 13px; }
+"""
+XH2 += """
+/* v1 layout */
+:root:root:root .phone .v1-otph { display: flex; flex-direction: column; }
+:root:root:root .phone .v1-otph img { width: 112px; height: 112px; object-fit: contain; margin: 4px 0 6px -8px; }
+:root:root:root .phone .v1-offer .big { font-size: 44px; line-height: 48px; }
+:root:root:root .phone .v1-det .c4-body { gap: 0; }
+:root:root:root .phone .v1-det .c4-body > .dm-po { margin-top: 0; }
+:root:root:root .phone .v1-det .c4-h { margin: 20px 4px 10px; }
+:root:root:root .phone .v1-cap { margin: 10px 4px 0; font-size: 13.5px; line-height: 19px; color: var(--hd-fg-muted); }
+:root:root:root .phone .v1-sheetoffer { padding-top: 12px !important; }
+:root:root:root .phone .v1-sheetoffer .big { font-size: 36px; line-height: 40px; }
+:root:root:root .phone .v1-rc { min-height: 0; gap: 12px; justify-content: flex-start; }
+:root:root:root .phone .v1-rc .file { background: none; padding: 0; }
+:root:root:root .phone .v1-rc .file i { display: grid; place-items: center; color: var(--hd-fg-muted); }
+:root:root:root .phone .v1-rc .file > div { flex: 1; }
+:root:root:root .phone .v1-rev { gap: 12px; }
+:root:root:root .phone .v1-rev .dm-task { gap: 10px; min-height: 0; }
+:root:root:root .phone .v1-sb { padding: 0 !important; background: var(--hd-surface); }
+:root:root:root .phone .v1-sb .dm-sb { border-radius: 0; box-shadow: none; border-top: 1px solid var(--hd-edge); padding: 14px 16px 22px; }
+:root:root:root .phone .v1-wal { padding-top: 2px; }
+:root:root:root .phone .v1-wal .v1-chips { padding: 0 16px; margin-top: -4px; }
+:root:root:root .phone .v1-wal .v1-led { margin: -6px 16px 0; }
+:root:root:root .phone .v1-ok .dm-ns { width: 100%; }
+:root:root:root .phone .v1-ok .e1-ill img { width: 208px; height: 208px; }
+:root:root:root .phone .v1-tabs { margin: 0 -16px; padding: 0 20px !important; }
+:root:root:root .phone .v1-emp .eb-empty2 img { width: 132px; height: 132px; }
+:root:root:root .phone .v1-rc .file { background: none; padding: 0; }
+:root:root:root .phone .v1-rc .file i { display: grid; place-items: center; color: var(--hd-fg-muted); }
+:root:root:root .phone .v1-rev > * { flex: none; }
+:root:root:root .phone .v1-rev .dm-task { padding: 12px 14px 14px; }
+"""
+XH2 += """
+/* v1 welcome: the mosaic fades in under the logo, so the wordmark sits on clean ink */
+:root:root:root .phone .xm1-wel .xm1-mos { top: 40px; height: 386px; -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 22px, #000 92px); mask-image: linear-gradient(180deg, transparent 0, transparent 22px, #000 92px); }
+:root:root:root .phone .xm1-wel .xm1-logo { height: 28px; margin-top: 8px; position: relative; z-index: 2; }
+"""
+XH2 += """
+:root:root:root:root .phone .scr[data-theme="dark"] .v1-wal .cv-wal { box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+"""
