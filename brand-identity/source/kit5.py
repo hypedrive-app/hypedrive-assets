@@ -57,9 +57,8 @@ def _movements():
         _mrow("bank", "Withdrawal", "To HDFC ••6093 · 28 Oct 2026", "−₹2,000", "failed", True),
     ])
     chips = "".join(f'<span class="mn-chip{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(["All", "Money in", "Money out", "On hold"]))
-    states = "".join([_b("info", "clock", "In progress"), _b("neutral", "ok", "Done"), _b("danger", "danger", "Failed"), _b("neutral", "refresh", "Released")])
     left = (f'<div class="mn-chips">{chips}</div><div class="mn-card mn-list">{rows}</div>'
-            f'<div class="mn-states"><span class="t-small muted">States</span>{states}</div>')
+            )
     def line(k, v, b=False): return f'<div class="mn-ln"><span>{k}</span><span class="num{" b" if b else ""}">{v}</span></div>'
     rcpt = (f'<div class="mn-card mn-rc"><div class="mn-rh">{_tile(ic("bank", 18))}<div class="mn-rt"><b>Withdrawal</b><small>20 Nov 2026, 4:19 pm</small></div>{_b("warning", "clock", "In review")}</div>'
             f'<div class="mn-rbig num">−₹12,000</div><p class="mn-rd">We check large or first withdrawals before sending. We\'ll notify you when it\'s reviewed.</p>'
@@ -106,12 +105,12 @@ def _statuses():
 def _blockers():
     ns = [_note("warning", "clock", "Your payout method is cooling off. Ready to use in 23 h 14 min"),
           _note("neutral", "info", "Nothing to withdraw yet"),
-          _note("info", "privacy", "Verify your PAN to withdraw", "Without it, you can withdraw ₹5,000 each time and ₹25,000 in 365 days.", btn("p sm", "Verify PAN")),
+          _note("info", "privacy", "Verify your PAN to withdraw", "Without it, you can withdraw ₹5,000 each time and ₹25,000 in 365 days.", btn("s sm", "Verify PAN")),
           _note("danger", "lock", "Your wallet is frozen", "Contact support to unfreeze it."),
           _note("warning", "pause", "Withdrawals are paused", "Try again later.")]
     cap = (f'<div class="mn-note warning">{ics("warning", 18)}<div class="mn-nt"><b>You are close to your yearly limit</b>'
            f'<span class="mn-nd">Without a verified PAN, withdrawals stop at ₹25,000 in 365 days.</span>'
-           f'<div class="mn-bar"><i style="width:84%"></i></div><span class="mn-bm num">₹21,000 of ₹25,000</span></div><div class="mn-na">{btn("p sm", "Verify PAN")}</div></div>')
+           f'<div class="mn-bar"><i style="width:84%"></i></div><span class="mn-bm num">₹21,000 of ₹25,000</span></div><div class="mn-na">{btn("s sm", "Verify PAN")}</div></div>')
     return (f'<div class="mn-blk"><div class="lbl">Withdraw blockers</div><div class="mn-stack">{"".join(ns[:3])}</div></div>'
             f'<div class="mn-blk"><div class="lbl">&nbsp;</div><div class="mn-stack">{"".join(ns[3:])}{cap}</div></div>')
 
@@ -134,13 +133,13 @@ def _methods():
 def _pan():
     def card(tone, icon, state, title, body, action="", extra=""):
         a = f'<div class="mn-pa">{action}</div>' if action else ""
-        return f'<div class="mn-card mn-pan"><div class="mn-pt">{_b(tone, icon, state)}</div><b>{title}</b><p>{body}</p>{extra}{a}</div>'
+        return f'<div class="mn-card mn-pan"><div class="mn-pt">{ics(icon, 18, {"neutral": "var(--hd-fg-muted)", "warning": "var(--hd-warning-strong)", "success": "var(--hd-success-strong)", "danger": "var(--hd-danger-strong)"}[tone])}</div><b>{title}</b><p>{body}</p>{extra}{a}</div>'
     cards = "".join([
         card("neutral", "info", "Not verified yet", "Verify your PAN", "Verifying your PAN lets you withdraw and raises your limits. Without it, you can withdraw ₹5,000 each time and ₹25,000 in 365 days.", btn("p sm", "Verify PAN")),
         card("warning", "clock", "In review", "Your PAN is in review.", "Under review. We'll notify you."),
         card("success", "success", "Verified", "Your PAN is verified.", "ABCDE••••F · valid until 20 Nov 2027. Withdrawals are uncapped."),
         card("warning", "warning", "Expired", "Your verified PAN has expired.", "Verify it again to go on.", btn("p sm", "Verify PAN again")),
-        card("danger", "danger", "Didn't go through", "Your last attempt didn't go through", "We couldn't verify this PAN. Check the name and number against your PAN card and try again.", btn("s sm", "Try again")),
+        card("danger", "danger", "Didn't go through", "Your last attempt didn't go through", "We couldn't verify this PAN. Check the name and number against your PAN card and try again.", btn("p sm", "Try again")),
     ])
     form = ('<div class="mn-card mn-form">'
             + field("PAN", '<div class="input err"><span class="num">ABCDE12345</span></div>', "A PAN is five letters, four digits, then one letter.", err=True)

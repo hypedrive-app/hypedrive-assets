@@ -13,7 +13,7 @@ def _kv(k, v, cls=""): return f'<div class="dm-kv {cls}"><span>{k}</span><b clas
 
 # 1 ---------------------------------------------------------------- campaign card
 def _cc(photo, store, title, by, back, bonus, spots="", state="", barter=False, cls="", worth=""):
-    lead = (f'<b class="dm-bk">Free product</b><span class="dm-w">Worth {worth}</span>' if barter
+    lead = (f'<b class="dm-bk">Free product</b>' if barter
             else f'<b class="dm-bk num">{back}</b>')
     bn = f'<span class="dm-bn num">+{bonus} bonus</span>' if bonus else ""
     sp = f'<span class="dm-sp"><b class="num">{spots}</b></span>' if spots else ""
@@ -32,8 +32,8 @@ def cards():
         _cell("Joined", _cc("cream", "amazon", "Night cream, 50 g", "Lumen Labs", "50% back", "", "", _st("ok", "check", "Joined"))),
         _cell("Closing soon", _cc("bottles", "nykaa", "Daily cleanser trio", "Lumen Labs", "55% back", "₹100", "3 spots left", _st("warn", "clock", "Closing soon"))),
         _cell("Full", _cc("mask", "nykaa", "Clay mask, 100 g", "Lumen Labs", "45% back", "", "", _st("mute", "", "Full"), cls="muted")),
-        _cell("Opens {date}", _cc("flatlay", "myntra", "Cotton co-ord set", "Weave & Co", "40% back", "₹150", "", _st("mute", "calendar", "Opens 28 Nov 2026"))),
-        _cell("Barter", _cc("set", "nykaa", "Clear skin set", "Lumen Labs", "", "₹500", "", "", barter=True, worth="₹2,400")),
+        _cell("Opens {date}", _cc("flatlay", "nykaa", "Skin routine kit", "Lumen Labs", "40% back", "₹150", "", _st("mute", "calendar", "Opens 28 Nov 2026"))),
+        _cell("Barter", _cc("set", "nykaa", "Clear skin set", "Lumen Labs", "", "₹500", "Worth ₹2,400", "", barter=True, worth="₹2,400")),
     ]
     return _g("Campaign card", "Spots show only at 10 or fewer. A state sits at the foot, one at a time.", "".join(c), 6)
 
@@ -59,7 +59,8 @@ def ctas():
             + c("Applied", s("View your application"), "Applied · waiting for the brand")
             + c("Already in", s("Open your enrollment"), "You have already enrolled in this campaign.")
             + c("Not open yet", p("Opens 28 Nov 2026", " disabled") , "Opens 28 Nov 2026.", s("Notify me"))
-            + c("Full", p("Full", " disabled"), "No spots left right now.", f'<button class="btn g lg block">Tell me when a place opens</button>'))
+            + c("Full", p("Full", " disabled"), "No spots left right now.", s("Tell me when a place opens"))
+            + c("Closed", s("Closed", " disabled"), "This campaign has ended."))
     return _g("Join CTA states", "The server decides which one shows. One button leads each state.", body, 4)
 
 # 4 ---------------------------------------------------------------- spot hold
@@ -109,7 +110,7 @@ def tasks():
         ico = soc("Instagram", 24) if kind == "reel" else plat("nykaa", 24)
         return f'<div class="dm-th">{ico}<div class="tx"><b>{title}</b></div>{state}</div>'
     def shots(n, of=6):
-        th = "".join(f'<div class="s"><img src="{PH[k]}" alt=""><i>{ic("x", 10, "currentColor", 3)}</i></div>' for k in ["serum", "bottles", "cream", "set", "mask", "flatlay"][:n])
+        th = "".join(f'<div class="s"><img src="{PH[k]}" alt=""><i>{ic("x", 10, "currentColor", 3)}</i></div>' for k in ["serum", "bottles", "cream", "mask", "serum", "bottles"][:n])
         add = f'<div class="s add">{ic("plus", 20)}</div>' if n < of else ""
         return f'<div class="dm-shots">{th}{add}</div><small class="dm-cnt num">{n} of {of} screenshots</small>'
     link = lambda v="": f'<div class="f"><label>Link to your reel</label><div class="input">{ic("link", 16)}<span class="t-body {"" if v else "muted"}">{v or "instagram.com/reel/…"}</span></div></div>'

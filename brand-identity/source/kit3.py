@@ -157,9 +157,9 @@ def form_inputs(theme):
     ta_dis = field("Describe the problem", f'<div class="input textarea n-ta"><span>My withdrawal to HDFC ••6093 has shown Requested for 3 days.</span></div>', f'Hypedrive support replies in the same thread<span class="cnt num">58 / 600</span>', hint="Raise a dispute")
 
     A = f'<div class="box n-stage">{lab("copy field · idle, copied, disabled")}{copy_idle}{copy_done}{ref}{lab("avatar upload · empty, set, uploading")}{av_empty}{av_fill}{av_up}{lab("toggle button group")}<div class="n-tgs">{tg2}</div>{tg3}</div>'
-    Bx = f'<div class="box n-stage">{lab("receipt dropzone · idle")}{dz_idle}{lab("drag over")}{dz_drag}{lab("screenshot rows · uploading, done, error")}<div class="n-frs">{rows}</div></div>'
+    Bx = f'<div class="box n-stage">{lab("receipt dropzone · idle")}{dz_idle}{lab("drag over")}{dz_drag}{lab("screenshot rows · uploading, done, error")}<div class="n-frs">{rows}</div>{lab("counted textarea · dispute")}{ta_dis}</div>'
     Cx = (f'<div class="box n-stage">{lab("range slider · two thumbs")}{slider}'
-          f'{lab("counted textarea · task text")}{ta_ok}{ta_err}{lab("counted textarea · dispute")}{ta_dis}</div>')
+          f'{lab("counted textarea · task text")}{ta_ok}{ta_err}</div>')
 
     # form section layout ------------------------------------------------------
     chev = f'<span class="trail n-chev">{ic("down", 18)}</span>'
@@ -186,7 +186,7 @@ def flow_a(theme):
             ln = f'<i class="ln {"done" if i < now else ""}" aria-hidden="true"></i>' if i < len(steps) - 1 else ""
             out.append(f'<div class="s {st}" role="listitem"{" aria-current=\"step\"" if st == "now" else ""}><span class="n-sr1"><span class="k">{k}</span>{ln}</span><span class="n-st"><b>{t}</b><small>{s}</small></span></div>')
         return '<div class="n-wz" role="list">' + "".join(out) + '</div>'
-    steps = [("Buy it", "On Nykaa"), ("Receipt", "Upload and check"), ("Join", "Join and earn ₹1,339")]
+    steps = [("Buy it", "On Nykaa"), ("Receipt", "Upload and check"), ("Join", "₹1,339 back")]
     wz_d = (f'<div class="card n-wzcard">{hstep(steps, 1)}</div>')
     wz_d2 = (f'<div class="card n-wzcard">{hstep(steps, 0)}</div>')
 
@@ -230,7 +230,7 @@ def flow_b(theme):
            + mi(ic("edit", 18), "Ask for fixes", f'<span class="n-k">{kb("F")}</span>')
            + mi(ic("link", 18), "Copy link", f'<span class="n-k">{kb("⌘", "C")}</span>')
            + '<i class="n-sep"></i>'
-           + mi(ic("x", 18), "Not approve", f'<span class="n-k">{kb("Del")}</span>', "dg")
+           + mi(ic("x", 18), "Not approve", f'<span class="n-k">{kb("Del")}</span>')
            + '</div></div>')
 
     def asr(icon, t, cls=""): return f'<span class="n-asa {cls}">{icon}<span>{t}</span></span>'
@@ -239,11 +239,11 @@ def flow_b(theme):
               f'<span class="n-asx"><b>Riya Sharma’s tasks</b><small>Glow serum · {soc("Instagram", 13)}Instagram reel</small></span></span>'
               f'{asr(gs("CircleCheck", 18, "var(--hd-success)"), "Approve tasks")}{asr(ic("edit", 18), "Ask for fixes")}</div>'
               f'<div class="n-asg">{asr(ic("link", 18), "Copy link")}</div>'
-              f'<div class="n-asg">{asr(gs("Flag3", 18, "var(--hd-danger)"), "Raise a dispute", "dg")}</div>'
+              f'<div class="n-asg">{asr(gs("Flag3", 18, "var(--hd-fg-muted)"), "Raise a dispute")}</div>'
               f'<div class="n-asg">{asr("", "Cancel", "cn")}</div><i class="n-hi"></i></div></div>')
 
     def chipt(icon, t, on=False): return f'<span class="chip {"on" if on else ""}">{icon}{t}</span>'
-    fil = (f'<div class="card n-fil"><div class="n-filh"><b class="t-h3">Filters</b><span class="n-fc">3 applied</span><button class="btn link">Reset all</button></div>'
+    fil = (f'<div class="card n-fil"><div class="n-filh"><b class="t-h3">Filters</b><span class="n-fc">5 applied</span></div>'
            f'<div class="n-fsec"><b>Category</b><div class="flexw">{chipt(ics("drop", 16), "Skincare", True)}{chipt(ics("lipstick", 16), "Makeup", True)}{chipt(ic("shirt", 16), "Fashion")}{chipt(ic("lamp", 16), "Home")}{chipt(ic("headphones", 16), "Gadgets")}</div></div>'
            f'<div class="n-fsec"><b>Platform</b><div class="flexw">{chipt(soc("Instagram", 16), "Instagram", True)}{chipt(soc("Youtube", 16), "YouTube")}{chipt(soc("Threads", 16), "Threads")}</div></div>'
            f'<div class="n-fsec"><b>Store</b><div class="flexw">{chipt("", "Nykaa", True)}{chipt("", "Amazon")}</div></div>'
@@ -257,10 +257,10 @@ def flow_b(theme):
 
     more = (f'<div class="n-more2"><div class="n-m2t"><span>Showing <b class="num">24</b> of <b class="num">118</b></span><i class="n-m2bar"><i style="width:20%"></i></i></div>{btn("s sm", "Load 24 more")}</div>')
     more2 = (f'<div class="n-more2"><div class="n-m2t"><span>Showing <b class="num">24</b> of <b class="num">118</b></span><i class="n-m2bar"><i style="width:20%"></i></i></div><button class="btn s sm" aria-busy="true"><span class="n-spin sm"></span>Loading</button></div>')
-    more3 = (f'<div class="n-more2 done"><div class="n-m2t"><span>All <b class="num">118</b> campaigns shown</span><i class="n-m2bar"><i style="width:100%"></i></i></div><span class="n-end2">{ics("success", 16)}All caught up</span></div>')
+    more3 = (f'<div class="n-more2 done"><div class="n-m2t"><span>Showing <b class="num">118</b> of <b class="num">118</b></span><i class="n-m2bar"><i style="width:100%"></i></i></div><span class="n-end2">{ics("success", 16)}All caught up</span></div>')
 
     return sec("Flow and navigation · menus, sheets and filters", "The brand\u2019s review menu, the iOS action sheet, the creator filter panel, sort and load-more.",
-        f'<div class="grid g3 n-top"><div class="box n-stage">{lab("review menu · destructive")}{ctx}{lab("sort menu")}{sort}</div>'
+        f'<div class="grid g3 n-top"><div class="box n-stage">{lab("review menu")}{ctx}{lab("sort menu")}{sort}</div>'
         f'<div class="box n-stage">{lab("filter panel")}{fil}</div>'
         f'<div class="box n-stage">{lab("iOS action sheet")}{asheet}</div></div><div class="n-gap"></div>'
         f'<div class="box n-stage">{lab("load more · idle, loading, done")}<div class="grid g3">{more}{more2}{more3}</div></div>', "nw4")
@@ -276,7 +276,7 @@ def feedback_a(theme):
     dlg = (f'<div class="dialog n-dlg2"><div class="d2b"><b class="d2t">Raise a dispute</b>'
            f'<p class="d2p"><b>Hypedrive support steps in.</b> Your payout stays as it is while we look.</p>'
            f'<label class="d2l">What went wrong?</label><div class="input foc d2i"><span>Problem with the payout</span></div></div>'
-           f'<div class="d2f">{btn("s sm", "Cancel")}{btn("d sm", "Raise a dispute")}</div></div>')
+           f'<div class="d2f">{btn("s sm", "Cancel")}{btn("p sm", "Raise a dispute")}</div></div>')
     dlg2 = (f'<div class="dialog n-dlg2 sm"><div class="d2b"><b class="d2t">Ask for fixes?</b><p class="d2p"><b>Riya Sharma can fix and resubmit.</b> The status changes to Fix tasks.</p></div>'
             f'<div class="d2f">{btn("s sm", "Cancel")}{btn("p sm", "Ask for fixes")}</div></div>')
 
@@ -305,8 +305,8 @@ def feedback_b(theme):
 
     def blk(ic_, title, sub, act="", cls=""):
         return f'<div class="n-okrow">{f"<span class=x-tile>{ic_}</span>"}<div><b>{title}</b>{f"<span class=\"t-small muted\">{sub}</span>" if sub else ""}</div>{act}</div>'
-    blocked = (blk(ics("alert", 20, "var(--hd-warning)"), "Verify your PAN to join", "", btn("p sm", "Verify PAN"))
-               + blk(ics("alert", 20, "var(--hd-warning)"), "Complete your profile to join", "", btn("p sm", "Complete profile"))
+    blocked = (blk(ics("alert", 20, "var(--hd-warning)"), "Verify your PAN to join", "", btn("s sm", "Verify PAN"))
+               + blk(ics("alert", 20, "var(--hd-warning)"), "Complete your profile to join", "", btn("s sm", "Complete profile"))
                + blk(ics("lock", 20, "var(--hd-fg-muted)"), "This campaign isn’t taking creators right now", "", btn("s sm", "Browse")))
     filled = (f'<div class="notice warning">{icf("warning")}<span><b style="display:block">That version just filled up</b>Pick another version to join.</span></div>'
               f'<div class="notice info">{icf("info")}<span><b style="display:block">Opens 27 Nov</b>We’ll tell you when spots open.</span></div>')
@@ -360,7 +360,7 @@ def content_a(theme):
 
 def content_b(theme):
     # ---- desktop product gallery: thumbnail rail + 4:5 hero --------------------------------
-    gal = [("serum", "Glow serum, 30 ml on a stone surface"), ("cream", "Body lotion on linen"), ("flatlay", "Skincare flat lay"), ("bottles", "Cleanser bottles on a shelf")]
+    gal = [("serum", "Glow serum, 30 ml on a stone surface"), ("cream", "Night cream, 50 g on linen"), ("mask", "Clay mask, 100 g"), ("bottles", "Daily cleanser trio on a shelf")]
     def thumb(k, i, on):
         return f'<button class="m-th {"on" if on else ""}" aria-label="Photo {i + 1} of 4" aria-current="{str(on).lower()}"><img src="{PH[k]}" alt=""></button>'
     def dots(n, on): return '<span class="m-dots" aria-hidden="true">' + "".join(f'<i class="{"on" if i == on else ""}"></i>' for i in range(n)) + '</span>'
@@ -379,13 +379,14 @@ def content_b(theme):
 
     # ---- task screenshots ---------------------------------------------------------------
     def shot(src, cap, task, pl, pos="50% 50%"):
-        return (f'<div class="m-reelw"><div class="m-reel"><img class="m-ph" src="{src}" alt="" style="object-position:{pos}"><span class="m-pl">{soc(pl, 16)}</span>'
+        return (f'<div class="m-reelw"><div class="m-reel"><img class="m-ph" src="{src}" alt="" style="object-position:{pos}"><span class="m-pl">{soc(pl, 16) if pl == "Instagram" else _u.plat(pl.lower(), 16)}</span>'
                 f'<div class="m-meta"><b class="m-cap">{cap}</b><span class="m-views">{task}</span></div></div></div>')
     reels = "".join([
         shot(PH["serum"], "Screenshot 1", "Instagram reel", "Instagram", "56% 50%"),
         shot(PH["bottles"], "Screenshot 2", "Instagram reel", "Instagram", "72% 50%"),
-        shot(PH["cream"], "Screenshot 1", "Nykaa review", "Instagram"),
-        shot(PH["flatlay"], "Screenshot 3", "Instagram reel", "Instagram")])
+        shot(PH["cream"], "Screenshot 1", "Nykaa review", "Nykaa"),
+        shot(PH["serum"], "Screenshot 3", "Instagram reel", "Instagram", "12% 50%"),
+        shot(PH["bottles"], "Screenshot 2", "Nykaa review", "Nykaa", "20% 50%")])
 
     # ---- task rows -----------------------------------------------------------------------
     def lr(tile, t, who, state, cls):
@@ -394,7 +395,7 @@ def content_b(theme):
            + lr(_u.plat("nykaa", 20), "Nykaa review", "Needs 40+ words · 28 so far", f'{ics("alert", 14)}Fix needed', "fix"))
 
     # ---- review photo mosaic + upload tiles -------------------------------------------------
-    mos = (f'<div class="m-mos"><img class="b" src="{PH["flatlay"]}" alt=""><img src="{PH["serum"]}" alt="" style="object-position:10% 40%">'
+    mos = (f'<div class="m-mos"><img class="b" src="{PH["serum"]}" alt=""><img src="{PH["cream"]}" alt="" style="object-position:50% 60%">'
            f'<span class="m-last"><img src="{PH["bottles"]}" alt="" style="object-position:60% 50%"><span class="m-more">{btn("s sm", "Show all 6", ic("grid", 16))}</span></span></div>')
     def tile(kind, src="", name="", sz=""):
         if kind == "add": body = f'<span class="m-up add">{ic("plus", 22)}<small>Add photo</small></span>'
@@ -403,18 +404,19 @@ def content_b(theme):
             c = 2 * 3.14159 * 18
             body = (f'<span class="m-up"><img src="{src}" alt=""><span class="m-dim"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="2"/>'
                     f'<circle cx="22" cy="22" r="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="{c * .64:.1f} {c:.1f}" transform="rotate(-90 22 22)"/></svg><b class="num">64%</b></span></span>')
-        else: body = f'<span class="m-up err">{ics("alert", 22)}<b>Too large</b><button class="btn link">Retry</button></span>'
+        else: body = f'<span class="m-up err">{ics("alert", 22)}<b>Too large</b>{btn("s sm", "Retry")}</span>'
         return f'<div class="m-tile">{body}<span class="m-fn">{name or "&nbsp;"}</span></div>'
     ups = (f'<div class="m-ups">{tile("ok", PH["serum"], "screenshot-1.png · 1.2 MB")}{tile("go", PH["cream"], "screenshot-2.png · 0.8 MB")}{tile("err", "", "screenshot-3.png · 14 MB")}</div>')
 
-    fk = ["serum", "cream", "flatlay", "bottles"]
+    fk = ["serum", "cream", "mask", "bottles"]
     frames = '<div class="m-frames">' + "".join(f'<button class="{"on" if i == 2 else ""}" aria-label="Frame {i + 1}"><img src="{PH[k]}" alt=""{"" }>{"<span class=m-cv>Cover</span>" if i == 2 else ""}</button>' for i, k in enumerate(fk)) + '</div>'
     return sec("Content · media", "Campaign photos and task screenshots. Photos are edge to edge with a crisp 1px border; controls sit on the photo as discs.",
         f'<div class="grid m-g2 n-top"><div class="box n-stage">{lab("campaign gallery · desktop, 4:5 hero")}{desk}</div>'
         f'<div class="box n-stage">{lab("image carousel · mobile, peeking next slide")}{mob}</div></div><div class="n-gap"></div>'
         f'<div class="box n-stage">{lab("task screenshots · 1 to 6 per task")}<div class="m-reels">{reels}</div></div><div class="n-gap"></div>'
-        f'<div class="grid g2 n-top"><div class="box n-stage">{lab("tasks in an enrollment")}<div class="stack">{lrs}</div></div>'
-        f'<div class="box n-stage">{lab("screenshot set")}{mos}{lab("upload previews · done, uploading, failed")}{ups}</div></div>', "nw8")
+        f'<div class="grid g2 n-top"><div class="n-col"><div class="box n-stage">{lab("tasks in an enrollment")}<div class="stack">{lrs}</div></div>'
+        f'<div class="box n-stage">{lab("upload previews · done, uploading, failed")}{ups}</div></div>'
+        f'<div class="box n-stage">{lab("screenshot set")}{mos}</div></div>', "nw8")
 
 
 def content_c(theme):
