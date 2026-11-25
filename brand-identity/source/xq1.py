@@ -185,4 +185,9 @@ XQ1 = r"""
 .phone .jf-ok { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--hd-success-subtle); }
 .phone .jf-ok .ic-ok { color: var(--hd-success, #0a8a4a); display: inline-flex; } .phone .jf-ok .tx b { display: block; font-size: 14px; font-weight: 600; color: var(--hd-success-strong); } .phone .jf-ok .tx small { font-size: 12.5px; color: var(--hd-fg); } .phone .jf-ok .tx small b { display: inline; color: var(--hd-fg); }
 .phone .jf-sum { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 2px 0; font-size: 13px; color: var(--hd-fg-muted); } .phone .jf-sum b { font: 700 22px/26px var(--font-brand); color: var(--hd-fg); letter-spacing: -.02em; }
+
+/* spot hold v2: one slim line — clock, time left, quiet "Add 10 min" */
+.phone .jf-hold2 { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 6px 0 12px; border-radius: 12px; background: var(--hd-bg-subtle, #f4f5f7); font-size: 13.5px; color: var(--hd-fg-muted); }
+.phone .jf-hold2 svg { color: var(--hd-accent); flex: none; } .phone .jf-hold2 span { flex: 1; } .phone .jf-hold2 b { color: var(--hd-fg); font-weight: 600; }
+.phone .jf-add { height: 30px; padding: 0 10px; border: 0; border-radius: 8px; background: none; font: 600 13px var(--font-ui); color: var(--hd-accent-strong, var(--hd-link)); cursor: pointer; }
 """

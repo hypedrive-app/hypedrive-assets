@@ -117,7 +117,7 @@ def kit(theme="light"):
         f'<div>{lbl("focus · keyboard")}<div class="flexw"><span class="chip foc">Ending soon</span><span class="check on foc">{ic("check", 16, "#fff", 3)}</span><span class="radio foc"></span><span class="switch on foc"></span><button class="btn s sm foc">Later</button></div></div>'
         f'<div>{lbl("radio cards · withdraw to")}<div class="grid g2" style="gap:8px"><div class="row sel" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="radio on"></span><b class="t-small" style="margin-top:4px">HDFC ••6093</b><small class="t-cap muted">Usually within minutes</small></div>'
         f'<div class="row" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="radio"></span><b class="t-small" style="margin-top:4px">UPI riya@okhdfcbank</b><small class="t-cap muted">Usually within minutes</small></div></div></div>'
-        f'<div>{lbl("checkbox list · store")}<div class="stack" style="gap:8px">' + "".join(f'<div class="row"><span class="check {"on" if on else ""}">{ic("check", 14, "#fff", 3) if on else ""}</span>{ic("bag", 18)}<div class="tx"><b>{t}</b></div><span class="t-small muted num">{m}</span></div>' for t, k, m, on in (("Nykaa", "", "14 campaigns", True), ("Amazon", "", "9 campaigns", True), ("Myntra", "", "4 campaigns", False))) + '</div></div></div></div>'))
+        f'<div>{lbl("checkbox list · store")}<div class="stack" style="gap:8px">' + "".join(f'<div class="row"><span class="check {"on" if on else ""}">{ic("check", 14, "#fff", 3) if on else ""}</span>{plat(t.lower(), 20)}<div class="tx"><b>{t}</b></div><span class="t-small muted num">{m}</span></div>' for t, k, m, on in (("Nykaa", "", "14 campaigns", True), ("Amazon", "", "9 campaigns", True), ("Myntra", "", "4 campaigns", False))) + '</div></div></div></div>'))
     # navigation
     o.append(sec("Navigation", "Bars are strips, not cards: a hairline edge and nothing else. Underline tabs sit straight under the bar. One tab bar on phone, one bare header on desktop.",
         f'<div class="grid g2 xa-nav"><div class="box"><div class="lbl">Phone</div><div class="xa-phone">'
@@ -243,8 +243,7 @@ def _join_under():
     return f'<div class="jf-under"><img src="{PH["serum_hero"]}" alt=""></div><div class="scrim"></div>'
 
 def _hold(left, pct):
-    return (f'<div class="jf-hold"><span class="x-tile jf-ht">{ics("clock", 18)}</span><div class="tx"><b>Spot held for you</b><small><b class="num">{left}</b> left to order and send the receipt</small></div>'
-            f'<button class="btn s sm">Add 10 min</button><i class="jf-tape"><i style="width:{pct}%"></i></i></div>')
+    return (f'<div class="jf-hold2">{ics("clock", 16)}<span>Spot held · <b class="num">{left}</b> left</span><button class="jf-add">Add 10 min</button></div>')
 
 def s_apply():
     row = lambda i, t, d: f'<div class="jf-row"><span class="x-tile jf-ti">{ics(i, 18)}</span><div class="tx"><b>{t}</b><small>{d}</small></div></div>'
@@ -417,7 +416,21 @@ def _snap(css):
 def _late():
     import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xz
     return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xz.XZ
-def html(body, title, base=""): return f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>{title}</title><link rel=icon type='image/svg+xml' href='assets/favicon.svg'>{f'<base href={chr(34)}{base}{chr(34)}>' if base else ''}<style>{_snap(CSS)}{_snap(CSS2)}{PAGE_CSS}{XPASS}{XSTEPS}{_late()}</style></head><body>{_snap(badgeize(body))}<script>{SQJS}</script></body></html>"
+
+import re as _re
+_STORES = {"Nykaa": "nykaa", "Amazon": "amazon", "Myntra": "myntra", "Flipkart": "flipkart", "Meesho": "meesho"}
+def favify(h):
+    """Store favicons where a store is named as the store — skipped when that store's logo is already right before it."""
+    def ico(n): return f'<img class="plat sfav" src="{STOCK}/platforms/{_STORES[n]}.png" width="14" height="14" alt="">'
+    def has_logo(src, i, name): return f'platforms/{_STORES[name]}.png' in src[max(0, i - 260):i]
+    def sub(pat, mk, src):
+        return _re.sub(pat, lambda m: m.group(0) if has_logo(src, m.start(), m.group("n")) else mk(m), src)
+    h = sub(r'· (?P<n>Nykaa|Amazon|Myntra|Flipkart|Meesho)(?=\s*(?:<|·))', lambda m: f'· {ico(m.group("n"))}{m.group("n")}', h)
+    h = sub(r'>(?P<n>Nykaa|Amazon|Myntra|Flipkart|Meesho)<', lambda m: f'>{ico(m.group("n"))}{m.group("n")}<', h)
+    h = sub(r'(?P<o>on|On) (?P<n>Nykaa|Amazon|Myntra)(?=\s*<)', lambda m: f'{m.group("o")} {ico(m.group("n"))}{m.group("n")}', h)
+    return h
+
+def html(body, title, base=""): return f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>{title}</title><link rel=icon type='image/svg+xml' href='assets/favicon.svg'>{f'<base href={chr(34)}{base}{chr(34)}>' if base else ''}<style>{_snap(CSS)}{_snap(CSS2)}{PAGE_CSS}{XPASS}{XSTEPS}{_late()}</style></head><body>{_snap(favify(badgeize(body)))}<script>{SQJS}</script></body></html>"
 
 if __name__ == "__main__":
     open(os.path.join(OUT, "hypedrive-ui-kit.html"), "w").write(html(kit(), "Hypedrive UI kit"))

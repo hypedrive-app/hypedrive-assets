@@ -64,13 +64,10 @@ def ctas():
 
 # 4 ---------------------------------------------------------------- spot hold
 def hold():
-    def h(clock, line, pct, cls="", btn=True):
-        b = '<button class="btn s">Add 10 min</button>' if btn else ""
-        return (f'<div class="dm-hold {cls}"><div class="t">{ics("clock", 18)}<div><b>{line}</b><small class="num"><em>{clock}</em> left to order and send the receipt</small></div>{b}</div>'
-                f'<div class="tape"><i style="width:{pct}%"></i></div></div>')
-    ended = (f'<div class="dm-hold ended"><div class="t">{ics("clock", 18)}<div><b>Your hold ended</b><small>You can still order if a spot is free</small></div></div></div>')
-    return _g("Spot hold", "Held on purpose, counted down in the open, one extension.",
-              _cell("Held", h("9:41", "Spot held for you", 78)) + _cell("Running low", h("1:48", "Spot held for you", 14, "low")) + _cell("Ended", ended), 3)
+    h = lambda t, cls="": f'<div class="jf-hold2 dm-h2 {cls}">{ics("clock", 16)}<span>Spot held · <b class="num">{t}</b> left</span><button class="jf-add">Add 10 min</button></div>'
+    ended = f'<div class="jf-hold2 dm-h2 ended">{ics("clock", 16)}<span>Your hold ended · you can still order if a spot is free</span></div>'
+    return _g("Spot hold", "One slim line: time left, one extension. Shows inside the join sheet.",
+              _cell("Held", h("9:41")) + _cell("Running low", h("1:48", "low")) + _cell("Ended", ended), 3)
 
 # 5 ---------------------------------------------------------------- receipt
 def receipt():

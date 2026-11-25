@@ -131,4 +131,9 @@ XR3 = r"""
 .dm-po6 .big { display: block; margin-top: 2px; font: 700 34px/38px var(--font-brand); letter-spacing: -.025em; color: var(--hd-fg); }
 .dm-po6 .mix { margin: 4px 0 0; font-size: 13.5px; line-height: 19px; color: var(--hd-fg-muted); } .dm-po6 .mix b { color: var(--hd-fg); font-weight: 600; }
 .dm-po6 .ft { display: flex; justify-content: space-between; margin: 12px -16px 0; padding: 11px 16px; border-top: 1px solid var(--hd-edge); font-size: 13px; color: var(--hd-fg-muted); } .dm-po6 .ft b { color: var(--hd-fg); font-weight: 600; }
+
+.dm-h2 { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 6px 0 12px; border-radius: 12px; background: var(--hd-bg-subtle, #f4f5f7); font-size: 13.5px; color: var(--hd-fg-muted); }
+.dm-h2 svg { color: var(--hd-accent); flex: none; } .dm-h2 span { flex: 1; } .dm-h2 b { color: var(--hd-fg); font-weight: 600; }
+.dm-h2.low svg, .dm-h2.low b { color: var(--hd-warning-strong); } .dm-h2.ended svg { color: var(--hd-fg-subtle); }
+.dm-h2 .jf-add { height: 30px; padding: 0 10px; border: 0; border-radius: 8px; background: none; font: 600 13px var(--font-ui); color: var(--hd-accent-strong, var(--hd-link)); }
 """

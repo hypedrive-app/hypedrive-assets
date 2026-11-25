@@ -253,4 +253,19 @@ XZ = r"""
 .x-camp2 .cbody { padding: 16px 18px !important; }
 
 html body .sec .panel.x-camp2 > img.x, html body .sec .panel.x-camp2 > img:not(#zz) { border-radius: 0 !important; -webkit-mask: none !important; mask: none !important; clip-path: none !important; }
+
+/* avatar upload: every avatar state is a true circle; ring sits concentric */
+.n-av, .n-av img, .n-av.up, .n-av.up img { border-radius: 50% !important; -webkit-mask: none !important; mask: none !important; clip-path: none !important; }
+.n-av { position: relative; width: 64px !important; height: 64px !important; flex: none; }
+.n-av img { width: 100% !important; height: 100% !important; object-fit: cover; display: block; }
+.n-av.up img { opacity: .55; }
+.n-av svg, .n-av .ring, .n-av > :not(img) { position: absolute !important; inset: 0 !important; width: 64px !important; height: 64px !important; }
+.n-avt .btn, .n-avt button { height: 32px !important; min-height: 0 !important; }
+
+img.sfav { display: inline-block; width: 14px; height: 14px; border-radius: 3px !important; vertical-align: -2px; margin-right: 4px; }
+
+/* button heights: 44 everywhere (lg included); 48 only for a phone screen's bottom action bar */
+html body .btn.lg:not(.sm), html body .btn.block:not(.sm), .btn.sd-cta { height: 44px !important; min-height: 0 !important; font-size: 15px !important; }
+html body .phone :is(.cp-bar, .jf-act, .cta, .xm1-bar, .xm3-cta, .xy-bar) .btn:not(.sm) { height: 48px !important; }
+html body .btn.prs:not(.sm) { height: 44px !important; }
 """
