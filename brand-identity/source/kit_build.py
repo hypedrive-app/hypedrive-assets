@@ -218,15 +218,29 @@ def s_otp():
                  f'<div class="xm1-pad">' + "".join(f'<span><b>{ic("back", 22) if a == "⌫" else a}</b><small>{b}</small></span>' for a, b in keys) + '</div>', label="Verify phone")
 
 def s_home():
-    return phone(f'<div class="xm1-bar xm1-s"><img class="av" src="{PEOPLE["women-68"]}" alt="Riya Sharma">{ic("search")}<span class="bell">{ic("bell")}<i></i></span></div>'
-                 f'<div class="xm1-s xm1-home"><div class="xm1-head"><h1 class="xm1-h">Hi, Riya</h1><p class="xm1-earn"><b>₹8,460</b> earned this month <em>+24%</em></p></div>'
-                 f'<div class="tabs"><span class="on">{ics("foryou", 16, "var(--hd-accent)")}For you</span><span>{ics("trending", 16, "var(--hd-tone-vermilion)")}Trending</span><span>{ics("heart", 16, "var(--hd-tone-mint)")}Saved</span></div>'
-                 f'<div class="xm1-card"><img src="{PH["serum_hero"]}" alt=""><div class="top"><span class="chip">{ic("clock", 14)}Ends Thu</span><span class="x-disc" aria-label="Save">{ic("heart", 18)}</span></div>'
-                 f'<div class="bt"><small>Lumen Labs</small><b>Glow serum, 30 ml</b><div class="mt"><span>You earn <em>₹1,240</em></span><span><em>36</em> of 120 left</span></div><i class="sl"><u style="width:70%"></u></i></div></div>'
-                 f'<div class="xm1-sech"><b>More drops</b><button class="btn link">See all</button></div>'
-                 f'<div class="xm1-two"><div class="xm1-mini"><img src="{PH["cream"]}" alt=""><b>Night cream, 50 g</b><small>Earn <em>₹990</em> · 58 left</small></div>'
-                 f'<div class="xm1-mini"><img src="{PH["bottles"]}" alt=""><b>Daily cleanser trio</b><small>Earn <em>₹640</em> · 72 left</small></div></div></div>'
-                 f'{tabbar("Home")}', label="Home")
+    """Home, by the spec: greeting, the last setup step, money at a glance, what needs Riya, what waits on brands, picks."""
+    def row(photo, title, meta, cls=""):
+        return (f'<div class="hm-row"><img src="{PH[photo]}" alt=""><div class="tx"><b>{title}</b>'
+                f'<small class="{cls}">{meta}</small></div>{ic("chev", 16)}</div>')
+    def pick(photo, store, title, lead, bonus, foot):
+        return (f'<div class="hm-pick"><img src="{PH[photo]}" alt=""><div class="bd"><span class="sr">{plat(store, 14)}{store.title()}</span>'
+                f'<b>{title}</b><p>{lead}{f"<em>+{bonus} bonus</em>" if bonus else ""}</p><small>{foot}</small></div></div>')
+    return phone(
+        f'<div class="xm1-bar xm1-s"><img class="av" src="{PEOPLE["women-68"]}" alt="Riya Sharma">{ic("search")}<span class="bell">{ic("bell")}<i></i></span></div>'
+        f'<div class="xm1-s hm">'
+        f'<h1 class="hm-h">Hi, Riya</h1>'
+        f'<div class="hm-wal"><small>Available</small><b class="num">₹6,820</b>'
+        f'<p><span class="num">₹1,339</span> on hold · <span class="num">₹990</span> pending approval</p>'
+        f'<a class="ft">{ics("privacy", 16, "var(--hd-accent)")}<span>Verify your PAN to withdraw</span><em>Verify</em></a></div>'
+        f'<div class="hm-sh"><h2>Your turn</h2><span class="num">2</span></div>'
+        + row("serum", "Glow serum, 30 ml", "Submit 2 tasks · due in 41 days")
+        + row("bottles", "Daily cleanser trio", "Fix 1 task · due in 6 days", "warn")
+        + f'<div class="hm-sh"><h2>In review</h2><span class="num">1</span></div>'
+        + row("cream", "Night cream, 50 g", "₹990 back after approval")
+        + f'<div class="hm-sh"><h2>Picked for you</h2><button class="btn link">See all</button></div>'
+        f'<div class="hm-picks">{pick("set", "nykaa", "Clear skin set", "<span>Free product</span>", "₹500", "Worth ₹2,400")}'
+        f'{pick("mask", "nykaa", "Clay mask, 100 g", "<span class=num>45% back</span>", "", "3 spots left")}</div>'
+        f'</div>{tabbar("Home")}', label="Home")
 
 def s_detail():
     step = lambda i, t, d: f'<div class="c5-st"><span class="x-tile c5-ti">{ics(i, 20)}</span><b>{t}</b><small>{d}</small></div>'
@@ -339,7 +353,10 @@ def s_empty():
                  f'<div class="xm3-sec"><b>Popular right now</b><div class="xm3-chips">' + "".join(f'<span>{ic(i, 16)}{p}</span>' for i, p in pop) + '</div></div>'
                  f'<div class="xm3-sec"><div class="xm3-sh"><b>Live now</b><button class="btn link">See all</button></div><div class="xm3-ll">{rows}</div></div></div>{tabbar("Campaigns")}', label="Empty search")
 
-MOBILE = [s_welcome, s_otp, s_home, s_detail, s_apply, s_join_receipt, s_track, s_review, s_wallet, s_success, s_notifs, s_profile, s_empty]
+from scr_n1 import s_onboarding, s_browse, s_enrollments
+from scr_n2 import s_enrollment_detail, s_withdraw, s_settings, s_barter
+MOBILE = [s_welcome, s_otp, s_home, s_detail, s_apply, s_join_receipt, s_track, s_review, s_wallet, s_success, s_notifs, s_profile, s_empty,
+          s_onboarding, s_browse, s_enrollments, s_enrollment_detail, s_withdraw, s_settings, s_barter]
 
 # ================================================================== DESKTOP
 def sidebar(active):
@@ -418,8 +435,8 @@ def _snap(css):
     css = _re.sub(r"font-size:\s*(\d+\.\d)px", lambda m: "font-size:" + _FS.get(m.group(1), m.group(1)) + "px", css)
     return _re.sub(r"(font:[^;}\"]*?)(\d+\.\d)px", lambda m: m.group(1) + _FS.get(m.group(2), m.group(2)) + "px", css)
 def _late():
-    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz
-    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ
+    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz, xh, xh2, xn1, xn2
+    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ + xh.XH + xh2.XH2 + xn1.XN1 + xn2.XN2
 
 import re as _re
 _STORES = {"Nykaa": "nykaa", "Amazon": "amazon", "Myntra": "myntra", "Flipkart": "flipkart", "Meesho": "meesho"}
