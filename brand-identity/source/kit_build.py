@@ -84,7 +84,7 @@ def kit(theme="light"):
     o.append(sec("Buttons", "Deep cobalt for the one main action, with a quiet tactile edge and a pressed state that sinks. White secondary with a hairline and lip. Icons only where they help you recognise the action.",
         f'<div class="grid g2"><div class="box"><div class="grid" style="grid-template-columns:90px repeat(5,1fr);gap:14px;justify-items:start">'
         f'<span></span>' + "".join(f'<span class="t-cap muted">{x}</span>' for x in ("Default", "Hover", "Pressed", "Focus", "Disabled")) + rows + '</div>' + f'<div style="margin-top:28px">{lbl("group · link")}</div><div class="flexw"><span class="btngroup split"><button class="btn p">Withdraw ₹6,820</button><button class="btn p icon" aria-label="Choose payout account">{ic("down", 16)}</button></span><span class="seg" role="tablist"><span>7 days</span><span class="on">30 days</span><span>All time</span></span><button class="btn link">How cashback works</button></div></div>'
-        f'<div class="box">{lbl("sizes · 36 · 44 · 52")}<div class="flexw"><button class="btn p sm">Apply to join</button><button class="btn p">Join campaign</button><button class="btn p lg">Join and earn ₹1,139</button></div>'
+        f'<div class="box">{lbl("sizes · 36 · 44 · 48 on a phone bottom bar")}<div class="flexw"><button class="btn p sm">Apply to join</button><button class="btn p">Join campaign</button><button class="btn p lg">Join and earn ₹1,139</button></div>'
         f'<div style="margin-top:22px">{lbl("with icon · icon only")}</div><div class="flexw"><button class="btn p">{ic("privacy", 20)}Verify PAN</button><button class="btn s">{ic("upload", 20)}Add screenshot</button>'
         f'<button class="btn s icon" aria-label="Share campaign">{ic("share", 20)}</button><button class="btn s icon" aria-label="Save campaign">{ic("heart", 20)}</button><button class="btn g">See all campaigns {ic("arrow", 18)}</button></div>'
         f'<div style="margin-top:22px">{lbl("full width · loading")}</div><div class="stack"><button class="btn p lg block">Submit 2 tasks</button><button class="btn p lg block" aria-busy="true"><span class="spin"></span>Sending application…</button><button class="btn p lg block" disabled>Send application</button><button class="btn d lg block">Leave this enrollment</button></div>'
@@ -146,7 +146,7 @@ def kit(theme="light"):
         f'</div></div>'
         f'<div class="box">' + vtl([("done", "Proof", "Order receipt checked · 20 Nov 2026"), ("now", "Tasks", "Submit 2 tasks · Due in 41 days"), ("", "Review", "The brand checks your tasks"), ("", "Paid", "₹1,339 lands in your wallet")]) +
         f'<div style="margin-top:20px">' + goal("Spots", 112, 120).replace('<span class="su">/ 120</span>', '<span class="su">of 120 · 8 spots left</span>') + f'</div>'
-        f'<div style="margin-top:20px">{lbl("payout calculator")}<div class="stack" style="gap:8px">' + "".join(f'<div class="flexw t-small" style="justify-content:space-between"><span class="muted">{k}</span><b class="num">{v}</b></div>' for k, v in (("You pay", "₹1,899"), ("You get back · 60%", "₹1,139"), ("Bonus", "+₹200"), ("It costs you", "₹560"))) + '</div></div></div></div>'))
+        '</div></div>'))
     # feedback & overlays
     dlg_ = lambda t, b, cancel, act, cls="d": f'<div class="dialog n-dlg2 sm"><div class="d2b"><b class="d2t">{t}</b><p class="d2p">{b}</p></div><div class="d2f"><button class="btn s sm">{cancel}</button><button class="btn {cls} sm">{act}</button></div></div>'
     o.append(sec("Feedback & overlays", "Notices explain, toasts confirm, dialogs ask. One action each.",
@@ -414,8 +414,8 @@ def _snap(css):
     css = _re.sub(r"font-size:\s*(\d+\.\d)px", lambda m: "font-size:" + _FS.get(m.group(1), m.group(1)) + "px", css)
     return _re.sub(r"(font:[^;}\"]*?)(\d+\.\d)px", lambda m: m.group(1) + _FS.get(m.group(2), m.group(2)) + "px", css)
 def _late():
-    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xz
-    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xz.XZ
+    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz
+    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ
 
 import re as _re
 _STORES = {"Nykaa": "nykaa", "Amazon": "amazon", "Myntra": "myntra", "Flipkart": "flipkart", "Meesho": "meesho"}

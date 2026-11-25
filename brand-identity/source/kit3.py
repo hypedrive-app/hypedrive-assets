@@ -214,8 +214,8 @@ def flow_a(theme):
 
     hover = (f'<div class="n-anchor"><span class="n-mention">Submitted by <u>@riya.glows</u></span><div class="dialog n-hc"><div class="n-hch"><img src="{pe("women-68")}" alt=""><div><b>Riya Sharma {vhex(14)}</b><span class="t-small muted">@riya.glows · Kolkata</span></div></div>'
              f'<p class="t-small">Honest skincare and everyday routines. Tests one product at a time.</p>'
-             f'<div class="n-hcs"><div><b class="num">18.4k</b><span>{soc("Instagram", 14)}Instagram</span></div><div><b class="num">6</b><span>{ic("campaign", 14)}Enrollments</span></div></div>'
-             f'<div class="n-act n-hca">{btn("s", "View enrollment")}</div></div></div>')
+             f'<div class="n-hcs hc3"><div><b class="num">18.4k</b><span>{soc("Instagram", 13)}Followers</span></div><div><b class="num">6</b><span>Enrollments</span></div><div><b>Trusted</b><span>Trust tier</span></div></div>'
+             f'<div class="n-act n-hca hc3a">{btn("s sm block", "View enrollment")}</div></div></div>')
 
     return sec("Flow and navigation · steps, search and overlays", "The join steps for desktop and phone, the command palette, and the small floating surfaces that anchor to a trigger.",
         f'<div class="box n-stage">{lab("wizard stepper · desktop")}<div class="grid g2">{wz_d}{wz_d2}</div>{lab("wizard stepper · compact, mobile")}<div class="n-mrow">{m1}{m2}{dots}</div></div>'
@@ -457,9 +457,9 @@ def content_c(theme):
           f'<span class="n-dvt" style="margin-top:14px">Section break · sheet</span><div class="n-dvbreak"><div class="n-dvr"><b>Glow serum, 30 ml</b><span class="m">Lumen Labs</span></div><div class="n-band2"></div><div class="n-dvr"><b>Ship to</b><span class="m">14 Park Street, Kolkata</span></div></div></div>'
           f'</div>')
 
-    swipe = (f'<div class="n-dev n-sw"><div class="n-swr"><div class="n-swa l"><span class="a ok">{ic("check", 20, sw=2.4)}Mark read</span></div><div class="row n-sr off"><img class="n-swp" src="{PH["bottles"]}" alt=""><div class="tx"><b>Your earnings have landed</b><small>Daily cleanser trio</small></div><span class="t-cap muted num">2m</span></div></div>'
-             f'<div class="n-swr"><div class="n-swa r"><span class="a mu">{ic("archive", 20)}Archive</span></div><div class="row n-sr left"><img class="n-swp" src="{PH["cream"]}" alt=""><div class="tx"><b>Your enrollment needs a change</b><small>Night cream</small></div><span class="t-cap muted num">18m</span></div></div>'
-             f'<div class="n-swr"><div class="row n-sr"><img class="n-swp" src="{PH["serum"]}" alt=""><div class="tx"><b>Glow serum is open</b><small>Lumen Labs · Nykaa</small></div><span class="t-cap muted num">1h</span></div></div></div>')
+    swipe = (f'<div class="n-dev n-sw"><div class="n-swr"><div class="n-swa l"><span class="a ok">{ic("check", 20, sw=2.4)}Mark read</span></div><div class="row n-sr off"><span class="x-tile n-swt ok">{ics("wallet", 20)}</span><div class="tx"><b>Your earnings have landed</b><small>Daily cleanser trio</small></div><span class="t-cap muted num">2m</span></div></div>'
+             f'<div class="n-swr"><div class="n-swa r"><span class="a mu">{ic("archive", 20)}Archive</span></div><div class="row n-sr left"><span class="x-tile n-swt warn">{ics("edit", 20)}</span><div class="tx"><b>Your enrollment needs a change</b><small>Night cream</small></div><span class="t-cap muted num">18m</span></div></div>'
+             f'<div class="n-swr"><div class="row n-sr"><span class="x-tile n-swt info">{ics("campaign", 20)}</span><div class="tx"><b>Glow serum is open</b><small>Lumen Labs · Nykaa</small></div><span class="t-cap muted num">1h</span></div></div></div>')
 
     apps = [("Whatsapp", "WhatsApp"), ("Instagram", "Instagram"), ("Threads", "Threads"), ("Facebook", "Facebook"), ("XTwitter", "X")]
     share = (f'<div class="n-dev n-shd n-shclean"><div class="sheet n-shs"><div class="grab"></div><div class="n-shh"><div class="t-h2">Share campaign</div><span class="x-disc n-shx" aria-label="Close">{ic("x", 16)}</span></div>'

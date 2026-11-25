@@ -306,4 +306,25 @@ html body img.plat.sfav, html body .sec img.plat.sfav, html body .phone img.plat
 .m-st { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; flex: none; }
 .m-st.sent { color: var(--hd-fg-muted); } .m-st.sent svg { color: var(--hd-success, #0a8a4a); }
 .m-st.fix { color: var(--hd-warning-strong); } .m-st.fix svg { color: var(--hd-warning-solid, #c27a00); }
+
+/* creator hover card v2: compact, three equal stats, full-width action */
+.dialog.n-hc { width: 320px !important; padding: 14px !important; gap: 10px !important; }
+.n-hc .n-hch { display: flex; align-items: center; gap: 10px; } .n-hc .n-hch img { width: 44px !important; height: 44px !important; border-radius: 50% !important; object-fit: cover; }
+.n-hc .n-hch b { display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 600; } .n-hc .n-hch .t-small { font-size: 13px !important; }
+.n-hc > p { margin: 0 !important; font-size: 13.5px !important; line-height: 19px !important; color: var(--hd-fg-muted) !important; }
+.n-hcs.hc3 { display: grid !important; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hd-edge); padding-top: 10px !important; gap: 0 !important; }
+.n-hcs.hc3 > div { display: flex; flex-direction: column; gap: 1px; padding-left: 10px; } .n-hcs.hc3 > div:first-child { padding-left: 0; } .n-hcs.hc3 > div + div { border-left: 1px solid var(--hd-edge); }
+.n-hcs.hc3 b { font-size: 15px; font-weight: 650; } .n-hcs.hc3 span { display: flex; align-items: center; gap: 4px; font-size: 12.5px; color: var(--hd-fg-muted); }
+.n-hca.hc3a { margin-top: 2px !important; } .n-hca.hc3a .btn { width: 100% !important; height: 36px !important; }
+
+html body .n-hca.hc3a { display: block !important; width: 100% !important; } html body .n-hca.hc3a > .btn { display: flex !important; width: 100% !important; justify-content: center; }
+
+/* inbox swipe rows: icon tiles (like the real inbox); one action = 76px slide, no gap */
+.n-swt { width: 40px !important; height: 40px !important; border-radius: 12px !important; display: grid !important; place-items: center; flex: none; }
+.n-swt.ok { color: var(--hd-success, #0a8a4a); } .n-swt.warn { color: var(--hd-warning-solid, #c27a00); } .n-swt.info { color: var(--hd-accent); }
+html body .n-sw .n-sr.left { transform: translateX(-76px) !important; }
+html body .n-sw .n-swa .a { width: 76px !important; }
+
+/* compact empty-with-action cards: solid hairline, not dashed */
+.n-ea2 { border: 0 !important; background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge) !important; }
 """
