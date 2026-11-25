@@ -62,7 +62,7 @@ NMAP = {"home": "House6", "search": "Magnifier", "box": "Box3", "wallet": "Walle
         "link": "Link", "more": "Dots", "info": "CircleInfo", "alert": "TriangleWarning", "lock": "Lock", "spark": "StarTrail", "grid": "Grid", "list": "BulletList",
         "logout": "RectLogout", "bank": "Storehouse", "bag": "BagShopping",
         "users": "Users2", "help": "CircleQuestion", "privacy": "ShieldCheck", "fast": "TruckFast", "linkbroken": "LinkBroken", "edit": "Pen", "copy": "Copy",
-        "trash": "Trash", "download": "Download", "sliders": "Sliders", "play": "CirclePlay", "rupee": "CurrencyRupee", "receipt": "Receipt", "campaign": "Megaphone",
+        "trash": "Trash", "download": "Download", "sliders": "Sliders", "play": "CirclePlay", "rupee": "CurrencyRupee", "receipt": "Receipt", "campaign": "Megaphone", "enrolled": "ClipboardCheck",
         "overview": "GridLayout", "reports": "ChartBar", "trend": "ArrowTrendUp", "gift": "Gift", "eye": "Eye", "calendar": "Calendar", "mail": "Envelope", "send": "PaperPlane2", "login": "RectLogin", "ok": "CircleCheck", "bolt": "Bolt", "phone": "Phone", "drop": "Droplet", "lipstick": "Lipstick", "shirt": "TShirt", "lamp": "DeskLamp", "headphones": "Headphones2", "payouts": "HandHoldingCoin", "pause": "MediaPause", "live": "MediaPlay", "foryou": "Compass", "trending": "Flame", "film": "Film", "minus": "Minus", "wifioff": "WifiOff", "clip": "Paperclip", "checkdouble": "CheckDouble", "file": "File", "filecheck": "FileCheck", "archive": "Archive", "sort": "SortArrows", "refresh": "Refresh", "pin": "MapPin"}
 P = {k: None for k in NMAP}
 def ic(name, size=22, color="currentColor", sw=None, fill="none"):
@@ -377,7 +377,7 @@ def phone(inner, theme="light", label="", sbar_color=None):
 
 def tabbar(active):
     """Labelled 4-item tab bar: every destination keeps its name (icon-only tabs hurt recognition); the active one is solid + Cobalt."""
-    items = [("home", "Home"), ("box", "Drops"), ("wallet", "Wallet"), ("user", "You")]
+    items = [("home", "Home"), ("campaign", "Campaigns"), ("enrolled", "Enrolled"), ("wallet", "Wallet")]
     return '<div class="tabbar">' + "".join(f'<div class="{"on" if n == active else ""}">{ics(i, 24) if n == active else ic(i, 24)}<span>{n}</span></div>' for i, n in items) + '</div>'
 
 from xcss import XCSS

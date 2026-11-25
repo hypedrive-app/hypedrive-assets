@@ -78,4 +78,84 @@ XQ1 = r"""
 :root:root:root .phone .xq-cp .cp-bar2 .l b { font-family: var(--font-brand); font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: -.02em; }
 :root:root:root .phone .xq-cp .cp-bar2 .l small { font-size: 12.5px; color: var(--hd-fg-muted); }
 :root:root:root .phone .xq-cp .cp-bar2 .btn { flex: none; width: auto !important; padding: 0 22px !important; }
+
+/* ===== campaign v4: system-level richness (full-bleed hero, offer chips, payout bar, icon-tile steps, task tiles) ===== */
+:root:root:root .phone .c4 { display: flex; flex-direction: column; height: 100%; background: var(--hd-surface, #fff); }
+:root:root:root .phone .c4 .c4-hero { position: relative; height: 280px; flex: none; overflow: hidden; }
+:root:root:root .phone .c4 .c4-hero > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+:root:root:root .phone .c4 .c4-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,10,16,.34) 0%, rgba(8,10,16,0) 26%, rgba(8,10,16,0) 46%, rgba(8,10,16,.74) 100%); pointer-events: none; }
+:root:root:root .phone .c4 .c4-hero .tb { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 2; }
+:root:root:root .phone .c4 .c4-hb { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2; color: #fff; display: flex; flex-direction: column; gap: 4px; }
+:root:root:root .phone .c4 .c4-hb h1 { margin: 2px 0 0; font: 700 28px/32px var(--font-brand); letter-spacing: -.02em; color: #fff; }
+:root:root:root .phone .c4 .c4-hb p { margin: 0; font-size: 13.5px; color: rgba(255,255,255,.86); }
+:root:root:root .phone .c4 .c4-store { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px 0 6px; border-radius: 999px; background: #fff; color: #16181d; font-size: 12.5px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.18); }
+:root:root:root .phone .c4 .c4-store img { border-radius: 4px; }
+:root:root:root .phone .c4 .c4-body { flex: 1; min-height: 0; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; }
+:root:root:root .phone .c4 .c4-brand { display: flex; align-items: center; gap: 8px; font-size: 14px; } .phone .c4 .c4-brand .sp { flex: 1; }
+:root:root:root .phone .c4 .c4-lt { width: 28px !important; height: 28px !important; border-radius: 8px !important; display: grid !important; place-items: center; } .phone .c4 .c4-lt b { font-size: 11px; font-weight: 700; color: #7a5200; }
+:root:root:root .phone .c4 .c4-chip { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border-radius: 8px; font-size: 12.5px; font-weight: 600; }
+:root:root:root .phone .c4 .c4-chip.ok { background: var(--hd-success-subtle); color: var(--hd-success-strong); } .phone .c4 .c4-chip.ok svg { color: var(--hd-success, #0a8a4a); }
+:root:root:root .phone .c4 .c4-chip.info { background: var(--hd-accent-subtle); color: var(--hd-accent-strong, var(--hd-link)); }
+:root:root:root .phone .c4 .c4-chip.warn { background: var(--hd-warning-subtle); color: var(--hd-warning-strong); }
+:root:root:root .phone .c4 .c4-offer { display: flex; gap: 6px; margin-top: 10px; }
+:root:root:root .phone .c4 .c4-pay { margin-top: 12px; padding: 14px 16px 10px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge), 0 1px 2px rgba(16,20,38,.05), 0 4px 12px -6px rgba(16,20,38,.10); }
+:root:root:root .phone .c4 .c4-pay .hd { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+:root:root:root .phone .c4 .c4-pay .hd span { width: 100%; font-size: 13px; color: var(--hd-fg-muted); font-weight: 500; }
+:root:root:root .phone .c4 .c4-pay .hd b { font: 700 34px/38px var(--font-brand); letter-spacing: -.025em; }
+:root:root:root .phone .c4 .c4-pay .hd small { font-size: 12.5px; color: var(--hd-fg-muted); }
+:root:root:root .phone .c4 .c4-bar { margin-top: 10px; height: 8px; border-radius: 4px; background: var(--hd-track, rgba(16,20,38,.10)); overflow: hidden; } .phone .c4 .c4-bar i { display: block; height: 100%; background: var(--hd-accent); border-radius: 4px; }
+:root:root:root .phone .c4 .c4-leg { display: flex; gap: 12px; margin-top: 8px; font-size: 12.5px; color: var(--hd-fg-muted); flex-wrap: wrap; } .phone .c4 .c4-leg b { color: var(--hd-fg); font-weight: 600; }
+:root:root:root .phone .c4 .c4-leg i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 0; } .phone .c4 .c4-leg i.b { background: var(--hd-accent); } .phone .c4 .c4-leg i.c { background: var(--hd-track-strong, #d5d7de); }
+:root:root:root .phone .c4 .c4-leg .t { margin-left: auto; }
+:root:root:root .phone .c4 .c4-br { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--hd-fg-muted); padding-top: 8px; margin-top: 8px; border-top: 1px solid var(--hd-edge); } .phone .c4 .c4-br + .c4-br { border-top: 0; margin-top: 0; padding-top: 4px; } .phone .c4 .c4-br b { color: var(--hd-fg); font-weight: 600; }
+:root:root:root .phone .c4 .c4-h { margin: 18px 0 8px; font: 650 16px/20px var(--font-brand); letter-spacing: -.01em; }
+:root:root:root .phone .c4 .c4-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+:root:root:root .phone .c4 .c4-st { display: flex; flex-direction: column; gap: 2px; padding: 10px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge); }
+:root:root:root .phone .c4 .c4-st b { margin-top: 6px; font-size: 13.5px; font-weight: 600; } .phone .c4 .c4-st small { font-size: 12.5px; color: var(--hd-fg-muted); }
+:root:root:root .phone .c4 .c4-ti { width: 36px !important; height: 36px !important; border-radius: 10px !important; display: grid !important; place-items: center; color: var(--hd-accent); }
+:root:root:root .phone .c4 .c4-task { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge); margin-bottom: 8px; }
+:root:root:root .phone .c4 .c4-task .tx b { display: block; font-size: 14.5px; font-weight: 600; } .phone .c4 .c4-task .tx small { display: block; font-size: 13px; color: var(--hd-fg-muted); margin-top: 1px; }
+:root:root:root .phone .c4 .c4-req { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; } .phone .c4 .c4-req span { height: 22px; padding: 0 7px; border-radius: 6px; background: var(--hd-bg-subtle, #f2f3f6); font-size: 11.5px; font-weight: 500; color: var(--hd-fg-muted); display: inline-flex; align-items: center; }
+:root:root:root .phone .c4 + .home-ind, :root:root:root .phone .c4 .cp-bar { background: #fff !important; }
+:root:root:root .phone .c4 .cp-bar { flex: none; padding: 10px 16px 6px !important; border-top: 1px solid var(--hd-edge); box-shadow: 0 -8px 16px -8px rgba(16,20,38,.08); }
+[data-theme="dark"] .phone .c4 :is(.c4-pay, .c4-st, .c4-task) { background: var(--hd-surface-raised) !important; }
+
+:root:root:root .phone .c4 .c4-hero { height: 262px; }
+:root:root:root .phone .c4 .c4-pay { padding-bottom: 8px; } :root:root:root .phone .c4 .c4-pay .hd b { font-size: 32px; line-height: 36px; }
+:root:root:root .phone .c4 .c4-h { margin: 14px 0 8px; }
+:root:root:root .phone .c4 .c4-st { padding: 9px 10px; } :root:root:root .phone .c4 .c4-st b { margin-top: 4px; }
+
+/* ===== campaign v5: one offer card (no repeated chips), connected steps in one card ===== */
+:root:root:root .phone .c5 .c5-by { display: flex; align-items: center; gap: 5px; } .phone .c5 .c5-by b { color: #fff; font-weight: 600; } .phone .c5 .c5-by span { opacity: .7; margin: 0 2px; }
+:root:root:root .phone .c5 .c4-hero { height: 270px; }
+:root:root:root .phone .c5 .c4-body { padding-top: 14px; }
+:root:root:root .phone .c5 .c5-offer { padding: 14px 16px 0; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge), 0 1px 2px rgba(16,20,38,.05), 0 6px 16px -8px rgba(16,20,38,.12); overflow: hidden; }
+:root:root:root .phone .c5 .c5-offer .top { display: flex; justify-content: space-between; align-items: flex-start; }
+:root:root:root .phone .c5 .c5-offer .k { display: block; font-size: 13px; font-weight: 500; color: var(--hd-fg-muted); }
+:root:root:root .phone .c5 .c5-offer .top b { display: block; font: 700 36px/40px var(--font-brand); letter-spacing: -.025em; color: var(--hd-fg); }
+:root:root:root .phone .c5 .c5-offer .mix { margin: 2px 0 0; font-size: 14px; color: var(--hd-fg-muted); } .phone .c5 .c5-offer .mix b { color: var(--hd-fg); font-weight: 600; }
+:root:root:root .phone .c5 .c5-offer .mix span { display: inline-block; margin: 0 2px; padding: 0 5px; height: 18px; line-height: 18px; border-radius: 5px; background: var(--hd-success-subtle); color: var(--hd-success-strong); font-size: 11.5px; font-weight: 600; vertical-align: 1px; }
+:root:root:root .phone .c5 .c4-bar { margin-top: 12px; height: 10px; border-radius: 5px; }
+:root:root:root .phone .c5 .ends { display: flex; justify-content: space-between; margin-top: 6px; font-size: 12.5px; color: var(--hd-fg-muted); } .phone .c5 .ends b { color: var(--hd-fg); font-weight: 600; }
+:root:root:root .phone .c5 .c5-offer .ft { display: flex; align-items: center; gap: 6px; margin: 12px -16px 0; padding: 10px 16px; background: var(--hd-bg-subtle, #f5f6f8); font-size: 12.5px; color: var(--hd-fg-muted); } .phone .c5 .c5-offer .ft b { color: var(--hd-fg); font-weight: 600; } .phone .c5 .c5-offer .ft svg { flex: none; color: var(--hd-fg-subtle); }
+:root:root:root .phone .c5 .c5-steps { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); padding: 14px 8px 12px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge); }
+:root:root:root .phone .c5 .c5-steps::before { content: ''; position: absolute; top: 32px; left: 18%; right: 18%; height: 0; border-top: 1.5px dashed var(--hd-track-strong, #cfd2da); }
+:root:root:root .phone .c5 .c5-st { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1px; }
+:root:root:root .phone .c5 .c5-ti { width: 38px !important; height: 38px !important; border-radius: 12px !important; display: grid !important; place-items: center; color: var(--hd-accent); background: #fff !important; position: relative; z-index: 1; }
+:root:root:root .phone .c5 .c5-st b { margin-top: 8px; font-size: 13.5px; font-weight: 600; } .phone .c5 .c5-st small { font-size: 12px; color: var(--hd-fg-muted); }
+[data-theme="dark"] .phone .c5 :is(.c5-offer, .c5-steps) { background: var(--hd-surface-raised) !important; }
+
+:root:root:root .phone .c4 .c4-body > * { flex: none !important; }
+:root:root:root .phone .c5 .c4-hero { height: 250px; }
+
+:root:root:root .phone .c5 .c5-offer .ft { display: block !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+:root:root:root .phone .c5 .c5-offer .ft svg { display: inline-block; vertical-align: -2px; margin-right: 6px; }
+
+/* ===== offer card v6: calm — label, big number, one muted line, one hairline footer ===== */
+:root:root:root .phone .c4 .c6-offer { flex: none; padding: 14px 16px 0; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge), 0 1px 2px rgba(16,20,38,.04); }
+:root:root:root .phone .c4 .c6-offer .k { display: block; font-size: 13px; font-weight: 500; color: var(--hd-fg-muted); }
+:root:root:root .phone .c4 .c6-offer .big { display: block; margin-top: 2px; font: 700 34px/38px var(--font-brand); letter-spacing: -.025em; color: var(--hd-fg); }
+:root:root:root .phone .c4 .c6-offer .mix { margin: 4px 0 0; font-size: 13.5px; line-height: 19px; color: var(--hd-fg-muted); } .phone .c4 .c6-offer .mix b { color: var(--hd-fg); font-weight: 600; }
+:root:root:root .phone .c4 .c6-offer .ft { display: flex; justify-content: space-between; margin: 12px -16px 0; padding: 11px 16px; border-top: 1px solid var(--hd-edge); font-size: 13px; color: var(--hd-fg-muted); } .phone .c4 .c6-offer .ft b { color: var(--hd-fg); font-weight: 600; }
+[data-theme="dark"] .phone .c4 .c6-offer { background: var(--hd-surface-raised) !important; }
 """
