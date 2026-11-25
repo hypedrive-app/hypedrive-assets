@@ -99,3 +99,17 @@ Apply the ADDENDUM language and every owner rule to real app screens (390×844):
   - Home: a full-bleed hero, a horizontal rail, photo categories, and an in-progress row.
   - Every screen should feel full and editorial, never like a wireframe. Fill it with REAL content from the data, never filler.
 - Dark screens (Profile, Welcome) keep the dark surface with the same type.
+
+## DESIGN SYSTEM BY BUSINESS LOGIC (2026-11-25)
+The owner asked: "redesign the design system according to the business logic, all primitives and components". Every kit component must show REAL product concepts, vocabulary, states and data from /tmp/hdwm/CREATOR-SPEC.md (also: brand side = campaigns, review queue, funding; mediator = deals for shoppers).
+
+- Replace invented concepts. Examples: "drops" → campaigns; "slots" → spots; "You earn" → "₹X back" / "+₹X bonus"; review stars/form → tasks (link + 1–6 screenshots).
+- Status badges = the real enrollment statuses: Applied · Ready to join · Submit tasks · In review · Fix tasks · Paid · Not approved · Cancelled · Expired. Campaign availability: Open · Closing soon · Full · Paused · Closed · Opens {date}.
+- Real blocked, empty and error states:
+  - eligibility blockers ("Verify your PAN to join", "Complete your profile to join")
+  - withdraw blockers (cooling, below minimum, PAN required)
+  - "Campaign not found"
+  - "Your account is on hold"
+  - offline
+- Visual standard unchanged: white canvas, Bricolage display / Geist UI, tactile cobalt, the calm-controls rules, no tinted borders or glows, no bloat. Redesign = content and structure, NOT a new visual direction.
+- Before/after image for every section changed, read it, and revert what isn't better.

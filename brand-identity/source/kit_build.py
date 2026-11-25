@@ -161,6 +161,10 @@ def kit(theme="light"):
     o.append(kit_more(theme))
     from kit3 import kit_new
     o.append(kit_new(theme))
+    from kit4 import kit_domain
+    o.append(kit_domain(theme))
+    from kit5 import kit_money
+    o.append(kit_money(theme))
     return f'<div class="sheet-w">{"".join(o)}</div>'
 
 # ================================================================== MOBILE SCREENS
@@ -197,13 +201,22 @@ def s_home():
                  f'{tabbar("Home")}', label="Home")
 
 def s_detail():
-    return phone(f'<div class="xm1-s xm1-det"><div class="ph"><img src="{PH["serum_hero"]}" alt=""><div class="tb"><span class="x-disc">{ic("back", 22)}</span><span style="display:flex;gap:10px"><span class="x-disc">{ic("heart", 20)}</span><span class="x-disc">{ic("share", 20)}</span></span></div><div class="x-dots" aria-label="Photo 1 of 4"><i class="on"></i><i></i><i></i><i></i></div></div>'
-                 f'<div class="sh"><div><h1 class="xm1-t">Glow serum, 30 ml</h1><p class="by">Lumen Labs · Skincare · Vitamin C · Vegan</p></div>'
-                 f'<div class="xm1-facts"><div><b>₹1,899</b><small>Worth</small></div><div><b>7 <i>days</i></b><small>Review in</small></div><div><b>36 <i>of 120</i></b><small>Slots left</small></div></div>'
-                 f'<div class="also">Also sold on <span class="p">{plat("nykaa", 16)}Nykaa</span><span class="p">{plat("amazon", 16)}Amazon</span></div>'
-                 f'<p class="desc">A light vitamin C serum. Use it for a week, then tell your people how it went. <b>More</b></p>'
-                 f'<div class="crt">{avs(("women-44", "men-12", "women-65", "men-32"), 28)}<span><b>84</b> creators are trying it</span></div></div>'
-                 f'<div class="xm1-bar2"><div class="e"><small>You earn</small><b>₹1,240</b></div><button class="btn p lg">Apply</button></div></div>', label="Drop details")
+    st = lambda n, t: f'<div class="cp-st"><i class="num">{n}</i><span>{t}</span></div>'
+    task = lambda ic_, t, d: f'<div class="cp-task">{ic_}<div class="tx"><b>{t}</b><small>{d}</small></div></div>'
+    return phone(f'<div class="xm1-s xm1-det xq-cp"><div class="ph"><img src="{PH["serum_hero"]}" alt=""><div class="tb"><span class="x-disc">{ic("back", 22)}</span><span style="display:flex;gap:10px"><span class="x-disc">{ic("heart", 20)}</span><span class="x-disc">{ic("share", 20)}</span></span></div></div>'
+                 f'<div class="sh"><div class="cp-head"><span class="cp-store">{plat("nykaa", 16)}Nykaa</span><p class="by">Lumen Labs</p>'
+                 f'<h1 class="xm1-t">Glow serum, 30 ml</h1><p class="cp-close">Closes 26 Nov 2026 · <b>8 spots left</b></p></div>'
+                 f'<div class="cp-calc cp2"><div class="hd"><span>You get back</span><b class="num">₹1,339</b><small>After the brand approves</small></div>'
+                 f'<div class="r"><span>Cashback <em>60% of ₹1,899</em></span><b class="num">₹1,139</b></div>'
+                 f'<div class="r"><span>Bonus</span><b class="num">₹200</b></div>'
+                 f'<div class="ft"><span>You pay <b class="num">₹1,899</b> on Nykaa</span><span>It costs you <b class="num">₹560</b></span></div></div>'
+                 f'<div class="cp-sec"><h2>How it works</h2><div class="cp-steps">{st(1, "Buy it on Nykaa")}{st(2, "Post 2 tasks")}{st(3, "Get ₹1,339 back")}</div></div>'
+                 f'<div class="cp-sec"><h2>What you\'ll create</h2>'
+                 f'{task(soc("Instagram", 24), "Instagram reel", "Link, screenshots, #ad and the Paid partnership label")}'
+                 f'{task(plat("nykaa", 24), "Nykaa review", "Link, a screenshot and 40+ words")}</div>'
+                 f'<div class="cp-sec"><h2>Brief</h2><div class="cp-dd"><div><b>Do</b><p>Show it on bare skin in daylight.</p><p>Say how it felt after a week.</p></div>'
+                 f'<div><b>Don\'t</b><p>Compare it with other brands.</p><p>Use filters on the product.</p></div></div></div></div>'
+                 f'<div class="cp-bar cp-bar2"><div class="l"><b class="num">₹1,339 back</b><small>45 days to post after you join</small></div><button class="btn p lg">Join campaign</button></div></div>', label="Campaign")
 
 def s_apply():
     under = f'<div class="x-photo"><img src="{PH["serum_hero"]}" alt=""></div><div class="x-sheet"><div class="x-title">Glow serum, 30 ml</div></div>'
@@ -363,8 +376,8 @@ def _snap(css):
     css = _re.sub(r"font-size:\s*(\d+\.\d)px", lambda m: "font-size:" + _FS.get(m.group(1), m.group(1)) + "px", css)
     return _re.sub(r"(font:[^;}\"]*?)(\d+\.\d)px", lambda m: m.group(1) + _FS.get(m.group(2), m.group(2)) + "px", css)
 def _late():
-    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xz
-    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xz.XZ
+    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xz
+    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xz.XZ
 def html(body, title, base=""): return f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>{title}</title><link rel=icon type='image/svg+xml' href='assets/favicon.svg'>{f'<base href={chr(34)}{base}{chr(34)}>' if base else ''}<style>{_snap(CSS)}{_snap(CSS2)}{PAGE_CSS}{XPASS}{XSTEPS}{_late()}</style></head><body>{_snap(badgeize(body))}<script>{SQJS}</script></body></html>"
 
 if __name__ == "__main__":
