@@ -5565,6 +5565,75 @@ div:has(+ .n-scrim) > .row:last-child { visibility: hidden; }
 .mn-sec .mn-pan p { margin: 0; font-size: 13.5px; line-height: 19px; color: var(--hd-fg-muted); flex: 1; }
 .mn-sec .mn-pa { margin-top: 10px; }
 
+/* danger = a true red in the kit's first seven sections (the token reads orange) */
+:root, .sec, .phone .scr[data-theme="light"] { --hd-danger: #d92d20; --hd-danger-strong: #b42318; --hd-danger-solid: #d92d20; --hd-danger-subtle: color-mix(in oklab, #d92d20 13%, #fff); }
+[data-theme="dark"], [data-theme="dark"] .sec, .phone .scr[data-theme="dark"] { --hd-danger: #ff6a6f; --hd-danger-strong: #ffa3a6; --hd-danger-solid: #e5484d; --hd-danger-subtle: color-mix(in oklab, #e5484d 26%, #16181d); }
+/* buttons: the 48 phone-bar size is real */
+html body .sec .btn.xt1-bar:not(.sm) { height: 48px !important; border-radius: 12px !important; }
+/* cards size to their content, no dead space */
+.sec:nth-of-type(3) > .grid, .sec:nth-of-type(4) > .grid, .sec:nth-of-type(5) > .grid, .sec:nth-of-type(6) > .grid { align-items: start; }
+/* data display */
+.sec .row img.lead.xt1-ava { border-radius: 50%; }
+.sec .xa-d2 .xa-stats { flex-direction: row; gap: 12px; }
+.sec .xa-d2 .xa-stats > .panel { flex: 1 1 0; min-width: 0; }
+.sec .xa-d2 .xa-stats .stat .vz { height: auto; min-height: 0; padding-top: 0; margin-top: 8px; }
+.sec .xt1-spots { padding: 16px; }
+.sec .xt1-spots .sv { margin-top: 6px; display: flex; align-items: baseline; gap: 8px; }
+.sec .xt1-spots .sv b { font: 650 28px/32px var(--font-ui); letter-spacing: -.03em; }
+.sec .xt1-spots .su { font-size: 14px; color: var(--hd-fg-muted); }
+.sec .xt1-bar3 { height: 3px; border-radius: 2px; background: var(--hd-edge); margin-top: 14px; overflow: hidden; }
+.sec .xt1-bar3 i { display: block; height: 100%; background: var(--hd-accent); border-radius: 2px; }
+
+/* bell dot: solid danger, not marigold-orange */
+.iconbtn .badge-dot { background: var(--hd-danger-solid, #d92d20) !important; }
+[data-theme="dark"] .iconbtn .badge-dot { background: #e5484d !important; }
+/* chart tooltip clears the series lines */
+.cw2 .g2tip { margin-top: 12px; }
+/* avatar stack from photos: round, ringed, same overlap as initials */
+.avs img.av { object-fit: cover; display: block; border-radius: 50%; }
+/* campaign + task cards share the row evenly */
+.grid.rcrow { grid-template-columns: 1fr 1fr !important; }
+.rcard2 .xt-rf { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--hd-edge); margin-top: 4px; }
+/* filter panel: one quiet count, no tinted pill */
+.n-fil .n-filh .n-fc { background: transparent !important; padding: 0 !important; color: var(--hd-fg-muted) !important; font-weight: 500; }
+/* form section layout fills its card: label column + three even fields */
+.sec .n-form .n-fs { grid-template-columns: 260px minmax(0, 1fr) !important; }
+.sec .n-form .n-ff { max-width: none !important; }
+.sec .n-form .n-fgrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+/* load-more done state: neutral bar and neutral end label, one signal (the tick) */
+.n-more2.done .n-m2bar > i { background: var(--hd-accent) !important; }
+.n-more2.done .n-end2 { color: var(--hd-fg-muted) !important; }
+.n-more2.done .n-end2 .ic { color: var(--hd-success-solid, #0a8a4a); }
+/* menu destructive row stays neutral (red only on the final confirm) */
+.menu.n-ctx > div.dg, .menu.n-ctx > div.dg .ic { color: var(--hd-fg) !important; }
+.n-asa.dg { color: var(--hd-fg) !important; }
+
+/* nw6: neutral hairline notices, equal-height pages with the action pinned low */
+.nw6 .n-page { display: flex; flex-direction: column; align-items: center; }
+.nw6 .n-page .n-c { margin-top: auto; padding-top: 16px; }
+/* nw8: task screenshot tiles - one short scrim at the foot, not a full-height wash */
+.nw8 .m-reel::before { display: none; }
+.nw8 .m-reel::after { height: 34%; background: linear-gradient(to top, rgba(13,14,18,.62), rgba(13,14,18,0)); }
+.nw8 .m-up.err { gap: 8px; }
+/* nw9: description list values sit at the trailing edge */
+.nw9 .n-dl > div { grid-template-columns: 1fr auto; }
+.nw9 .t-head .t-lg, .nw9 .t-m .t-av .t-lg { border-radius: 50%; }
+/* dm: white surfaces, no grey slabs */
+.sec.dm .dm-rc .file, .sec.dm .dm-done, .sec.dm .dm-note { background: var(--hd-surface); border: 1px solid var(--hd-edge); }
+.sec.dm .dm-shots .s.add { background: var(--hd-surface); border: 1px dashed var(--hd-edge); }
+.sec.dm .input.textarea { background: var(--hd-surface); }
+.sec.dm .dm-task.slim { max-width: none; }
+/* mn: wallet hero action is full width */
+.mn-sec .mn-hb .btn { width: 100%; }
+.mn-sec .mn-hb { align-self: stretch; }
+/* mn: withdraw account option - white, one signal (the radio) */
+.mn-sec .mn-opt.sel { background: var(--hd-surface); border-color: var(--hd-fg-muted); }
+/* mn: blockers - white surface, hairline, glyph carries the meaning */
+.mn-sec .mn-note, .mn-sec .mn-note.info, .mn-sec .mn-note.danger, .mn-sec .mn-note.warning { background: var(--hd-surface); border: 1px solid var(--hd-edge); }
+.mn-sec .mn-note.info > .ic { color: var(--hd-accent); }
+.mn-sec .mn-bar i { background: var(--hd-fg-muted); }
+.mn-sec .mn-pt { display: flex; }
+
 .btn { position: relative; isolation: isolate; -webkit-tap-highlight-color: transparent; user-select: none; cursor: pointer;
   transition: transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms ease, color 120ms ease, opacity 120ms ease !important; }
 .btn::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0; background: var(--btn-ov, transparent); opacity: 0; transition: opacity 140ms ease, background-color 90ms ease; }
@@ -5870,6 +5939,30 @@ html body img.plat.sfav, html body .sec img.plat.sfav, html body .phone img.plat
 .m-st { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; flex: none; }
 .m-st.sent { color: var(--hd-fg-muted); } .m-st.sent svg { color: var(--hd-success, #0a8a4a); }
 .m-st.fix { color: var(--hd-warning-strong); } .m-st.fix svg { color: var(--hd-warning-solid, #c27a00); }
+
+/* creator hover card v2: compact, three equal stats, full-width action */
+.dialog.n-hc { width: 320px !important; padding: 14px !important; gap: 10px !important; }
+.n-hc .n-hch { display: flex; align-items: center; gap: 10px; } .n-hc .n-hch img { width: 44px !important; height: 44px !important; border-radius: 50% !important; object-fit: cover; }
+.n-hc .n-hch b { display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 600; } .n-hc .n-hch .t-small { font-size: 13px !important; }
+.n-hc > p { margin: 0 !important; font-size: 13.5px !important; line-height: 19px !important; color: var(--hd-fg-muted) !important; }
+.n-hcs.hc3 { display: grid !important; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hd-edge); padding-top: 10px !important; gap: 0 !important; }
+.n-hcs.hc3 > div { display: flex; flex-direction: column; gap: 1px; padding-left: 10px; } .n-hcs.hc3 > div:first-child { padding-left: 0; } .n-hcs.hc3 > div + div { border-left: 1px solid var(--hd-edge); }
+.n-hcs.hc3 b { font-size: 15px; font-weight: 650; } .n-hcs.hc3 span { display: flex; align-items: center; gap: 4px; font-size: 12.5px; color: var(--hd-fg-muted); }
+.n-hca.hc3a { margin-top: 2px !important; } .n-hca.hc3a .btn { width: 100% !important; height: 36px !important; }
+
+html body .n-hca.hc3a { display: block !important; width: 100% !important; } html body .n-hca.hc3a > .btn { display: flex !important; width: 100% !important; justify-content: center; }
+
+/* inbox swipe rows: icon tiles (like the real inbox); one action = 76px slide, no gap */
+.n-swt { width: 40px !important; height: 40px !important; border-radius: 12px !important; display: grid !important; place-items: center; flex: none; }
+.n-swt.ok { color: var(--hd-success, #0a8a4a); } .n-swt.warn { color: var(--hd-warning-solid, #c27a00); } .n-swt.info { color: var(--hd-accent); }
+html body .n-sw .n-sr.left { transform: translateX(-76px) !important; }
+html body .n-sw .n-swa .a { width: 76px !important; }
+
+/* compact empty-with-action cards: solid hairline, not dashed */
+.n-ea2 { border: 0 !important; background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge) !important; }
+
+/* radio cards: one signal (the filled radio); no blue fill */
+html body .row.sel, html body .sec .row.sel, html body .phone .row.sel { background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge-strong, rgba(16,20,38,.22)) !important; }
 </style></head><body><div style="padding:30px;display:inline-block"><figure class="pf"><div class="phone"><div class="scr" data-theme="light"><div class="sbar" style="color:#fff"><span class="num">9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" aria-hidden="true"><path d="M8.5 2.3c2.3 0 4.4.9 6 2.4l1.1-1.2A10.2 10.2 0 0 0 8.5.6 10.2 10.2 0 0 0 1.4 3.5l1.1 1.2c1.6-1.5 3.7-2.4 6-2.4Z"/><path d="M8.5 5.6c1.4 0 2.6.5 3.6 1.4l1.1-1.2A7 7 0 0 0 8.5 3.9 7 7 0 0 0 3.8 5.8l1.1 1.2c1-.9 2.2-1.4 3.6-1.4Z"/><path d="M8.5 8.9c.5 0 .9.2 1.2.5L8.5 11 7.3 9.4c.3-.3.7-.5 1.2-.5Z"/></svg><span class="bat"></span></span></div><div class="jf-under"><img src="assets/stock/products/p6.jpg" alt=""></div><div class="scrim"></div><div class="overlay"><div class="sheet jf"><div class="grab"></div><div class="jf-hd"><div><small>Step 2 of 2</small><h2>Add your receipt</h2></div><span class="x-disc jf-x"><svg class="ic" width="18" height="18" viewBox="0 0 18 18" stroke-width="1.5" aria-hidden="true"><line x1="14" y1="4" x2="4" y2="14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><line x1="4" y1="4" x2="14" y2="14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="jf-hold2"><svg class="ic icf" width="16" height="16" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M9,1C4.589,1,1,4.589,1,9s3.589,8,8,8,8-3.589,8-8S13.411,1,9,1Zm3.867,10.677c-.146,.21-.379,.323-.617,.323-.147,0-.296-.043-.426-.133l-3.25-2.25c-.203-.14-.323-.371-.323-.617V4.75c0-.414,.336-.75,.75-.75s.75,.336,.75,.75v3.857l2.927,2.026c.341,.236,.426,.703,.19,1.043Z" fill="currentColor"/></svg><span>Spot held · <b class="num">6:12</b> left</span><button class="jf-add">Add 10 min</button></div><div class="jf-file"><span class="x-tile jf-fi"><svg class="ic" width="20" height="20" viewBox="0 0 18 18" stroke-width="1.5" aria-hidden="true"><path d="M15.16,6.25h-3.41c-.552,0-1-.448-1-1V1.852" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.75,14.25V3.75c0-1.105,.895-2,2-2h5.586c.265,0,.52,.105,.707,.293l3.914,3.914c.188,.188,.293,.442,.293,.707v7.586c0,1.105-.895,2-2,2H4.75c-1.105,0-2-.895-2-2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="tx"><b>nykaa-order-4471.pdf</b><small>284 KB · Replace</small></div></div><div class="jf-ok"><span class="ic-ok"><svg class="ic icf" width="20" height="20" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M9,1C4.589,1,1,4.589,1,9s3.589,8,8,8,8-3.589,8-8S13.411,1,9,1Zm3.843,5.708l-4.25,5.5c-.136,.176-.343,.283-.565,.291-.01,0-.019,0-.028,0-.212,0-.415-.09-.558-.248l-2.25-2.5c-.277-.308-.252-.782,.056-1.06,.309-.276,.781-.252,1.06,.056l1.648,1.832,3.701-4.789c.253-.328,.725-.388,1.052-.135,.328,.253,.388,.724,.135,1.052Z" fill="currentColor"/></svg></span><div class="tx"><b>Your receipt is verified</b><small>Nykaa · <b class="num">₹1,899</b> · 20 Nov 2026</small></div></div><div class="jf-sum"><span>You get back after the brand approves</span><b class="num">₹1,339</b></div><div class="jf-act"><button class="btn p lg block">Join and earn ₹1,339</button></div><p class="jf-note">You'll have 45 days to post after you join.</p></div></div><div class="home-ind"><i></i></div></div></div><figcaption>Join · receipt</figcaption></figure></div><script>// Squircles + tactile surfaces for the static kit (Zen/Firefox has no `corner-shape`).
 // Each target gets an absolutely positioned SVG behind its content: a continuous-curvature
 // (figma-squircle, smoothing 0.6) path carrying the fill, the hairline/border, the tactile lip

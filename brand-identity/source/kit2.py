@@ -151,7 +151,7 @@ def kit_more(theme="light"):
         f'<div class="panel sx"><div class="sxh"><span class="sxl">Tasks this week</span><span class="sxd">+42%</span></div><div class="sxv"><b class="num">91</b></div><div class="sxb">{mini_bars(REV)}</div></div>'
         f'<div class="panel sx"><div class="sxh"><span class="sxl">By platform</span></div><div class="sxv"><b>Instagram</b><span class="num">58%</span></div>'
         f'<div class="sxb"><div class="sxstack"><i style="width:58%"></i><i style="width:27%"></i><i style="width:15%"></i></div><div class="sxleg num"><span>{soc("Instagram", 14)}58</span><span>{soc("Youtube", 14)}27</span><span>{soc("Threads", 14)}15</span></div></div></div>'
-        f'<div class="panel sx"><div class="sxh"><span class="sxl">Spots filled</span></div><div class="sxv"><b class="num">84</b><span class="num">/ 120</span></div><div class="sxb">{segs(84/120)}<span class="sxc num">36 left</span></div></div>'
+        f'<div class="panel sx"><div class="sxh"><span class="sxl">Spots filled</span></div><div class="sxv"><b class="num">112</b><span class="num">/ 120</span></div><div class="sxb">{segs(112/120)}<span class="sxc num">8 left</span></div></div>'
         f'<div class="panel sx"><div class="sxh"><span class="sxl">Held payouts</span></div><div class="sxv"><b class="num">₹1,04,160</b></div><div class="sxb"><div class="sxhair"><i style="width:70%"></i></div><span class="sxc">releases on approval</span></div></div>'
         '</div>')
     UD = f'<svg class="ic" width="16" height="16" viewBox="0 0 18 18" stroke-width="1.5" aria-hidden="true">{NO["ChevronExpandYOutline18"]}</svg>'

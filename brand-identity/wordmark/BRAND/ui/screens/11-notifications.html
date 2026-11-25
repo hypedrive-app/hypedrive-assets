@@ -5565,6 +5565,75 @@ div:has(+ .n-scrim) > .row:last-child { visibility: hidden; }
 .mn-sec .mn-pan p { margin: 0; font-size: 13.5px; line-height: 19px; color: var(--hd-fg-muted); flex: 1; }
 .mn-sec .mn-pa { margin-top: 10px; }
 
+/* danger = a true red in the kit's first seven sections (the token reads orange) */
+:root, .sec, .phone .scr[data-theme="light"] { --hd-danger: #d92d20; --hd-danger-strong: #b42318; --hd-danger-solid: #d92d20; --hd-danger-subtle: color-mix(in oklab, #d92d20 13%, #fff); }
+[data-theme="dark"], [data-theme="dark"] .sec, .phone .scr[data-theme="dark"] { --hd-danger: #ff6a6f; --hd-danger-strong: #ffa3a6; --hd-danger-solid: #e5484d; --hd-danger-subtle: color-mix(in oklab, #e5484d 26%, #16181d); }
+/* buttons: the 48 phone-bar size is real */
+html body .sec .btn.xt1-bar:not(.sm) { height: 48px !important; border-radius: 12px !important; }
+/* cards size to their content, no dead space */
+.sec:nth-of-type(3) > .grid, .sec:nth-of-type(4) > .grid, .sec:nth-of-type(5) > .grid, .sec:nth-of-type(6) > .grid { align-items: start; }
+/* data display */
+.sec .row img.lead.xt1-ava { border-radius: 50%; }
+.sec .xa-d2 .xa-stats { flex-direction: row; gap: 12px; }
+.sec .xa-d2 .xa-stats > .panel { flex: 1 1 0; min-width: 0; }
+.sec .xa-d2 .xa-stats .stat .vz { height: auto; min-height: 0; padding-top: 0; margin-top: 8px; }
+.sec .xt1-spots { padding: 16px; }
+.sec .xt1-spots .sv { margin-top: 6px; display: flex; align-items: baseline; gap: 8px; }
+.sec .xt1-spots .sv b { font: 650 28px/32px var(--font-ui); letter-spacing: -.03em; }
+.sec .xt1-spots .su { font-size: 14px; color: var(--hd-fg-muted); }
+.sec .xt1-bar3 { height: 3px; border-radius: 2px; background: var(--hd-edge); margin-top: 14px; overflow: hidden; }
+.sec .xt1-bar3 i { display: block; height: 100%; background: var(--hd-accent); border-radius: 2px; }
+
+/* bell dot: solid danger, not marigold-orange */
+.iconbtn .badge-dot { background: var(--hd-danger-solid, #d92d20) !important; }
+[data-theme="dark"] .iconbtn .badge-dot { background: #e5484d !important; }
+/* chart tooltip clears the series lines */
+.cw2 .g2tip { margin-top: 12px; }
+/* avatar stack from photos: round, ringed, same overlap as initials */
+.avs img.av { object-fit: cover; display: block; border-radius: 50%; }
+/* campaign + task cards share the row evenly */
+.grid.rcrow { grid-template-columns: 1fr 1fr !important; }
+.rcard2 .xt-rf { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--hd-edge); margin-top: 4px; }
+/* filter panel: one quiet count, no tinted pill */
+.n-fil .n-filh .n-fc { background: transparent !important; padding: 0 !important; color: var(--hd-fg-muted) !important; font-weight: 500; }
+/* form section layout fills its card: label column + three even fields */
+.sec .n-form .n-fs { grid-template-columns: 260px minmax(0, 1fr) !important; }
+.sec .n-form .n-ff { max-width: none !important; }
+.sec .n-form .n-fgrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+/* load-more done state: neutral bar and neutral end label, one signal (the tick) */
+.n-more2.done .n-m2bar > i { background: var(--hd-accent) !important; }
+.n-more2.done .n-end2 { color: var(--hd-fg-muted) !important; }
+.n-more2.done .n-end2 .ic { color: var(--hd-success-solid, #0a8a4a); }
+/* menu destructive row stays neutral (red only on the final confirm) */
+.menu.n-ctx > div.dg, .menu.n-ctx > div.dg .ic { color: var(--hd-fg) !important; }
+.n-asa.dg { color: var(--hd-fg) !important; }
+
+/* nw6: neutral hairline notices, equal-height pages with the action pinned low */
+.nw6 .n-page { display: flex; flex-direction: column; align-items: center; }
+.nw6 .n-page .n-c { margin-top: auto; padding-top: 16px; }
+/* nw8: task screenshot tiles - one short scrim at the foot, not a full-height wash */
+.nw8 .m-reel::before { display: none; }
+.nw8 .m-reel::after { height: 34%; background: linear-gradient(to top, rgba(13,14,18,.62), rgba(13,14,18,0)); }
+.nw8 .m-up.err { gap: 8px; }
+/* nw9: description list values sit at the trailing edge */
+.nw9 .n-dl > div { grid-template-columns: 1fr auto; }
+.nw9 .t-head .t-lg, .nw9 .t-m .t-av .t-lg { border-radius: 50%; }
+/* dm: white surfaces, no grey slabs */
+.sec.dm .dm-rc .file, .sec.dm .dm-done, .sec.dm .dm-note { background: var(--hd-surface); border: 1px solid var(--hd-edge); }
+.sec.dm .dm-shots .s.add { background: var(--hd-surface); border: 1px dashed var(--hd-edge); }
+.sec.dm .input.textarea { background: var(--hd-surface); }
+.sec.dm .dm-task.slim { max-width: none; }
+/* mn: wallet hero action is full width */
+.mn-sec .mn-hb .btn { width: 100%; }
+.mn-sec .mn-hb { align-self: stretch; }
+/* mn: withdraw account option - white, one signal (the radio) */
+.mn-sec .mn-opt.sel { background: var(--hd-surface); border-color: var(--hd-fg-muted); }
+/* mn: blockers - white surface, hairline, glyph carries the meaning */
+.mn-sec .mn-note, .mn-sec .mn-note.info, .mn-sec .mn-note.danger, .mn-sec .mn-note.warning { background: var(--hd-surface); border: 1px solid var(--hd-edge); }
+.mn-sec .mn-note.info > .ic { color: var(--hd-accent); }
+.mn-sec .mn-bar i { background: var(--hd-fg-muted); }
+.mn-sec .mn-pt { display: flex; }
+
 .btn { position: relative; isolation: isolate; -webkit-tap-highlight-color: transparent; user-select: none; cursor: pointer;
   transition: transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms ease, color 120ms ease, opacity 120ms ease !important; }
 .btn::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0; background: var(--btn-ov, transparent); opacity: 0; transition: opacity 140ms ease, background-color 90ms ease; }
@@ -5870,6 +5939,30 @@ html body img.plat.sfav, html body .sec img.plat.sfav, html body .phone img.plat
 .m-st { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; flex: none; }
 .m-st.sent { color: var(--hd-fg-muted); } .m-st.sent svg { color: var(--hd-success, #0a8a4a); }
 .m-st.fix { color: var(--hd-warning-strong); } .m-st.fix svg { color: var(--hd-warning-solid, #c27a00); }
+
+/* creator hover card v2: compact, three equal stats, full-width action */
+.dialog.n-hc { width: 320px !important; padding: 14px !important; gap: 10px !important; }
+.n-hc .n-hch { display: flex; align-items: center; gap: 10px; } .n-hc .n-hch img { width: 44px !important; height: 44px !important; border-radius: 50% !important; object-fit: cover; }
+.n-hc .n-hch b { display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 600; } .n-hc .n-hch .t-small { font-size: 13px !important; }
+.n-hc > p { margin: 0 !important; font-size: 13.5px !important; line-height: 19px !important; color: var(--hd-fg-muted) !important; }
+.n-hcs.hc3 { display: grid !important; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--hd-edge); padding-top: 10px !important; gap: 0 !important; }
+.n-hcs.hc3 > div { display: flex; flex-direction: column; gap: 1px; padding-left: 10px; } .n-hcs.hc3 > div:first-child { padding-left: 0; } .n-hcs.hc3 > div + div { border-left: 1px solid var(--hd-edge); }
+.n-hcs.hc3 b { font-size: 15px; font-weight: 650; } .n-hcs.hc3 span { display: flex; align-items: center; gap: 4px; font-size: 12.5px; color: var(--hd-fg-muted); }
+.n-hca.hc3a { margin-top: 2px !important; } .n-hca.hc3a .btn { width: 100% !important; height: 36px !important; }
+
+html body .n-hca.hc3a { display: block !important; width: 100% !important; } html body .n-hca.hc3a > .btn { display: flex !important; width: 100% !important; justify-content: center; }
+
+/* inbox swipe rows: icon tiles (like the real inbox); one action = 76px slide, no gap */
+.n-swt { width: 40px !important; height: 40px !important; border-radius: 12px !important; display: grid !important; place-items: center; flex: none; }
+.n-swt.ok { color: var(--hd-success, #0a8a4a); } .n-swt.warn { color: var(--hd-warning-solid, #c27a00); } .n-swt.info { color: var(--hd-accent); }
+html body .n-sw .n-sr.left { transform: translateX(-76px) !important; }
+html body .n-sw .n-swa .a { width: 76px !important; }
+
+/* compact empty-with-action cards: solid hairline, not dashed */
+.n-ea2 { border: 0 !important; background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge) !important; }
+
+/* radio cards: one signal (the filled radio); no blue fill */
+html body .row.sel, html body .sec .row.sel, html body .phone .row.sel { background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge-strong, rgba(16,20,38,.22)) !important; }
 </style></head><body><div style="padding:30px;display:inline-block"><figure class="pf"><div class="phone"><div class="scr" data-theme="light"><div class="sbar" style=""><span class="num">9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" aria-hidden="true"><path d="M8.5 2.3c2.3 0 4.4.9 6 2.4l1.1-1.2A10.2 10.2 0 0 0 8.5.6 10.2 10.2 0 0 0 1.4 3.5l1.1 1.2c1.6-1.5 3.7-2.4 6-2.4Z"/><path d="M8.5 5.6c1.4 0 2.6.5 3.6 1.4l1.1-1.2A7 7 0 0 0 8.5 3.9 7 7 0 0 0 3.8 5.8l1.1 1.2c1-.9 2.2-1.4 3.6-1.4Z"/><path d="M8.5 8.9c.5 0 .9.2 1.2.5L8.5 11 7.3 9.4c.3-.3.7-.5 1.2-.5Z"/></svg><span class="bat"></span></span></div><div class="topbar x-large"><span class="ttl x-page">Notifications</span><button class="btn link">Mark all read</button></div><div class="body xm3-s xm3-notifs"><span class="xm3-day">Today</span><div class="xm3-nl"><div class="xm3-nr"><span class="x-tile cobalt"><svg class="ic icf" width="20" height="20" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="m17.8262,7.27l-2.5-3c-.0096-.0115-.0234-.0161-.0335-.0269-.0474-.051-.1014-.094-.1624-.1304-.0193-.0117-.0363-.0254-.0565-.0352-.009-.0044-.0158-.0117-.025-.0156l-5.3511-2.3267h-.0005c-.4424-.1924-.9517-.1934-1.395,0l-5.3511,2.3267c-.0093.0039-.0162.0112-.0253.0156-.0198.0098-.0364.0234-.0554.0347-.0613.0366-.1155.0798-.1631.1309-.0101.0107-.0239.0154-.0334.0269L.1738,7.27c-.1514.1812-.208.4233-.1538.6533.0547.2295.2144.4204.4312.5146l2.0488.8909v3.2654c0,.6968.4131,1.3267,1.0518,1.605l4.751,2.0654c.2212.0962.459.144.6973.144.2378,0,.4761-.0479.6982-.144l4.75-2.0659c.6387-.2778,1.0518-.9077,1.0518-1.6045v-3.2654l2.0488-.8909c.2168-.0942.3765-.2852.4312-.5146.0542-.23-.0024-.4722-.1538-.6533ZM8.8994,3.1113c.0645-.0273.1372-.0273.2007,0l3.769,1.6387-3.8691,1.6821-3.8691-1.6821,3.7686-1.6387Zm-5.4332,2.5505l4.3168,1.877-1.4994,1.7991-4.3169-1.8765,1.4995-1.7996Zm8.2501,3.676l-1.4994-1.7991,4.3168-1.877,1.4995,1.7996-4.3169,1.8765Z" stroke-width="0" fill="currentColor"/></svg></span><div class="xm3-nt"><p><b>Glow serum</b> is open for you</p><small>Lumen Labs · 36 slots left</small></div><div class="xm3-ne"><span class="num">2m</span><i class="on"></i></div></div><div class="xm3-nr"><span class="x-tile mint"><svg class="ic icf" width="20" height="20" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M7,6.5H2.75c-.414,0-.75-.336-.75-.75s.336-.75,.75-.75H7c.414,0,.75,.336,.75,.75s-.336,.75-.75,.75Z" fill="currentColor"/><path d="M5,9.5H.75c-.414,0-.75-.336-.75-.75s.336-.75,.75-.75H5c.414,0,.75,.336,.75,.75s-.336,.75-.75,.75Z" fill="currentColor"/><path d="M16.722,8.597l-1.796-2.793c-.323-.503-.874-.804-1.472-.804h-1.454v-.25c0-1.517-1.233-2.75-2.75-2.75H4.75c-.414,0-.75,.336-.75,.75s.336,.75,.75,.75h4.5c.689,0,1.25,.561,1.25,1.25v7.675c.228-.109,.48-.175,.75-.175,.966,0,1.75,.783,1.75,1.75,0,.175-.034,.341-.081,.5h1.331c1.517,0,2.75-1.233,2.75-2.75v-2.206c0-.336-.096-.664-.278-.947Zm-4.722-.097v-2h1.454c.085,0,.164,.043,.21,.115l1.212,1.885h-2.876Z" fill="currentColor"/><path d="M9.5,14c0-.373,.118-.716,.317-1H5.75c-.414,0-.75,.336-.75,.75s.336,.75,.75,.75h3.831c-.048-.159-.081-.325-.081-.5Z" fill="currentColor"/><path d="M4,16.5c-1.378,0-2.5-1.122-2.5-2.5s1.122-2.5,2.5-2.5,2.5,1.122,2.5,2.5-1.122,2.5-2.5,2.5Zm0-3.5c-.551,0-1,.449-1,1s.449,1,1,1,1-.449,1-1-.449-1-1-1Z" fill="currentColor"/><path d="M11.25,16.5c-1.378,0-2.5-1.122-2.5-2.5s1.122-2.5,2.5-2.5,2.5,1.122,2.5,2.5-1.122,2.5-2.5,2.5Zm0-3.5c-.551,0-1,.449-1,1s.449,1,1,1,1-.449,1-1-.449-1-1-1Z" fill="currentColor"/></svg></span><div class="xm3-nt"><p><b>Kick scooter</b> is out for delivery</p><small>Arrives by 7 pm</small></div><div class="xm3-ne"><span class="num">1h</span><i class="on"></i></div></div><div class="xm3-nr"><span class="x-tile marigold"><svg class="ic icf" width="20" height="20" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M9,1C4.589,1,1,4.589,1,9s3.589,8,8,8,8-3.589,8-8S13.411,1,9,1Zm3.867,10.677c-.146,.21-.379,.323-.617,.323-.147,0-.296-.043-.426-.133l-3.25-2.25c-.203-.14-.323-.371-.323-.617V4.75c0-.414,.336-.75,.75-.75s.75,.336,.75,.75v3.857l2.927,2.026c.341,.236,.426,.703,.19,1.043Z" fill="currentColor"/></svg></span><div class="xm3-nt"><p><b>Night cream</b> review due Monday</p><small>Nov 23 · 3 days left</small></div><div class="xm3-ne"><span class="num">4h</span><i class=""></i></div></div></div><span class="xm3-day">This week</span><div class="xm3-nl"><div class="xm3-nr"><span class="x-tile bankt"><img class="bankl" src="assets/banks/hdfc.png" alt="HDFC" width="22" height="22"></span><div class="xm3-nt"><p><b>₹2,000</b> sent to HDFC ••6093</p><small>Lands by Tue, Nov 24</small></div><div class="xm3-ne"><span class="num">Mon</span><i class=""></i></div></div><div class="xm3-nr"><span class="x-tile vermilion"><svg class="ic icf" width="20" height="20" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M12.25 4.50001C12.171 4.50001 12.091 4.48801 12.013 4.46101C11.62 4.33001 11.408 3.90501 11.539 3.51201L12.289 1.26201C12.419 0.869007 12.844 0.656007 13.238 0.788007C13.631 0.919007 13.843 1.34401 13.712 1.73701L12.962 3.98701C12.858 4.30101 12.564 4.50001 12.25 4.50001Z" fill="currentColor"/><path d="M14.25 6.5C13.936 6.5 13.643 6.301 13.539 5.987C13.408 5.594 13.62 5.169 14.013 5.038L16.263 4.288C16.657 4.157 17.081 4.37 17.212 4.762C17.343 5.155 17.131 5.58 16.738 5.711L14.488 6.461C14.409 6.487 14.328 6.5 14.25 6.5Z" fill="currentColor"/><path d="M1.50001 13.75C1.18601 13.75 0.893011 13.551 0.789011 13.237C0.658011 12.844 0.870011 12.419 1.26301 12.288L3.51301 11.538C3.90701 11.406 4.33101 11.62 4.46201 12.012C4.59301 12.405 4.38101 12.83 3.98801 12.961L1.73801 13.711C1.65901 13.737 1.57801 13.75 1.50001 13.75Z" fill="currentColor"/><path d="M5.00001 17.25C4.92101 17.25 4.84101 17.238 4.76301 17.211C4.37001 17.08 4.15801 16.655 4.28901 16.262L5.03901 14.012C5.16901 13.619 5.59501 13.406 5.98801 13.538C6.38101 13.669 6.59301 14.094 6.46201 14.487L5.71201 16.737C5.60801 17.051 5.31401 17.25 5.00001 17.25Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M9.03169 6.54197C9.22578 6.9079 9.08647 7.36188 8.72055 7.55597C8.48327 7.68182 8.25999 7.84498 8.05929 8.04639C6.97145 9.13452 6.96033 10.9087 8.04835 11.9967L10.2233 14.1717C11.3114 15.2598 13.0746 15.2598 14.1627 14.1717C15.2508 13.0836 15.2608 11.3104 14.1727 10.2223L13.4103 9.45992C13.1174 9.16703 13.1174 8.69216 13.4103 8.39926C13.7032 8.10637 14.178 8.10638 14.4709 8.39927L15.2333 9.16168C16.9072 10.8356 16.9072 13.5484 15.2333 15.2223C13.5594 16.8962 10.8366 16.9062 9.16268 15.2323L6.98769 13.0573C5.3138 11.3834 5.3138 8.67056 6.98769 6.99667C7.29579 6.68748 7.64977 6.42598 8.01769 6.23083C8.38362 6.03674 8.8376 6.17604 9.03169 6.54197Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.77866 2.76766C4.45255 1.09376 7.16542 1.09376 8.83932 2.76766L11.0143 4.94266C12.6882 6.61655 12.6882 9.32942 11.0143 11.0033C10.7062 11.3125 10.3523 11.574 9.98434 11.7692C9.61841 11.9633 9.16443 11.824 8.97034 11.458C8.77625 11.0921 8.91555 10.6381 9.28148 10.444C9.51875 10.3182 9.74202 10.155 9.94272 9.9536C11.0308 8.86549 11.0418 7.09142 9.95366 6.00332L7.77866 3.82832C6.69068 2.74034 4.92783 2.74021 3.83969 3.82794C2.75159 4.91605 2.74124 6.68955 3.82935 7.77766L4.59174 8.54006C4.88463 8.83296 4.88463 9.30783 4.59173 9.60072C4.29884 9.89361 3.82396 9.89361 3.53107 9.60071L2.76869 8.83832C1.09494 7.16457 1.10521 4.44159 2.77866 2.76766Z" fill="currentColor"/></svg></span><div class="xm3-nt"><p>Your post link is private</p><small>Make it public so we can verify it</small></div><div class="xm3-ne"><span class="num">Wed</span><i class=""></i></div></div></div></div><div class="home-ind"><i></i></div></div></div><figcaption>Notifications</figcaption></figure></div><script>// Squircles + tactile surfaces for the static kit (Zen/Firefox has no `corner-shape`).
 // Each target gets an absolutely positioned SVG behind its content: a continuous-curvature
 // (figma-squircle, smoothing 0.6) path carrying the fill, the hairline/border, the tactile lip

@@ -327,4 +327,7 @@ html body .n-sw .n-swa .a { width: 76px !important; }
 
 /* compact empty-with-action cards: solid hairline, not dashed */
 .n-ea2 { border: 0 !important; background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge) !important; }
+
+/* radio cards: one signal (the filled radio); no blue fill */
+html body .row.sel, html body .sec .row.sel, html body .phone .row.sel { background: var(--hd-surface) !important; box-shadow: 0 0 0 1px var(--hd-edge-strong, rgba(16,20,38,.22)) !important; }
 """
