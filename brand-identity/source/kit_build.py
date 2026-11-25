@@ -3,7 +3,7 @@ import sys, os, subprocess
 sys.path.insert(0, "/tmp/hdwm")
 from uikit import *
 from xpass import XPASS
-from kit2 import kit_more, DESKTOP2, CSS2, header
+from kit2 import kit_more, CSS2, header
 from uikit2 import stat, goal, kbd
 from xsteps import XSTEPS
 
@@ -365,7 +365,8 @@ def s_empty():
 from scr_n1 import s_onboarding, s_browse, s_enrollments
 from scr_n2 import s_enrollment_detail, s_withdraw, s_settings, s_barter
 MOBILE = [s_welcome, s_otp, s_home, s_detail, s_apply, s_join_receipt, s_track, s_review, s_wallet, s_success, s_notifs, s_profile, s_empty,
-          s_onboarding, s_browse, s_enrollments, s_enrollment_detail, s_withdraw, s_settings, s_barter]
+          s_onboarding, s_browse, s_enrollments, s_enrollment_detail, s_withdraw, s_settings, s_barter,
+          *__import__('mob_m').__dict__['MED']]
 
 # ================================================================== DESKTOP
 def sidebar(active):
@@ -375,53 +376,8 @@ def sidebar(active):
             f'<div style="flex:1"></div><div class="card" style="padding:14px;background:var(--hd-bg-subtle)"><b class="t-small">Wallet balance</b><div class="num t-h2">₹2,40,000</div><button class="btn p sm block" style="margin-top:8px">Add funds</button></div>'
             f'<div class="it">{av("LL", 2, 30)}Lumen Labs</div></aside>')
 
-def d_dashboard():
-    kpis = [("Active creators", "312", "▲ 18%", "up"), ("Reviews this week", "91", "▲ 42%", "up"), ("Avg. rating", "4.7", "▲ 0.2", "up"), ("Cost per review", "₹1,180", "▼ 6%", "up")]
-    bars = EARN_REV
-    rev = [("RS", 0, "Riya Sharma", "Glow serum", 5, "success", "Approved"), ("AK", 1, "Arjun Kapoor", "Glow serum", 4, "warning", "In review"), ("MJ", 2, "Meera Joshi", "Night cream", 5, "success", "Approved"), ("TN", 3, "Tanvi Nair", "Glow serum", 3, "warning", "In review")]
-    return (f'<div class="desk">{sidebar("Overview")}<div class="main"><div class="dtop"><div class="t-h1">Good morning, Lumen Labs</div><div class="search" style="width:320px;background:var(--hd-surface)">{ic("search", 20)}Search creators, reviews</div>{ic("bell")}<button class="btn p">{ic("plus", 20)}New campaign</button></div>'
-            f'<div class="grid g4">' + "".join(f'<div class="card kpi"><small>{k}</small><b class="num">{v}</b><span class="delta {c}">{d}</span><span class="t-small muted"> vs last week</span></div>' for k, v, d, c in kpis) + '</div>'
-            f'<div class="grid" style="grid-template-columns:1.6fr 1fr"><div class="card" style="padding:20px"><div class="flexw" style="justify-content:space-between"><b class="t-h3">Reviews per week</b><div class="tabs" style="border:0"><span class="on">7 weeks</span><span>Quarter</span></div></div>'
-            f'<div class="bars">' + "".join(f'<div><span class="num" style="font-weight:700;color:var(--hd-fg)">{v}</span><i style="height:{v*1.3}px;{"background:" + V["500"] if v == 91 else ""}"></i><span>W{n+1}</span></div>' for n, v in enumerate(bars)) + '</div></div>'
-            f'<div class="card" style="padding:20px"><b class="t-h3">Live campaigns</b><div class="stack" style="margin-top:12px">' +
-            "".join(f'<div class="row" style="background:var(--hd-bg-subtle)"><img class="lead" src="{PH[i]}" style="width:40px;height:40px"><div class="tx"><b>{t}</b><div class="tape" style="margin-top:6px;height:6px"><i style="width:{p}%"></i></div></div><span class="t-small muted num">{p}%</span></div>' for i, t, p in (("serum", "Glow serum", 70), ("cream", "Night cream", 42), ("mask", "Repair hair mask", 18))) + '</div></div></div>'
-            f'<div class="card" style="overflow:hidden"><div class="flexw" style="justify-content:space-between;padding:16px 18px 6px"><b class="t-h3">Latest reviews</b><span class="t-small" style="color:var(--hd-link);font-weight:700">See all</span></div>'
-            f'<table class="tbl"><tr><th>Creator</th><th>Product</th><th>Rating</th><th>Status</th><th></th></tr>' +
-            "".join(f'<tr><td><div class="flexw">{av(a, k, 34)}<b>{n}</b></div></td><td class="muted">{p}</td><td><div class="stars">{"".join(ic("star", 16, "var(--hd-tone-marigold)", 1.5, "var(--hd-tone-marigold)") for _ in range(r))}</div></td><td><span class="badge {b}">{bl}</span></td><td style="text-align:right">{ic("more", 20)}</td></tr>' for a, k, n, p, r, b, bl in rev) +
-            '</table></div></div></div>')
-
-def d_builder():
-    steps = ["Product", "Creators", "Budget", "Review"]
-    return (f'<div class="desk">{sidebar("Campaigns")}<div class="main"><div class="dtop"><div><span class="t-small muted">Campaigns / New</span><div class="t-h1">Create a campaign</div></div><div style="flex:1"></div><button class="btn s">Save draft</button><button class="btn p">Continue</button></div>'
-            f'<div class="card n-wzcard"><div class="n-wz" role="list">' + "".join(f'<div class="s {"done" if n < 2 else "now" if n == 2 else ""}" role="listitem"><span class="k">{ic("check", 14, sw=3) if n < 2 else ""}</span><span class="n-st"><b>{s}</b></span></div>' + ('<i class="ln' + (' done' if n < 2 else '') + '"></i>' if n < len(steps) - 1 else '') for n, s in enumerate(steps)) + '</div></div>'
-            f'<div class="grid" style="grid-template-columns:1.3fr 1fr;gap:28px"><div class="card stack" style="padding:24px;gap:18px"><b class="t-h2">Budget and payout</b>'
-            f'<div class="grid g2"><div class="field"><label>Payout per review</label><div class="input"><span class="pre">₹</span><span class="num">1,240</span></div><span class="help">Creators in your category earn ₹900–1,500</span></div>'
-            f'<div class="field"><label>Number of creators</label><div class="input foc"><span class="num">120</span></div></div></div>'
-            f'<div class="field"><label>Minimum followers</label><div class="slider" style="margin:12px 0 6px"><i></i><b></b></div><div class="flexw t-small muted" style="justify-content:space-between"><span>1k</span><b class="num" style="color:var(--hd-fg)">10k+</b><span>100k</span></div></div>'
-            f'<div class="field"><label>Platforms</label><div class="flexw"><span class="chip on">{soc("Instagram", 16)}Instagram</span><span class="chip on">{soc("Youtube", 16)}YouTube</span><span class="chip">{soc("Threads", 16)}Threads</span><span class="chip">{ic("edit", 16)}Blogs</span></div></div>'
-            f'<div class="row"><div class="tx"><b>Auto-approve 4★ and up</b><small>We still check every link is public</small></div><span class="switch on"></span></div>'
-            f'<div class="notice warning">{icf("warning")}<span>Your wallet covers 120 creators. <b>₹1,48,800</b> will be reserved when you publish.</span></div></div>'
-            f'<div class="stack"><span class="t-small muted" style="font-weight:600">Preview: what creators see</span><div class="card" style="padding:18px"><img src="{PH["serum_hero"]}" style="width:100%;height:180px;display:block;margin-bottom:12px">'
-            f'<div class="flexw"><span class="badge success">Live</span><span class="badge neutral">Skincare</span></div><div class="t-h2" style="margin-top:8px">Glow serum, 30 ml</div><span class="t-small muted">by Lumen Labs</span>'
-            f'<div class="grid g3" style="gap:8px;margin-top:12px"><div class="card kpi" style="padding:10px"><small>Earn</small><b class="num" style="font-size:18px">₹1,240</b></div><div class="card kpi" style="padding:10px"><small>Slots</small><b class="num" style="font-size:18px">120</b></div><div class="card kpi" style="padding:10px"><small>Review in</small><b style="font-size:18px">7 days</b></div></div>'
-            f'<button class="btn p block" style="margin-top:14px">Apply for this drop</button></div></div></div></div></div>')
-
-def d_moderation():
-    rows = [("RS", 0, "Riya Sharma", "18.4k", 5, "Light, no smell, skin feels calmer after two weeks.", "warning", "New"), ("AK", 1, "Arjun Kapoor", "9.2k", 4, "Good but the dropper leaks a little.", "warning", "New"),
-            ("MJ", 2, "Meera Joshi", "41k", 5, "My new nightly step. Showed results in a week.", "success", "Approved"), ("TN", 3, "Tanvi Nair", "6.0k", 2, "Link is private.", "danger", "Rejected")]
-    tr = "".join(f'<tr style="{"background:var(--hd-accent-subtle)" if i == 0 else ""}"><td><span class="check {"on" if i == 0 else ""}">{ic("check", 14, "#fff", 3) if i == 0 else ""}</span></td><td><div class="flexw">{av(a, k, 34)}<div><b>{n}</b><div class="t-cap subtle">{f} followers</div></div></div></td>'
-                 f'<td><div class="stars">{"".join(ic("star", 15, "var(--hd-tone-marigold)", 1.5, "var(--hd-tone-marigold)") for _ in range(r))}</div></td><td class="muted" style="max-width:300px">{q}</td><td><span class="badge {b}">{bl}</span></td></tr>' for i, (a, k, n, f, r, q, b, bl) in enumerate(rows))
-    return (f'<div class="desk">{sidebar("Reviews")}<div class="main" style="flex-direction:row;gap:22px;padding-right:0"><div style="flex:1;display:flex;flex-direction:column;gap:18px">'
-            f'<div class="dtop"><div class="t-h1">Reviews</div><span class="badge warning num">23 to check</span><div style="flex:1"></div><div class="search" style="width:260px;background:var(--hd-surface)">{ic("search", 20)}Search</div></div>'
-            f'<div class="flexw"><span class="chip on"><img src="{PH["serum"]}" style="width:18px;height:18px;border-radius:6px">Glow serum</span><span class="chip">{ic("star", 16)}All ratings</span><span class="chip">{ic("sliders", 16)}More filters</span><div style="flex:1"></div><button class="btn s sm">Reject</button><button class="btn p sm">{ic("check", 16)}Approve 1</button></div>'
-            f'<div class="card" style="overflow:hidden"><table class="tbl"><tr><th></th><th>Creator</th><th>Rating</th><th>Review</th><th>Status</th></tr>{tr}</table></div></div>'
-            f'<div style="width:400px;background:var(--hd-surface);border-left:1px solid var(--hd-border);margin:-26px 0;padding:26px 24px;display:flex;flex-direction:column;gap:16px">'
-            f'<div class="flexw" style="justify-content:space-between"><b class="t-h2">Review</b>{ic("x")}</div><div class="flexw">{av("RS", 0, 48)}<div><b>Riya Sharma</b><div class="t-small muted">@riya.glows · 18.4k · Kolkata</div></div></div>'
-            f'<div style="height:240px;border-radius:14px;overflow:hidden;position:relative"><img src="{PH["flatlay"]}" style="width:100%;height:100%;border-radius:0"><span class="badge neutral" style="position:absolute;bottom:12px;left:12px">{ic("play", 14)}Reel · 0:24</span></div>'
-            f'<div class="stars">' + "".join(ic("star", 22, "var(--hd-tone-marigold)", 1.5, "var(--hd-tone-marigold)") for _ in range(5)) + '</div><p class="t-body" style="margin:0">Used it every night for two weeks. Light, no smell, and my skin feels calmer. Would buy again.</p>'
-            f'<div class="notice success">{icf("success")}<span>Link is public and the brand tag is present.</span></div><div style="flex:1"></div><div class="flexw"><button class="btn s" style="flex:1">Reject</button><button class="btn p" style="flex:2">Approve and pay ₹1,240</button></div></div></div></div>')
-
-DESKTOP = [("Brand dashboard", d_dashboard), ("Campaign builder", d_builder), ("Review moderation", d_moderation)]
+import desk_b1, desk_b2
+DESKTOP = desk_b1.SCREENS + desk_b2.SCREENS
 
 SQJS = open("/tmp/hdwm/squircle.js").read()
 import re as _re
@@ -444,8 +400,8 @@ def _snap(css):
     css = _re.sub(r"font-size:\s*(\d+\.\d)px", lambda m: "font-size:" + _FS.get(m.group(1), m.group(1)) + "px", css)
     return _re.sub(r"(font:[^;}\"]*?)(\d+\.\d)px", lambda m: m.group(1) + _FS.get(m.group(2), m.group(2)) + "px", css)
 def _late():
-    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz, xh, xh2, xn1, xn2
-    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ + xh.XH + xh2.XH2 + xn1.XN1 + xn2.XN2
+    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz, xh, xh2, xn1, xn2, xb1, xb2, xmd
+    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ + xh.XH + xh2.XH2 + xn1.XN1 + xn2.XN2 + xb1.XB1 + xb2.XB2 + xmd.XMD
 
 import re as _re
 _STORES = {"Nykaa": "nykaa", "Amazon": "amazon", "Myntra": "myntra", "Flipkart": "flipkart", "Meesho": "meesho"}
@@ -467,7 +423,7 @@ if __name__ == "__main__":
     open(os.path.join(OUT, "hypedrive-ui-kit-dark.html"), "w").write(html(kit("dark"), "Hypedrive UI kit · dark").replace("<body>", '<body data-theme="dark" style="background:#000">'))
     mob = f'<div class="sheet-w" style="width:1860px"><img src="{LOGO["light"]}" style="height:32px"><div class="t-display" style="margin:20px 0 6px">App screens · mobile</div><p class="muted t-body" style="margin:0 0 40px">High-fidelity concept, 390 × 844.</p><div class="screens">{"".join(f() for f in MOBILE)}</div></div>'
     open(os.path.join(OUT, "hypedrive-screens-mobile.html"), "w").write(html(mob, "Hypedrive mobile screens"))
-    for n, (t, f) in enumerate(DESKTOP2, 1):
+    for n, (t, f) in enumerate(DESKTOP, 1):
         open(os.path.join(OUT, f"hypedrive-desktop-{n}.html"), "w").write(html(f'<div style="padding:40px;display:flex;justify-content:center;background:#e9eaee">{f()}</div>', t))
     # each mobile screen alone, for PNG export
     for n, f in enumerate(MOBILE, 1):

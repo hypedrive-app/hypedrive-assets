@@ -2,7 +2,7 @@
 from uikit2 import *
 
 WEEKS = ["Oct 6", "Oct 13", "Oct 20", "Oct 27", "Nov 3", "Nov 10", "Nov 17"]
-REV = [42, 58, 64, 61, 77, 84, 91]; PREV = [30, 41, 48, 52, 55, 60, 66]
+REV = [42, 58, 64, 61, 77, 84, 91]
 
 
 from uikit2 import _smooth
@@ -36,100 +36,34 @@ def chart_bars2(values, labels, w=558, h=236):
         if cur: out += f'<text x="{cx:.1f}" y="{y-7:.1f}" text-anchor="middle" class="g2v2">{v}</text>'
     return f'<div class="cw2"><svg viewBox="0 0 {w} {h}" width="100%" class="chart2" aria-hidden="true">{out}</svg></div>'
 
+# Brand app nav (apps/brand/src/lib/nav.ts). `active` must be one of these labels:
+NAV_LABELS = ("Home", "Inbox", "Campaigns", "Enrollments", "Products", "Disputes", "Wallet", "Invoices", "Team", "Settings")
+_NAV = [(None, [("home", "Home", ""), ("mail", "Inbox", "")]),
+        ("Work", [("campaign", "Campaigns", ""), ("enrolled", "Enrollments", ""), ("box", "Products", ""), ("alert", "Disputes", "0")]),
+        ("Finance", [("wallet", "Wallet", "₹1,84,500"), ("receipt", "Invoices", "")]),
+        ("Workspace", [("users", "Team", ""), ("settings", "Settings", "")])]
+
 def sidebar2(active, theme="light"):
-    groups = [("Workspace", [("overview", "Overview", ""), ("campaign", "Campaigns", "5"), ("star", "Reviews", "23"), ("users", "Creators", "")]),
-              ("Money", [("wallet", "Wallet", ""), ("payouts", "Payouts", ""), ("reports", "Reports", "")])]
     nav = ""
-    for h, items in groups:
-        nav += f'<div class="sbh">{h}</div>'
+    for h, items in _NAV:
+        if h: nav += f'<div class="sbh">{h}</div>'
         for i, n, c in items:
-            cnt = f'<span class="cnt {"hot" if n == "Reviews" else ""}">{c}</span>' if c else ""
+            cnt = f'<span class="cnt">{c}</span>' if c else ""
             nav += f'<div class="nav {"on" if n == active else ""}">{ics(i, 18) if n == active else ic(i, 18)}{n}{cnt}</div>'
-    return (f'<aside class="sb"><img src="{LOGO[theme]}" alt="Hypedrive" style="height:24px;align-self:flex-start;margin:4px 8px 14px"><div class="ws" style="background:var(--hd-surface-raised);box-shadow:0 0 0 1px var(--hairline),var(--hd-shadow-e1)">{av("LL", 2, 28)}<div style="flex:1"><b>Lumen Labs</b><small>Brand workspace</small></div>{ic("down", 16)}</div>'
-            f'<div class="sbsearch">{ic("search", 16)}<span class="q">Search</span>{kbd("⌘K")}</div>{nav}'
-            f'<div class="sbfoot"><div class="nav">{ic("help", 18)}Help</div><div class="nav">{ic("settings", 18)}Settings</div>'
-            f'<div class="me">{av("AM", 2, 32)}<div style="flex:1;min-width:0"><b>Aditi Mehra</b><small>aditi@lumenlabs.in</small></div>{ic("more", 18)}</div></div></aside>')
+    UD = f'<svg class="ic" width="16" height="16" viewBox="0 0 18 18" stroke-width="1.5" aria-hidden="true">{NO["ChevronExpandYOutline18"]}</svg>'
+    return (f'<aside class="sb"><img src="{LOGO[theme]}" alt="Hypedrive" style="height:22px;align-self:flex-start;margin:6px 8px 16px">'
+            f'<div class="ws">{av("LL", 2, 28)}<div style="flex:1;min-width:0"><b>Lumen Labs</b></div>{UD}</div>{nav}'
+            f'<div class="sbfoot"><div class="me">{av("NK", 2, 32)}<div style="flex:1;min-width:0"><b>Neha Kapoor</b><small>Owner</small></div>{ic("more", 18)}</div></div></aside>')
 
 def header(crumbs, action=False):
-    """Top bar: breadcrumb and bell only. The one primary CTA lives in the page header."""
+    """Top bar: breadcrumb left; Search and Help right (brand nav spec). The one primary CTA lives in the page header."""
     c = f'<span class="crumb" style="white-space:nowrap">' + f'{ic("chev", 14)}'.join(f"<b>{x}</b>" if i == len(crumbs)-1 else x for i, x in enumerate(crumbs)) + '</span>'
-    return f'<div class="hdr">{c}<span class="sp"></span><span class="iconbtn">{ic("bell", 18)}<span class="badge-dot"></span></span></div>'
+    return (f'<div class="hdr">{c}<span class="sp"></span><span class="b1-search">{ic("search", 16)}<span>Search</span><em>Ctrl K</em></span>'
+            f'<span class="iconbtn" aria-label="Help">{ic("help", 20)}</span></div>')
 
 def shell(active, crumbs, page, theme="light", action=False):
     return f'<div class="shell" data-theme="{theme}">{sidebar2(active, theme)}<div class="mn">{header(crumbs, action)}<div class="pg">{page}</div></div></div>'
 
-def d_overview(theme="light"):
-    k = (stat("Active creators", "204", "+18%", True, spark=[12, 14, 13, 17, 19, 22, 26], uid="ov0" + theme)
-         + stat("Reviews this week", "91", "+42%", True, spark=REV, kind="bars")
-         + stat("Avg. rating", "4.7", kind="rating", uid="ovr" + theme)
-         + stat("Cost per review", "₹1,495", "−4%", True, kind="compare", extra=(1495, 1560)))
-    plats = [("Instagram", 58, "var(--hd-chart)"), ("YouTube", 27, "var(--hd-data-hl)"), ("Threads", 15, "var(--hd-brand-marigold)")]
-    leg = "".join(f'<div><i style="background:{c}"></i><span>{n}</span><b>{v}%</b></div>' for n, v, c in plats)
-    PEOPLE = {k: f"{STOCK}/people/{k}.jpg" for k in ("women-68", "women-44", "women-65", "men-12", "men-32")}
-    revs = [("women-68", "Riya Sharma", True, "serum", "Glow serum", "Instagram", 5, "Used it every night for two weeks. Light, no smell, and my skin feels calmer.", "warning", "To check", "2m"),
-            ("men-12", "Arjun Kapoor", False, "serum", "Glow serum", "Youtube", 4, "Good texture. The dropper leaks a little, but results showed in a week.", "warning", "To check", "18m"),
-            ("KN", "Kabir Nanda", True, "cream", "Night cream", "Instagram", 5, "Heavy but in a good way. Woke up with calmer, softer skin all week.", "success", "Approved", "52m")]
-    def rstars(r): return '<span class="rv-st">' + "".join(ics("star", 14, "var(--hd-star)") if i < r else ic("star", 14, "var(--hd-track-strong)") for i in range(5)) + '</span>'
-    rvav = lambda p: av(p, 4, 40) if p == "KN" else "<img class=\"rv-av\" src=\"" + PEOPLE[p] + "\" alt=\"\">"
-    tr = "".join(f'<div class="rv">{rvav(p)}<div class="rv-who"><b>{n} {vhex(13) if v else ""}</b><small><img src="{PH[pi]}" alt="">{pn} · {soc(pl, 12)}</small></div>'
-                 f'<p class="rv-q">“{q}”</p>{rstars(r)}<span class="badge {b}">{bl}</span><span class="rv-t num">{t}</span></div>' for p, n, v, pi, pn, pl, r, q, b, bl, t in revs)
-    page = (f'<div class="ph"><div class="t"><div class="t-h1">Overview</div><p>Glow serum and 4 other campaigns · last 7 weeks</p></div><span class="chip">{ic("calendar", 16)}Last 7 weeks{ic("down", 14)}</span><button class="btn s sm">{ic("download", 16)}Export</button><button class="btn p sm">{ic("plus", 16)}New campaign</button></div>'
-            f'<div class="grid g4" style="gap:14px">{k}</div>'
-            f'<div class="grid" style="grid-template-columns:1.7fr 1fr;gap:14px"><div class="panel"><div class="phd"><b>Reviews over time</b><span class="t-small muted num">+ 117% in 7 weeks</span></div>'
-            f'<div style="padding:10px 14px 2px">{line_chart(REV, WEEKS, 660, 214, None, PREV, 5, "ov" + theme)}</div><div class="legend" style="padding:0 18px 14px"><span><i style="background:var(--hd-chart)"></i>This period</span><span><i class="dash"></i>Previous period</span></div></div>'
-            f'<div class="panel dcard"><div class="phd"><b>Where reviews go live</b></div><div class="db">{donut(plats, 136, 16, ("91", "reviews"))}<div class="lgd">{leg}</div></div></div></div>'
-            f'<div class="sect"><div class="shd"><span class="l"><b class="t">Latest reviews</b><span class="t-small muted"><b class="num" style="color:var(--hd-fg)">23</b> waiting for you</span></span><button class="btn s sm">Open queue</button></div>'
-            f'<div class="rvs">{tr}</div></div>')
-    return shell("Overview", ["Lumen Labs", "Overview"], page, theme)
-
-def d_campaigns():
-    rows = [("serum", "Glow serum, 30 ml", "Live", "success", 84, 120, "₹1,04,160", REV), ("cream", "Night cream", "Live", "success", 42, 100, "₹41,580", [8, 12, 18, 20, 26, 33, 42]),
-            ("mask", "Repair hair mask", "Draft", "neutral", 0, 80, "—", [0, 0, 0, 0, 0, 0, 0]), ("set", "Clear skin set", "Full", "neutral", 60, 60, "₹58,800", [10, 22, 35, 48, 55, 59, 60]),
-            ("bottles", "Daily cleanser trio", "Live", "success", 18, 90, "₹11,520", [0, 2, 5, 8, 11, 15, 18])]
-    tr = "".join(f'<tr class="{"sel-row" if i == 0 else ""}"><td><span class="check {"on" if i == 0 else ""}">{ic("check", 14, "#fff", 3) if i == 0 else ""}</span></td>'
-                 f'<td><div class="flexw" style="flex-wrap:nowrap"><img src="{PH[k]}" style="width:40px;height:40px"><div><b>{n}</b><div class="t-cap muted">{f}/{tot} creators</div></div></div></td>'
-                 f'<td><span class="badge {b}">{s}</span></td><td style="width:180px"><div class="tape{" ok" if f >= tot else ""}"><i style="width:{min(f/tot,1)*100:.0f}%"></i></div></td>'
-                 f'<td class="num" style="text-align:right;font-weight:550">{sp_}</td><td>{spark(sp, 80, 24) if f else ""}</td><td style="text-align:right">{ic("more", 18)}</td></tr>'
-                 for i, (k, n, s, b, f, tot, sp_, sp) in enumerate(rows))
-    page = (f'<div class="ph"><div class="t"><div class="t-h1">Campaigns</div><p>5 campaigns · 3 live</p></div><button class="btn s sm">{ic("sliders", 16)}Filter</button><button class="btn p sm">{ic("plus", 16)}New campaign</button></div>'
-            f'<div class="grid g4" style="gap:14px">' + stat("Campaigns", "5", kind="split", extra=[("3 live", 60, "var(--hd-success-solid)"), ("1 full", 20, "var(--hd-fg-subtle)"), ("1 draft", 20, "var(--hd-track-strong)")]) + stat("Spent this quarter", "₹2,16,060", "+31%", True, spark=[40, 62, 81, 120, 160, 190, 222], uid="cs") + stat("Reviews per week", "91", "+42%", True, spark=REV, kind="bars") + goal("Creators active", 204, 450) + '</div>'
-            f'<div class="tabs"><span class="on">{ics("grid", 16, "var(--hd-accent)")}All <span class="cnt-b">5</span></span><span>{ics("live", 16, "var(--hd-tone-mint)")}Live <span class="cnt-b">3</span></span><span>{ics("success", 16, "var(--hd-tone-ink)")}Full <span class="cnt-b">1</span></span><span>{ics("edit", 16, "var(--hd-tone-ink)")}Drafts <span class="cnt-b">1</span></span></div>'
-            f'<div class="banner"><span class="bi" style="background:{M['300']};color:{I['900']}">{icf("warning")}</span><div class="tx"><b>Clear skin set is full</b><small>All 60 slots filled. Add slots to keep it running.</small></div><button class="btn s sm">Close campaign</button><button class="btn p sm">{ic("plus", 16)}Add slots</button></div>'
-            f'<div class="panel tblwrap"><table class="tbl"><tr><th></th><th><span class="th-sort">Campaign{ic("down", 12)}</span></th><th>Status</th><th>Slots</th><th style="text-align:right">Spent</th><th>Trend</th><th></th></tr>{tr}</table>'
-            f'<div class="bulk"><span class="t-small"><b>1 selected</b></span><button class="btn s sm">Pause</button><button class="btn s sm">Duplicate</button></div></div>')
-    return shell("Campaigns", ["Lumen Labs", "Campaigns"], page)
-
-def d_review():
-    PEOPLE = {"RS": "women-68", "AK": "men-12", "MJ": "women-65", "TN": "women-44"}
-    PLAT = {"RS": "Instagram", "AK": "Youtube", "MJ": "Instagram", "TN": "Instagram", "DR": "Youtube"}
-    revs = [("RS", "Riya Sharma", True, "@riya.glows", "18.4k", "2m", 5, "Used it every night for two weeks. Light, no smell, and my skin feels calmer.", ["serum", "bottles"]),
-            ("AK", "Arjun Kapoor", False, "@arjun.k", "9.2k", "18m", 4, "Good texture. The dropper leaks a little, but results showed in a week.", ["flatlay"]),
-            ("MJ", "Meera Joshi", True, "@meera.skin", "41k", "1h", 5, "My new nightly step. Brighter skin in about ten days, no breakouts.", ["bottles", "cream"]),
-            ("TN", "Tanvi Nair", False, "@tanvi.n", "6.0k", "3h", 3, "Nice texture, but I couldn’t see much change yet.", []),
-            ("DR", "Dev Rao", False, "@dev.rao", "12k", "4h", 4, "Absorbs fast and doesn’t leave a sticky layer. Would repurchase.", ["cream"])]
-    def card(i, a, n, v, h, f, t, r, q, ms):
-        av_ = f'<img class="av" src="{STOCK}/people/{PEOPLE[a]}.jpg" alt="">' if a in PEOPLE else av("DR", 3, 36)
-        stars = '<span class="stars">' + "".join(ics("star", 14, "var(--hd-star)") if j < r else ic("star", 14, "var(--hd-track-strong)") for j in range(5)) + '</span>'
-        th = f'<div class="th">{"".join(f"<img src={chr(34)}{PH[m]}{chr(34)} alt={chr(34)}{chr(34)}>" for m in ms)}</div>' if ms else ""
-        return (f'<div class="panel rc2{" chk" if i < 2 else ""}{" open" if i == 0 else ""}"><span class="check {"on" if i < 2 else ""}">{ic("check", 14, "#fff", 3) if i < 2 else ""}</span>{av_}'
-                f'<div class="bd"><div class="l1"><b>{n} {vhex(14) if v else ""}</b>{stars}</div><div class="l2"><span class="x-plat">{soc(PLAT.get(a, "Instagram"), 14)}{h}</span> · {f} followers · {t}</div><p>{q}</p></div>{th}</div>')
-    cards = "".join(card(i, *r) for i, r in enumerate(revs))
-    page = (f'<div class="rvw"><div class="rvl">'
-            f'<div class="ph"><div class="t"><div class="t-h1">Reviews</div><p>23 waiting for you · median wait 4 h</p></div><div class="search" style="width:260px">{ic("search", 18)}Search reviews</div></div>'
-            f'<div class="tabs"><span class="on">{ics("clock", 16, "var(--hd-tone-marigold)")}To check <span class="cnt-b">23</span></span><span>{ics("success", 16, "var(--hd-tone-mint)")}Approved</span><span>{ics("danger", 16, "var(--hd-tone-vermilion)")}Rejected</span></div>'
-            f'<div class="toolbar"><span class="chip"><img src="{PH["serum"]}" style="width:18px;height:18px">Glow serum{ic("x", 14)}</span><span class="chip">{ic("star", 16)}All ratings{ic("down", 14)}</span><span class="chip">{soc("Instagram", 14)}Instagram{ic("down", 14)}</span><span class="sp" style="flex:1"></span><button class="btn s sm">Reject</button><button class="btn p sm">{ic("check", 16)}Approve 2</button></div>'
-            f'<div class="rvlist">{cards}</div></div>'
-            f'<div class="drawer"><div class="flexw" style="justify-content:space-between"><b class="t-h2">Riya’s review</b>{ic("x", 20)}</div>'
-            f'<div style="position:relative;border-radius:14px;overflow:hidden;height:236px;flex:none"><img src="{PH["serum"]}" style="width:100%;height:100%;border-radius:0;object-fit:cover"><span class="badge neutral" style="position:absolute;left:12px;bottom:12px;background:rgba(16,20,38,.7);color:#fff;box-shadow:none">{ic("play", 14)}Reel · 0:24</span></div>'
-            f'<div class="rvtxt"><div class="flexw" style="justify-content:space-between"><span class="stars">{"".join(ics("star", 16, "var(--hd-star)") for _ in range(5))}</span><span class="t-small muted">@riya.glows · 18.4k followers</span></div>'
-            f'<p>Used it every night for two weeks. Light, no smell, and my skin feels calmer.</p><div class="th"><img src="{PH["serum"]}" alt=""><img src="{PH["bottles"]}" alt=""></div></div>'
-            f'<div class="dl"><div class="flexw t-small"><span class="muted" style="width:96px">Platform</span>{soc("Instagram", 16)}Instagram</div><div class="flexw t-small"><span class="muted" style="width:96px">Link</span><span style="color:var(--hd-link)">instagram.com/p/C9x…</span></div>'
-            f'<div class="flexw t-small"><span class="muted" style="width:96px">Brand tag</span><span class="badge success">Found</span></div><div class="flexw t-small"><span class="muted" style="width:96px">Payout</span><b class="num">₹1,240</b></div></div>'
-            f'<div class="notice success">{icf("success")}<span>Link is public and the brand tag is present.</span></div><div style="flex:1"></div>'
-            f'<div class="flexw"><button class="btn s" style="flex:1">Reject</button><button class="btn p" style="flex:2">Approve and pay</button></div><span class="t-cap muted" style="text-align:center">Press {kbd("A")} to approve, {kbd("R")} to reject</span></div></div>')
-    return shell("Reviews", ["Lumen Labs", "Reviews"], page)
-
-DESKTOP2 = [("Overview", d_overview), ("Campaigns", d_campaigns), ("Review queue", d_review), ("Overview · dark", lambda: d_overview("dark"))]
 
 def interaction(theme="light"):
     lab = lambda t: f'<div class="lbl">{t}</div>'
@@ -154,16 +88,14 @@ def kit_more(theme="light"):
         f'<div class="panel sx"><div class="sxh"><span class="sxl">Spots filled</span></div><div class="sxv"><b class="num">112</b><span class="num">/ 120</span></div><div class="sxb">{segs(112/120)}<span class="sxc num">8 left</span></div></div>'
         f'<div class="panel sx"><div class="sxh"><span class="sxl">Held payouts</span></div><div class="sxv"><b class="num">₹1,04,160</b></div><div class="sxb"><div class="sxhair"><i style="width:70%"></i></div><span class="sxc">releases on approval</span></div></div>'
         '</div>')
-    UD = f'<svg class="ic" width="16" height="16" viewBox="0 0 18 18" stroke-width="1.5" aria-hidden="true">{NO["ChevronExpandYOutline18"]}</svg>'
-    sbx = (sidebar2("Reviews", theme).replace("Search campaigns, creators", "Search").replace("Reviews", "Review queue").replace("cnt hot", "cnt").replace("height:24px", "height:20px")
-           .replace(' style="background:var(--hd-surface-raised);box-shadow:0 0 0 1px var(--hairline),var(--hd-shadow-e1)"', "").replace(ic("down", 16), UD))
-    rail = "".join(f'<span class="nav {"on" if n == "star" else ""}">{ics(n, 20) if n == "star" else ic(n, 20)}</span>' for n in ("overview", "campaign", "star", "users", "wallet", "payouts", "reports"))
-    shell_s = sec("Shell & sidebar", "Grouped navigation, ⌘K search, plain counts, and the account at the bottom. The top bar is bare: breadcrumb, title, actions, tabs.",
+    sbx = sidebar2("Campaigns", theme).replace("height:22px", "height:20px")
+    rail = "".join(f'<span class="nav {"on" if n == "campaign" else ""}">{ics(n, 20) if n == "campaign" else ic(n, 20)}</span>' for n in ("home", "mail", "campaign", "enrolled", "box", "wallet", "users"))
+    shell_s = sec("Shell & sidebar", "Grouped navigation, plain counts, and the account at the bottom. The top bar is bare: breadcrumb, title, actions, tabs.",
         f'<div class="grid k-shell" style="grid-template-columns:252px 72px 1fr;gap:22px;align-items:start"><div class="panel" style="overflow:hidden;height:660px;display:flex">{sbx}</div>'
         f'<div class="panel rail" style="height:660px;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:6px"><img src="{MARK[theme]}" style="width:26px;margin-bottom:10px">{rail}'
-        f'<span style="flex:1"></span>{av("AM", 2, 32)}</div>'
-        f'<div class="stack" style="gap:22px"><div class="k-top"><div class="k-crumb"><span class="crumb">Lumen Labs{ic("chev", 14)}<b>Review queue</b></span><span class="sp"></span><span class="iconbtn">{ic("bell", 18)}<span class="badge-dot"></span></span></div>'
-        f'<div class="ph"><div class="t"><div class="k-h1">Review queue</div><p>Tasks waiting on you, newest first.</p></div><button class="btn s sm">Export</button><button class="btn p sm">{ic("plus", 16)}New</button></div>'
+        f'<span style="flex:1"></span>{av("NK", 2, 32)}</div>'
+        f'<div class="stack" style="gap:22px"><div class="k-top"><div class="k-crumb"><span class="crumb">Lumen Labs{ic("chev", 14)}<b>Campaigns</b></span><span class="sp"></span><span class="iconbtn">{ic("help", 20)}</span></div>'
+        f'<div class="ph"><div class="t"><div class="k-h1">Campaigns</div><p>Everything you have sent to creators.</p></div><button class="btn s sm">Export</button><button class="btn p sm">{ic("plus", 16)}New</button></div>'
         f'<div class="tabs"><span class="on">{ics("clock", 16, "var(--hd-tone-marigold)")}To check <span class="tc">23</span></span><span>{ics("success", 16, "var(--hd-tone-mint)")}Approved <span class="tc">418</span></span><span>{ics("danger", 16, "var(--hd-tone-vermilion)")}Rejected <span class="tc">11</span></span></div></div>'
         f'<div class="cmdk" style="margin-inline:auto"><div class="cin">{ic("search", 18)}<span>glow</span><span class="kbd" style="margin-left:auto">esc</span></div><div class="cgp"><div class="cgh">Campaigns</div>'
         f'<div class="ci hl"><img src="{PH["serum"]}">Glow serum, 30 ml<span class="kbd">↵</span></div><div class="ci">{ic("star", 18)}Glow serum tasks · 23 to check</div>'
