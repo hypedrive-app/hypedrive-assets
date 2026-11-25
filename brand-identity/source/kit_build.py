@@ -239,13 +239,31 @@ def s_detail():
                  f'{task(plat("nykaa", 22), "Nykaa review", "Say how it felt after a week", req("Link", "Screenshot", "40+ words"))}</div>'
                  f'<div class="cp-bar cp-bar2"><div class="l"><b class="num">₹1,339 back</b><small>45 days to post after you join</small></div><button class="btn p lg">Join campaign</button></div></div>', label="Campaign", sbar_color="#fff")
 
+def _join_under():
+    return f'<div class="jf-under"><img src="{PH["serum_hero"]}" alt=""></div><div class="scrim"></div>'
+
+def _hold(left, pct):
+    return (f'<div class="jf-hold"><span class="x-tile jf-ht">{ics("clock", 18)}</span><div class="tx"><b>Spot held for you</b><small><b class="num">{left}</b> left to order and send the receipt</small></div>'
+            f'<button class="btn s sm">Add 10 min</button><i class="jf-tape"><i style="width:{pct}%"></i></i></div>')
+
 def s_apply():
-    under = f'<div class="x-photo"><img src="{PH["serum_hero"]}" alt=""></div><div class="x-sheet"><div class="x-title">Glow serum, 30 ml</div></div>'
-    return phone(f'<i class="xm2m" data-s="apply"></i>' + under + f'<div class="scrim"></div><div class="overlay"><div class="sheet"><div class="grab"></div><div class="xm2-h">Where will you post?</div>'
-                 f'<div class="xm2-ch"><div class="xm2-c on"><span class="radio on"></span>{soc("Instagram", 24)}<div class="tx"><b>Instagram</b><small>@riya.glows · 18.4k followers</small></div></div>'
-                 f'<div class="xm2-c"><span class="radio"></span>{soc("Youtube", 24)}<div class="tx"><b>YouTube</b><small>Riya Sharma · 6.1k subscribers</small></div></div></div>'
-                 f'<div class="xm2-c xm2-ship">{ic("home", 20)}<div class="tx"><b>Ship to Home</b><small>14 Park Street, Kolkata 700016</small></div>{ic("chev", 18)}</div>'
-                 f'<button class="btn p block">Send application</button><span class="xm2-hint">Brands usually reply within a day</span></div></div>', label="Apply (sheet)")
+    row = lambda i, t, d: f'<div class="jf-row"><span class="x-tile jf-ti">{ics(i, 18)}</span><div class="tx"><b>{t}</b><small>{d}</small></div></div>'
+    return phone(_join_under() + f'<div class="overlay"><div class="sheet jf"><div class="grab"></div>'
+                 f'<div class="jf-hd"><div><small>Step 1 of 2</small><h2>Buy it first</h2></div><span class="x-disc jf-x">{ic("x", 18)}</span></div>'
+                 + _hold("9:41", 97) +
+                 f'<div class="jf-list">{row("bag", "Buy it on Nykaa", "₹1,899 · use the button below")}{row("camera", "Send 2 tasks", "Within 45 days of joining")}{row("wallet", "Get ₹1,339 back", "After the brand approves")}</div>'
+                 f'<div class="jf-act"><button class="btn p lg block">{ic("external", 18)}Buy on Nykaa</button><button class="btn s lg block">I\'ve ordered — add receipt</button></div>'
+                 f'<p class="jf-note">You can leave before you buy.</p></div></div>', label="Join · buy", sbar_color="#fff")
+
+def s_join_receipt():
+    return phone(_join_under() + f'<div class="overlay"><div class="sheet jf"><div class="grab"></div>'
+                 f'<div class="jf-hd"><div><small>Step 2 of 2</small><h2>Add your receipt</h2></div><span class="x-disc jf-x">{ic("x", 18)}</span></div>'
+                 + _hold("6:12", 62) +
+                 f'<div class="jf-file"><span class="x-tile jf-fi">{ic("file", 20)}</span><div class="tx"><b>nykaa-order-4471.pdf</b><small>284 KB · Replace</small></div></div>'
+                 f'<div class="jf-ok"><span class="ic-ok">{ics("success", 20)}</span><div class="tx"><b>Your receipt is verified</b><small>Nykaa · <b class="num">₹1,899</b> · 20 Nov 2026</small></div></div>'
+                 f'<div class="jf-sum"><span>You get back after the brand approves</span><b class="num">₹1,339</b></div>'
+                 f'<div class="jf-act"><button class="btn p lg block">Join and earn ₹1,339</button></div>'
+                 f'<p class="jf-note">You\'ll have 45 days to post after you join.</p></div></div>', label="Join · receipt", sbar_color="#fff")
 
 def s_track():
     tl = vtl([("done", "Approved", "Nov 12, 4:10 pm"), ("done", "Shipped", "Nov 13 · Delhivery 4471 2280"), ("now", "Out for delivery", "6 stops away in Kolkata"), ("", "Delivered", "Expected today")])
@@ -318,7 +336,7 @@ def s_empty():
                  f'<div class="xm3-sec"><b>Popular right now</b><div class="xm3-chips">' + "".join(f'<span>{ic(i, 16)}{p}</span>' for i, p in pop) + '</div></div>'
                  f'<div class="xm3-sec"><div class="xm3-sh"><b>Live now</b><button class="btn link">See all</button></div><div class="xm3-ll">{rows}</div></div></div>{tabbar("Campaigns")}', label="Empty search")
 
-MOBILE = [s_welcome, s_otp, s_home, s_detail, s_apply, s_track, s_review, s_wallet, s_success, s_notifs, s_profile, s_empty]
+MOBILE = [s_welcome, s_otp, s_home, s_detail, s_apply, s_join_receipt, s_track, s_review, s_wallet, s_success, s_notifs, s_profile, s_empty]
 
 # ================================================================== DESKTOP
 def sidebar(active):

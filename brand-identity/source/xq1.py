@@ -158,4 +158,31 @@ XQ1 = r"""
 :root:root:root .phone .c4 .c6-offer .mix { margin: 4px 0 0; font-size: 13.5px; line-height: 19px; color: var(--hd-fg-muted); } .phone .c4 .c6-offer .mix b { color: var(--hd-fg); font-weight: 600; }
 :root:root:root .phone .c4 .c6-offer .ft { display: flex; justify-content: space-between; margin: 12px -16px 0; padding: 11px 16px; border-top: 1px solid var(--hd-edge); font-size: 13px; color: var(--hd-fg-muted); } .phone .c4 .c6-offer .ft b { color: var(--hd-fg); font-weight: 600; }
 [data-theme="dark"] .phone .c4 .c6-offer { background: var(--hd-surface-raised) !important; }
+
+/* ===== Join flow (sheet over the campaign) ===== */
+.phone .jf-under { position: absolute; inset: 0; } .phone .jf-under img { width: 100%; height: 300px; object-fit: cover; display: block; }
+.phone .jf-under .jf-ut { position: absolute; left: 16px; top: 250px; color: #fff; display: flex; flex-direction: column; } .phone .jf-under .jf-ut b { font: 700 24px/28px var(--font-brand); }
+.phone .scr:has(.jf) .scrim { position: absolute; inset: 0; background: rgba(10,12,18,.42); }
+.phone .scr:has(.jf) .overlay { position: absolute; left: 0; right: 0; bottom: 0; }
+.phone .sheet.jf { background: #fff; border-radius: 24px 24px 0 0; padding: 8px 16px 30px; display: flex; flex-direction: column; gap: 12px; }
+.phone .jf .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--hd-track-strong, #d5d7de); margin: 0 auto 4px; }
+.phone .jf-hd { display: flex; justify-content: space-between; align-items: flex-start; } .phone .jf-hd small { font-size: 12.5px; font-weight: 600; color: var(--hd-fg-muted); } .phone .jf-hd h2 { margin: 2px 0 0; font: 700 24px/28px var(--font-brand); letter-spacing: -.02em; }
+.phone .jf-x { width: 32px !important; height: 32px !important; }
+.phone .jf-hold { position: relative; display: flex; align-items: center; gap: 10px; padding: 12px 12px 16px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--hd-edge); overflow: hidden; }
+.phone .jf-ht { width: 36px !important; height: 36px !important; border-radius: 10px !important; display: grid !important; place-items: center; color: var(--hd-accent); flex: none; }
+.phone .jf-hold .tx { flex: 1; min-width: 0; } .phone .jf-hold .tx b { display: block; font-size: 14.5px; font-weight: 600; } .phone .jf-hold .tx small { font-size: 12.5px; color: var(--hd-fg-muted); } .phone .jf-hold .tx small b { display: inline; color: var(--hd-fg); font-size: 12.5px; }
+.phone .jf-hold .btn.s.sm { height: 32px !important; min-height: 0 !important; padding: 0 10px !important; font-size: 13px !important; flex: none; }
+.phone .jf-tape { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--hd-track, rgba(16,20,38,.08)); } .phone .jf-tape > i { display: block; height: 100%; background: var(--hd-accent); }
+.phone .jf-list { display: flex; flex-direction: column; gap: 0; border-radius: 14px; box-shadow: 0 0 0 1px var(--hd-edge); overflow: hidden; }
+.phone .jf-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; } .phone .jf-row + .jf-row { border-top: 1px solid var(--hd-edge); }
+.phone .jf-ti { width: 34px !important; height: 34px !important; border-radius: 10px !important; display: grid !important; place-items: center; color: var(--hd-accent); flex: none; }
+.phone .jf-row .tx b { display: block; font-size: 14.5px; font-weight: 600; } .phone .jf-row .tx small { font-size: 12.5px; color: var(--hd-fg-muted); }
+.phone .jf-act { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; } .phone .jf-act .btn { height: 48px !important; gap: 8px; }
+.phone .jf-note { margin: -2px 0 0; text-align: center; font-size: 12.5px; color: var(--hd-fg-muted); }
+.phone .jf-file { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; box-shadow: 0 0 0 1px var(--hd-edge); }
+.phone .jf-fi { width: 36px !important; height: 36px !important; border-radius: 10px !important; display: grid !important; place-items: center; color: var(--hd-fg-muted); flex: none; }
+.phone .jf-file .tx b { display: block; font-size: 14px; font-weight: 600; } .phone .jf-file .tx small { font-size: 12.5px; color: var(--hd-fg-muted); }
+.phone .jf-ok { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--hd-success-subtle); }
+.phone .jf-ok .ic-ok { color: var(--hd-success, #0a8a4a); display: inline-flex; } .phone .jf-ok .tx b { display: block; font-size: 14px; font-weight: 600; color: var(--hd-success-strong); } .phone .jf-ok .tx small { font-size: 12.5px; color: var(--hd-fg); } .phone .jf-ok .tx small b { display: inline; color: var(--hd-fg); }
+.phone .jf-sum { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 2px 0; font-size: 13px; color: var(--hd-fg-muted); } .phone .jf-sum b { font: 700 22px/26px var(--font-brand); color: var(--hd-fg); letter-spacing: -.02em; }
 """

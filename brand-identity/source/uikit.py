@@ -62,7 +62,7 @@ NMAP = {"home": "House6", "search": "Magnifier", "box": "Box3", "wallet": "Walle
         "link": "Link", "more": "Dots", "info": "CircleInfo", "alert": "TriangleWarning", "lock": "Lock", "spark": "StarTrail", "grid": "Grid", "list": "BulletList",
         "logout": "RectLogout", "bank": "Storehouse", "bag": "BagShopping",
         "users": "Users2", "help": "CircleQuestion", "privacy": "ShieldCheck", "fast": "TruckFast", "linkbroken": "LinkBroken", "edit": "Pen", "copy": "Copy",
-        "trash": "Trash", "download": "Download", "sliders": "Sliders", "play": "CirclePlay", "rupee": "CurrencyRupee", "receipt": "Receipt", "campaign": "Megaphone", "enrolled": "ClipboardCheck",
+        "trash": "Trash", "download": "Download", "sliders": "Sliders", "play": "CirclePlay", "rupee": "CurrencyRupee", "receipt": "Receipt", "campaign": "Megaphone", "enrolled": "ClipboardCheck", "external": "SquareArrowUpRight",
         "overview": "GridLayout", "reports": "ChartBar", "trend": "ArrowTrendUp", "gift": "Gift", "eye": "Eye", "calendar": "Calendar", "mail": "Envelope", "send": "PaperPlane2", "login": "RectLogin", "ok": "CircleCheck", "bolt": "Bolt", "phone": "Phone", "drop": "Droplet", "lipstick": "Lipstick", "shirt": "TShirt", "lamp": "DeskLamp", "headphones": "Headphones2", "payouts": "HandHoldingCoin", "pause": "MediaPause", "live": "MediaPlay", "foryou": "Compass", "trending": "Flame", "film": "Film", "minus": "Minus", "wifioff": "WifiOff", "clip": "Paperclip", "checkdouble": "CheckDouble", "file": "File", "filecheck": "FileCheck", "archive": "Archive", "sort": "SortArrows", "refresh": "Refresh", "pin": "MapPin"}
 P = {k: None for k in NMAP}
 def ic(name, size=22, color="currentColor", sw=None, fill="none"):
