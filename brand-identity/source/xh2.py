@@ -106,3 +106,49 @@ XH2 = """
 .phone .e1-lr .tx small { white-space: nowrap; }
 .phone .scr[data-theme="light"] .xm1-bar.e1-bar.e1-bar.e1-bar { background: var(--hd-canvas) !important; border-top: 0 !important; }
 """
+XH2 += """
+/* p1: campaign page, join sheets, wallet ledger */
+:root:root:root .phone .c4 .p1-tasks { display: flex; flex-direction: column; gap: 8px; }
+:root:root:root .phone .c4 .p1-tasks .hm-row { min-height: 64px; }
+:root:root:root .phone .c4 .p1-how { padding: 14px 14px; display: flex; flex-direction: column; gap: 14px; box-shadow: none; }
+.phone .p1-st { display: flex; gap: 12px; align-items: flex-start; }
+.phone .p1-st > i { width: 22px; flex: none; font-style: normal; font-size: 15px; line-height: 20px; font-weight: 600; color: var(--hd-fg-subtle); text-align: center; }
+.phone .p1-st b { display: block; font-size: 15px; line-height: 20px; font-weight: 600; color: var(--hd-fg); }
+.phone .p1-st small { display: block; font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
+:root:root:root .phone .c4 .cp-bar { padding: 10px 16px 6px !important; }
+.phone .p1-hold { display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 8px 0 12px; border-radius: 12px; border: 1px solid var(--hd-edge); background: var(--hd-surface); font-size: 14px; color: var(--hd-fg-muted); }
+.phone .p1-hold svg { color: var(--hd-accent); flex: none; }
+.phone .p1-hold span { flex: 1; }
+.phone .p1-hold b { color: var(--hd-fg); font-weight: 600; }
+.phone .p1-hold .btn.link { font-size: 14px; padding: 0 6px; }
+.phone .p1-hero { display: flex; flex-direction: column; padding: 4px 2px 2px; }
+.phone .p1-hero small { font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
+.phone .p1-hero > b { font-family: var(--font-brand); font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -0.025em; font-variation-settings: 'opsz' 96; color: var(--hd-fg); }
+.phone .p1-hero p { margin: 2px 0 0; font-size: 14px; line-height: 20px; color: var(--hd-fg-muted); }
+.phone .p1-hero p b { color: var(--hd-fg); font-weight: 600; }
+.phone .sheet.jf .p1-file { min-height: 64px; }
+.phone .p1-led { padding: 0; overflow: hidden; }
+.phone .p1-led > div { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px; }
+.phone .p1-led > div + div { border-top: 1px solid var(--hd-edge); }
+.phone .p1-led > div > span { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.phone .p1-led b:not(.e1-amt) { font-size: 15px; line-height: 20px; font-weight: 600; }
+.phone .p1-led small { font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
+"""
+XH2 += """
+:root:root:root:root .phone .scr:has(.jf) .home-ind { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; background: transparent !important; }
+"""
+XH2 += """
+:root:root:root .phone .xm1-otp .xy-verify { margin-bottom: 12px; }
+"""
+XH2 += """
+/* p1 dark: the campaign page and join sheets were hard-white; the older [data-theme] .phone rules never matched (theme sits on .scr) */
+:root:root:root:root .phone .scr[data-theme="dark"] :is(.c4, .c4-body, .cp-bar, .sheet.jf) { background: var(--hd-surface) !important; }
+:root:root:root:root .phone .scr[data-theme="dark"] .c4 .c6-offer { background: var(--hd-surface-raised) !important; }
+:root:root:root:root .phone .scr[data-theme="dark"] .c4 .cp-bar::before { background: linear-gradient(180deg, transparent, var(--hd-surface)); }
+:root:root:root:root .phone .scr[data-theme="dark"] .sheet.jf :is(.p1-hold, .p1-file) { background: var(--hd-surface-raised) !important; }
+:root:root:root:root .phone .scr[data-theme="dark"] .p1-how { background: var(--hd-surface-raised) !important; }
+"""
+XH2 += """
+:root:root:root:root .phone .scr[data-theme="dark"]:has(.c4) .home-ind { background: var(--hd-surface) !important; }
+:root:root:root:root .phone .sheet.jf .jf-x { background: none !important; box-shadow: none !important; border: 0 !important; color: var(--hd-fg); }
+"""

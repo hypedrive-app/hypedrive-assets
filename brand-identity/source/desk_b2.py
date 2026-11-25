@@ -20,7 +20,7 @@ def _btn(kind, label, icon=None, sm=True, extra=""):
 # ====================================================================== 5 · review queue + one submission
 def _seg(on):
     g = "on" if on == "good" else ""; n = "on" if on == "fix" else ""
-    return (f'<div class="b2-seg"><span class="{g} good">Looks good</span><span class="{n} fix">Needs a change</span></div>')
+    return (f'<div class="b2-seg"><span class="{g} good">{ics("check", 16) if g else ""}Looks good</span><span class="{n} fix">Needs a change</span></div>')
 
 def _thumb(src, n=None):
     return f'<img class="b2-shot" src="{src}" alt="">'
@@ -39,7 +39,7 @@ def d_queue():
              '<div class="b2-ol"><span>Order value</span><b class="num">₹1,899</b></div>'
              '<div class="b2-ol"><span>Order ID</span><b class="b2-mono">NYK-2611-48213</b></div>'
              '<div class="b2-ol"><span>Order date</span><b>14 Nov 2026</b></div>'
-             f'<div class="b2-ol"><span>Order check</span><b class="b2-match">{ics("success", 16)}Matches</b></div></div>')
+             f'<div class="b2-ol"><span>Order check</span><b class="b2-match">{ic("check", 16)}Matches</b></div></div>')
     rcpt = f'<div class="b2-files"><img class="b2-shot" src="{PH["bottles"]}" alt=""><a class="b2-full">{ic("eye", 16)}Full size</a></div>'
     reel = (_link("instagram.com/reel/C-9xLm2Qa7R") +
             f'<div class="b2-files"><img class="b2-shot" src="{PH["serum"]}" alt=""><img class="b2-shot" src="{PH["flatlay"]}" alt=""><a class="b2-full">{ic("eye", 16)}Full size</a></div>')
@@ -59,7 +59,7 @@ def d_queue():
             f'</div>')
     bar = (f'<div class="b2-bar"><span class="b2-bt">Needs review</span><span class="b2-bn num">1 of 9</span><i class="b2-prog"><i style="width:11%"></i></i><span class="sp"></span>'
            f'{_btn("s", "Back", "back")}{_btn("s", "Next", "chev")}</div>')
-    head = (f'<div class="b2-hd"><img class="b2-av" src="{PEOPLE["women-68"]}" alt=""><div class="b2-who"><div class="t-h1 b2-name">Riya Sharma {vhex(20)}</div>'
+    head = (f'<div class="b2-hd"><img class="b2-av" src="{PEOPLE["women-68"]}" alt=""><div class="b2-who"><div class="t-h1 b2-name">Riya Sharma</div>'
             f'<p>Waiting 2 days · Trusted · @riya.glows · Kolkata</p></div>'
             f'<div class="b2-camp"><img src="{PH["serum"]}" alt=""><div><b>Glow serum, 30 ml</b><small>Lumen Labs · Joined 14 Nov</small></div></div>{_btn("s", "Details")}</div>')
     band = (f'<div class="b2-band"><div class="b2-money"><b class="num">₹1,580</b><span>stays on hold while the creator fixes.</span></div><span class="sp"></span>'
@@ -115,28 +115,28 @@ ROLES = [("Owner", "Everything, and the only one who can hand the brand on."), (
          ("Finance manager", "Runs the wallet, withdrawals, invoices and bank accounts. Sees campaigns."), ("Viewer", "Sees everything, changes nothing.")]
 
 def d_team():
-    def mrow(photo, name, you, mail, role, seen, menu=""):
+    def mrow(photo, name, you, mail, role, seen):
         fixed = role == "Owner"
-        ctl = f'<span class="b2-role fixed">{role}</span>' if fixed else f'<span class="b2-role{" open" if menu else ""}">{role}{ic("down", 16)}</span>'
+        ctl = f'<span class="b2-role fixed">{role}</span>' if fixed else f'<span class="b2-role q">{role}{ic("down", 16)}</span>'
         return (f'<div class="b2-mrow"><img class="b2-av44" src="{PEOPLE[photo]}" alt=""><div class="b2-tt"><b>{name}{"<em>You</em>" if you else ""}</b><small>{mail}</small></div>'
-                f'<div class="b2-rc">{ctl}{menu}</div><span class="b2-seen">{seen}</span></div>')
-    items = "".join(f'<div class="b2-mi"><div class="b2-mit"><b>{r}</b>{ics("check", 16) if r == "Campaign manager" else ""}</div><small>{d}</small></div>' for r, d in ROLES[1:])
-    menu = f'<div class="b2-menu">{items}</div>'
+                f'<div class="b2-rc">{ctl}</div><span class="b2-seen">{seen}</span></div>')
     members = "".join([mrow("women-44", "Neha Kapoor", True, "neha@lumenlabs.in", "Owner", "Active now"),
-                       mrow("men-12", "Arjun Mehta", False, "arjun@lumenlabs.in", "Campaign manager", "Active today", menu),
+                       mrow("men-12", "Arjun Mehta", False, "arjun@lumenlabs.in", "Campaign manager", "Active today"),
                        mrow("women-65", "Divya Rao", False, "divya@lumenlabs.in", "Finance manager", "Active yesterday"),
                        mrow("men-32", "Sanjay Iyer", False, "sanjay@lumenlabs.in", "Viewer", "Active 3 days ago")])
-    link = (f'<div class="b2-card b2-linkc"><span class="x-tile b2-tl">{ic("link", 20)}</span><div class="b2-tt"><b>Invite link</b><small>Anyone with it joins as the role you pick. Invites expire after 7 days.</small></div>'
-            f'<span class="b2-role">Viewer{ic("down", 16)}</span><button class="btn s sm">{ic("copy", 16)}Copy invite link</button><button class="btn g sm">Turn off link</button></div>')
+    link = (f'<div class="b2-card b2-linkc"><div class="b2-tt"><b>Invite link</b><small>Anyone with it joins as the role you pick.</small></div>'
+            f'<span class="b2-role">Viewer{ic("down", 16)}</span><button class="btn s sm">{ic("copy", 16)}Copy invite link</button><em class="b2-lk">Turn off link</em></div>')
     rail_item = lambda i, t, on=False: f'<div class="b2-ri{" on" if on else ""}">{ics(i, 18) if on else ic(i, 18)}{t}</div>'
     rail = ('<div class="b2-rail"><div class="b2-rg">Workspace</div>' + rail_item("settings", "Workspace") + rail_item("users", "Team", True) + rail_item("receipt", "Tax")
             + rail_item("bank", "Bank account") + rail_item("bell", "Notifications") + '<div class="b2-rg">You</div>' + rail_item("user", "Profile") + rail_item("lock", "Security") + '</div>')
     head = (f'<div class="ph"><div class="t"><div class="t-h1">Team</div><p>4 members. Only an owner or admin manages people and settings.</p></div>'
             f'<button class="btn p sm">{ic("plus", 16)}Invite members</button></div>')
     inv = (f'<div class="b2-mrow"><span class="x-tile b2-tl">{ic("mail", 20)}</span><div class="b2-tt"><b>aman@lumenlabs.in</b><small>Sent on WhatsApp · Expires in 7 days</small></div>'
-           f'<div class="b2-rc"><span class="b2-role fixed">Campaign manager</span></div><button class="btn s sm">Resend</button><button class="btn s sm">Cancel invite</button></div>')
+           f'<div class="b2-rc"><span class="b2-role fixed">Campaign manager</span></div><span class="b2-acts"><em class="b2-lk">Resend</em><em class="b2-lk">Cancel invite</em></span></div>')
+    roles = '<div class="bw-card">' + "".join(f'<div class="bw-lr"><div class="bw-tx"><b>{r}</b><small>{d}</small></div></div>' for r, d in ROLES) + '</div>'
     sec = lambda t, n, body: f'<div class="b2-sec"><div class="b2-sech"><b>{t}</b><span class="num">{n}</span></div>{body}</div>'
-    main = f'<div class="b2-tmain">{head}{sec("Members", 4, "<div class=b2-mlist>" + members + "</div>")}{sec("Invites", 1, "<div class=b2-mlist>" + inv + "</div>")}{link}</div>'
+    main = (f'<div class="b2-tmain">{head}{sec("Members", 4, "<div class=b2-mlist>" + members + "</div>")}{sec("Invites", 1, "<div class=b2-mlist>" + inv + "</div>")}{link}'
+            f'<div class="b2-sec"><div class="b2-sech"><b>Roles</b><span>Pick one for each member and invite</span></div>{roles}</div></div>')
     return shell(NAV_TEAM, ["Lumen Labs", "Team"], f'<div class="b2-split">{rail}{main}</div>')
 
 SCREENS = [("Brand · Review queue", d_queue), ("Brand · Wallet", d_wallet), ("Brand · Team", d_team)]

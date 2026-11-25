@@ -214,7 +214,7 @@ def s_otp():
     return phone(f'<div class="xm1-bar" style="padding:0 16px">{ic("back")}</div><div class="xm1-s xm1-otp"><div><h1 class="xm1-h">Verify your phone</h1><p class="xm1-sub">Enter the 6-digit code sent to <b class="num">+91 98•••• 4821</b></p></div>'
                  f'<div class="xm1-code num" role="group" aria-label="6-digit code">{cells}</div>'
                  f'<div class="xm1-aux"><span>Resend code in <span class="num">0:24</span></span><button class="btn link">Change number</button></div>'
-                 f'<button class="btn p lg block dis xy-verify">Verify</button><div style="flex:1"></div></div>'
+                 f'<div style="flex:1"></div><button class="btn p lg block dis xy-verify">Verify</button></div>'
                  f'<div class="xm1-pad">' + "".join(f'<span><b>{ic("back", 22) if a == "⌫" else a}</b><small>{b}</small></span>' for a, b in keys) + '</div>', label="Verify phone")
 
 def s_home():
@@ -243,42 +243,38 @@ def s_home():
         f'</div>{tabbar("Home")}', label="Home")
 
 def s_detail():
-    step = lambda i, t, d: f'<div class="c5-st"><span class="x-tile c5-ti">{ics(i, 20)}</span><b>{t}</b><small>{d}</small></div>'
-    req = lambda *xs: '<div class="c4-req">' + "".join(f'<span>{x}</span>' for x in xs) + '</div>'
-    task = lambda tile, t, d, r: f'<div class="c4-task"><span class="x-tile c4-ti">{tile}</span><div class="tx"><b>{t}</b><small>{d}</small>{r}</div></div>'
+    step = lambda n, t, d: f'<div class="p1-st"><i class="num">{n}</i><div><b>{t}</b><small>{d}</small></div></div>'
+    task = lambda tile, t, d: _e1_row(f'<span class="x-tile e1-tile">{tile}</span>', t, d)
     return phone(f'<div class="xm1-s xm1-det xq-cp c4 c5"><div class="c4-hero"><img src="{PH["serum_hero"]}" alt=""><div class="tb"><span class="x-disc">{ic("back", 22)}</span><span style="display:flex;gap:10px"><span class="x-disc">{ic("heart", 20)}</span><span class="x-disc">{ic("share", 20)}</span></span></div>'
                  f'<div class="c4-hb"><span class="c4-store">{plat("nykaa", 16)}Buy on Nykaa</span><h1>Glow serum, 30 ml</h1><p class="c5-by"><b>Lumen Labs</b>{vhex(14)}<span>·</span>Closes 26 Nov · 8 spots left</p></div></div>'
                  f'<div class="c4-body"><div class="c6-offer"><span class="k">You get back</span><b class="num big">₹1,339</b>'
-                 f'<p class="mix"><b class="num">₹1,139</b> cashback (60%) + <b class="num">₹200</b> bonus · after the brand approves</p>'
+                 f'<p class="mix"><b class="num">₹1,139</b> cashback (60%) + <b class="num">₹200</b> bonus</p>'
                  f'<div class="ft"><span>You pay <b class="num">₹1,899</b> on Nykaa</span><span>It costs you <b class="num">₹560</b></span></div></div>'
-                 f'<h2 class="c4-h">How it works</h2><div class="c5-steps">{step("bag", "Buy it", "on Nykaa")}{step("camera", "Post", "2 tasks")}{step("wallet", "Get paid back", "to your wallet")}</div>'
+                 f'<h2 class="c4-h">How it works</h2><div class="e1-card p1-how">{step(1, "Buy it on Nykaa", "Use your own order")}{step(2, "Post 2 tasks", "Within 45 days of joining")}{step(3, "Get ₹1,339 back", "After the brand approves")}</div>'
                  f'<h2 class="c4-h">What you\'ll create</h2>'
-                 f'{task(soc("Instagram", 22), "Instagram reel", "Show it on bare skin in daylight", req("Link", "Screenshots", "#ad", "Paid partnership"))}'
-                 f'{task(plat("nykaa", 22), "Nykaa review", "Say how it felt after a week", req("Link", "Screenshot", "40+ words"))}</div>'
-                 f'<div class="cp-bar cp-bar2"><div class="l"><b class="num">₹1,339 back</b><small>45 days to post after you join</small></div><button class="btn p lg">Join campaign</button></div></div>', label="Campaign", sbar_color="#fff")
+                 f'<div class="p1-tasks">{task(soc("Instagram", 22), "Instagram reel", "Link, screenshots · #ad, Paid partnership")}'
+                 f'{task(plat("nykaa", 22), "Nykaa review", "Link, screenshot · 40+ words")}</div></div>'
+                 f'<div class="cp-bar"><button class="btn p lg block">Join campaign</button></div></div>', label="Campaign", sbar_color="#fff")
 
 def _join_under():
     return f'<div class="jf-under"><img src="{PH["serum_hero"]}" alt=""></div><div class="scrim"></div>'
 
 def _hold(left, pct):
-    return (f'<div class="jf-hold2">{ics("clock", 16)}<span>Spot held · <b class="num">{left}</b> left</span><button class="jf-add">Add 10 min</button></div>')
+    return (f'<div class="p1-hold">{ics("clock", 16)}<span>Spot held · <b class="num">{left}</b> left</span><button class="btn link">Add 10 min</button></div>')
 
 def s_apply():
-    row = lambda i, t, d: f'<div class="jf-row"><span class="x-tile jf-ti">{ics(i, 18)}</span><div class="tx"><b>{t}</b><small>{d}</small></div></div>'
     return phone(_join_under() + f'<div class="overlay"><div class="sheet jf"><div class="grab"></div>'
                  f'<div class="jf-hd"><div><small>Step 1 of 2</small><h2>Buy it first</h2></div><span class="x-disc jf-x">{ic("x", 18)}</span></div>'
                  + _hold("9:41", 97) +
-                 f'<div class="jf-list">{row("bag", "Buy it on Nykaa", "₹1,899 · use the button below")}{row("camera", "Send 2 tasks", "Within 45 days of joining")}{row("wallet", "Get ₹1,339 back", "After the brand approves")}</div>'
-                 f'<div class="jf-act"><button class="btn p lg block">{ic("external", 18)}Buy on Nykaa</button><button class="btn s lg block">I\'ve ordered — add receipt</button></div>'
+                 f'<div class="p1-hero"><small>You get back</small><b class="num">₹1,339</b><p>Buy it on Nykaa for <b class="num">₹1,899</b>, then send 2 tasks within 45 days.</p></div>'
+                 f'<div class="jf-act"><button class="btn p lg block"><span style="display:inline-flex;align-items:center;gap:6px">Buy on {plat("nykaa", 16)}Nykaa</span></button><button class="btn s lg block">I\'ve ordered — add receipt</button></div>'
                  f'<p class="jf-note">You can leave before you buy.</p></div></div>', label="Join · buy", sbar_color="#fff")
 
 def s_join_receipt():
     return phone(_join_under() + f'<div class="overlay"><div class="sheet jf"><div class="grab"></div>'
                  f'<div class="jf-hd"><div><small>Step 2 of 2</small><h2>Add your receipt</h2></div><span class="x-disc jf-x">{ic("x", 18)}</span></div>'
                  + _hold("6:12", 62) +
-                 f'<div class="jf-file"><span class="x-tile jf-fi">{ic("file", 20)}</span><div class="tx"><b>nykaa-order-4471.pdf</b><small>284 KB · Replace</small></div></div>'
-                 f'<div class="jf-ok"><span class="ic-ok">{ics("success", 20)}</span><div class="tx"><b>Your receipt is verified</b><small>Nykaa · <b class="num">₹1,899</b> · 20 Nov 2026</small></div></div>'
-                 f'<div class="jf-sum"><span>You get back after the brand approves</span><b class="num">₹1,339</b></div>'
+                 _e1_row(f'<span class="x-tile e1-tile">{ic("file", 20)}</span>', "nykaa-order-4471.pdf", 'Checked · <span class="num">₹1,899</span> · 20 Nov', '<button class="btn link e1-lk">Replace</button>', "p1-file") +
                  f'<div class="jf-act"><button class="btn p lg block">Join and earn ₹1,339</button></div>'
                  f'<p class="jf-note">You\'ll have 45 days to post after you join.</p></div></div>', label="Join · receipt", sbar_color="#fff")
 
@@ -310,12 +306,11 @@ def s_review():
 
 def s_wallet():
     """Wallet: Available is the one number; on hold and earned so far sit under it; real money movements below."""
-    def mv(lead, t, d, a, cls=""):
-        return _e1_row(lead, t, d, f'<b class="num e1-amt {cls}">{a}</b>')
-    tile = lambda i, c="": f'<span class="x-tile e1-tile {c}">{ic(i, 20)}</span>'
-    rows = (mv(tile("clock"), "On hold", "Glow serum · after approval", "₹1,339", "mut")
-            + mv(bank("hdfc", 22, tile=True), "Withdrawal", "HDFC ••6093 · 16 Nov 2026", "−₹2,000")
-            + mv(f'<img src="{PH["bottles"]}" alt="">', "Cashback", "Face wash, 100 ml · 12 Nov 2026", "+₹540", "pos"))
+    def mv(t, d, a, cls=""):
+        return f'<div><span><b>{t}</b><small>{d}</small></span><b class="num e1-amt {cls}">{a}</b></div>'
+    rows = (mv("Withdrawal", "HDFC ••6093 · 16 Nov 2026", "−₹2,000")
+            + mv("Cashback", "Face wash, 100 ml · 12 Nov 2026", "+₹540", "pos")
+            + mv("Withdrawal", "HDFC ••6093 · 2 Nov 2026", "−₹3,000"))
     return phone(_e1_bar(f'<b class="e1-bt e1-bt0">Wallet</b>', f'<span class="e1-ib">{ic("settings", 22)}</span>')
                  + f'<div class="xm1-s hm e1-pg">'
                  f'<div class="hm-wal e1-w"><small>Available</small><b class="num">₹6,820</b>'
@@ -323,7 +318,7 @@ def s_wallet():
                  f'<div class="e1-wf"><button class="btn p block">Withdraw</button></div></div>'
                  + _e1_row(bank("hdfc", 22, tile=True), "Payout to HDFC ••6093", "Usually within minutes · fee ₹0", f'<button class="btn link e1-lk">Change</button>')
                  + f'<div class="hm-sh"><h2>Activity</h2><button class="btn link">Statements</button></div>'
-                 + rows + '</div>' + tabbar("Wallet"), label="Wallet")
+                 + f'<div class="e1-card p1-led">{rows}</div></div>' + tabbar("Wallet"), label="Wallet")
 
 def s_success():
     """Tasks submitted: the moment after Submit 2 tasks."""
@@ -341,8 +336,8 @@ def s_notifs():
                 f'<div class="e1-ne"><i class="{"on" if unread else ""}"></i></div></div>')
     t = lambda c, i: f'<span class="x-tile e1-tile {c}">{ics(i, 20)}</span>'
     today = (item(t("cobalt", "campaign"), "Glow serum is open", "Lumen Labs · 8 spots left", "2m", True)
-             + item(t("mint", "filecheck"), "Receipt checked", "Glow serum, 30 ml · submit 2 tasks next", "4h", True)
-             + item(t("vermilion", "alert"), "Your enrollment needs a change", "Daily cleanser trio · Fix 1 task", "6h", True))
+             + item(t("cobalt", "filecheck"), "Receipt checked", "Glow serum, 30 ml · submit 2 tasks next", "4h", True)
+             + item(t("marigold", "alert"), "Your enrollment needs a change", "Daily cleanser trio · Fix 1 task", "6h", True))
     earlier = (item(t("mint", "wallet"), "Your earnings have landed", "₹540 from Face wash, 100 ml", "Wed")
                + item(bank("hdfc", 22, tile=True), "Withdrawal sent", "₹2,000 to HDFC ••6093", "Mon"))
     tabs = "".join(f'<span class="{"on" if i == 0 else ""}">{n}</span>' for i, n in enumerate(("All", "To do", "Money", "Campaigns")))

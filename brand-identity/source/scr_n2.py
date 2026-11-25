@@ -21,26 +21,30 @@ def s_enrollment_detail(state="turn"):
         k = "done" if i < cur else ("now" if i == cur else "")
         mark = ics("check", 12) if i < cur else ""
         jr += f'<div class="n2-js {k}"><i>{mark}</i><span>{s}</span></div>'
-    task = lambda ico, t, d, st: (f'<div class="n2-row"><span class="x-tile n2-ti">{ico}</span><div class="tx"><b>{t}</b><small>{d}</small></div><span class="n2-st">{st}</span></div>')
+    task = lambda ico, t, d: (f'<div class="n2-row"><span class="x-tile n2-ti">{ico}</span><div class="tx"><b>{t}</b><small>{d}</small></div>{ic("chev", 16)}</div>')
     if review:
         prod = ("cream", "Night cream, 50 g", "amazon", "Amazon")
-        nxt = '<small>Their turn</small><h1>In review</h1><p>Lumen Labs checks your 2 tasks · usually within 2 days</p>'
-        st, money = "Sent", (_kv("You paid", "₹1,980") + _kv("Cashback <em>50%</em>", "₹990") + '<div class="n2-tot"><span>You get back</span><b class="num">₹990</b></div>')
+        nxt = '<h1>In review</h1><p>Lumen Labs checks your 2 tasks · usually within 2 days</p>'
+        money = ('<small>You get back</small><b class="num">₹990</b>'
+                 '<p>You paid <span class="num">₹1,980</span> · 50% cashback</p>')
         foot = ""
+        t2 = task(plat("amazon", 22), "Amazon review", "Link, screenshot · 40+ words")
     else:
         prod = ("serum", "Glow serum, 30 ml", "nykaa", "Nykaa")
-        nxt = '<small>Your turn</small><h1>Submit 2 tasks</h1><p>Due in 41 days</p>'
-        st, money = "To do", (_kv("You paid", "₹1,899") + _kv("Cashback <em>60%</em>", "₹1,139") + _kv("Bonus", "₹200") + '<div class="n2-tot"><span>You get back</span><b class="num">₹1,339</b></div>')
-        foot = '<div class="n2-bb"><div class="e"><b class="num">0 of 2 ready</b><small>Add each link and screenshots</small></div><button class="btn p" disabled>Submit 2 tasks</button></div>'
+        nxt = '<h1>Submit 2 tasks</h1><p>Due in 41 days</p>'
+        money = ('<small>You get back</small><b class="num">₹1,339</b>'
+                 '<p>You paid <span class="num">₹1,899</span> · <span class="num">₹1,139</span> cashback + <span class="num">₹200</span> bonus</p>')
+        foot = '<div class="n2-bb n2-bb1"><p>0 of 2 ready · add each link and screenshots</p><button class="btn p" disabled>Submit 2 tasks</button></div>'
+        t2 = task(plat("nykaa", 22), "Nykaa review", "Link, screenshot · 40+ words")
     body = (
         _bar() +
         f'<div class="xm1-s n2">'
         f'<div class="n2-prod">{_thumb(prod[0], 48)}<div class="tx"><b>{prod[1]}</b><small>Lumen Labs · {plat(prod[2], 14)}{prod[3]}</small></div></div>'
         f'<div class="n2-card n2-next">{nxt}<div class="n2-jr">{jr}</div></div>'
-        + task(soc("Instagram", 22), "Instagram reel", "Link, screenshots · #ad, Paid partnership", st)
-        + (task(plat("amazon", 22), "Amazon review", "Link, screenshot · 40+ words", st) if review else task(plat("nykaa", 22), "Nykaa review", "Link, screenshot · 40+ words", st))
-        + f'<h2 class="n2-h">What you get back</h2>'
-        f'<div class="n2-card n2-money">{money}</div>'
+        f'<h2 class="n2-h">Tasks</h2>'
+        + task(soc("Instagram", 22), "Instagram reel", "Link, screenshots · #ad label")
+        + t2
+        + f'<div class="n2-card n2-money">{money}</div>'
         f'</div>{foot}')
     return phone(body, label="Enrollment · in review" if review else "Enrollment detail", sbar_color=None)
 
@@ -49,48 +53,50 @@ def s_withdraw():
     body = (
         _bar("Withdraw") +
         f'<div class="xm1-s n2 n2-wd">'
-        f'<div class="n2-amt"><small>Amount</small><b class="num">₹4,000</b><p><span class="num">₹6,820</span> available · minimum <span class="num">₹100</span></p></div>'
-        f'<div class="n2-row n2-acct">{bank("hdfc", 24, True)}<div class="tx"><b>HDFC ••6093</b><small>Bank account</small></div><button class="btn s sm">Change</button></div>'
-        f'<div class="n2-card n2-sum">{_kv("Fee", "₹0")}{_kv("Arrives", "Usually within minutes")}<div class="n2-tot"><span>You receive</span><b class="num">₹4,000</b></div></div>'
+        f'<div class="n2-amt"><b class="num">₹4,000</b><p><span class="num">₹6,820</span> available · minimum <span class="num">₹100</span></p></div>'
+        f'<div class="n2-row n2-acct">{bank("hdfc", 24, True)}<div class="tx"><b>HDFC ••6093</b><small>Fee ₹0 · usually within minutes</small></div><a class="n2-lk">Change</a></div>'
+        f'<div class="n2-row n2-pan">{ics("privacy", 18, "var(--hd-warning-strong)")}<div class="tx"><b>Verify your PAN to withdraw</b><small>Needed once before your first withdrawal</small></div></div>'
         f'<div class="n2-keys">{keys}</div>'
         f'</div>'
-        f'<div class="n2-bb"><button class="btn p">Withdraw ₹4,000</button></div>')
+        f'<div class="n2-bb"><button class="btn p">Verify PAN</button></div>')
     return phone(body, label="Withdraw")
 
 def s_settings(theme="light"):
-    row = lambda ico, t, d, cls="": f'<div class="n2-row"><span class="x-tile n2-ti">{ic(ico, 20)}</span><div class="tx"><b>{t}</b><small class="{cls}">{d}</small></div></div>'
+    dark = theme == "dark"
+    row = lambda ico, t, d, cls="": f'<div class="n2-sr">{ic(ico, 20)}<div class="tx"><b>{t}</b><small class="{cls}">{d}</small></div>{ic("chev", 16)}</div>'
+    grp = lambda h, *rows: f'<h2 class="n2-h">{h}</h2><div class="n2-card n2-list">' + "".join(rows) + '</div>'
     body = (
         _bar() +
         f'<div class="xm1-s n2">'
         f'<h1 class="n2-title">Settings</h1>'
-        f'<h2 class="n2-h">Profile</h2>'
-        + row("user", "Personal info", "Riya Sharma · @riya.glows")
-        + row("privacy", "Verification (PAN)", "Not verified · needed to withdraw", "")
-        + f'<h2 class="n2-h">Money</h2>'
-        + row("bank", "Payout methods", "HDFC ••6093")
-        + row("pin", "Addresses", "1 saved · Kolkata")
-        + f'<h2 class="n2-h">Security</h2>'
-        + row("lock", "Sign-in & security", "Phone number and sign-in")
-        + row("phone", "Devices", "This phone and 1 more")
+        + grp("Account",
+              row("user", "Personal info", "Riya Sharma · @riya.glows"),
+              row("privacy", "Verification (PAN)", "Not verified", "warn"),
+              row("bank", "Payout methods", "HDFC ••6093"),
+              row("pin", "Addresses", "1 saved · Kolkata"))
+        + grp("Security",
+              row("lock", "Sign-in & security", "Phone number and sign-in"),
+              row("phone", "Devices", "This phone and 1 more"))
+        + grp("Preferences",
+              row("bell", "Notifications", "Push and email"),
+              row("sliders", "Appearance", "Dark" if dark else "Light"))
         + f'</div>')
-    return phone(body, theme=theme, label="Settings · dark" if theme == "dark" else "Settings")
+    return phone(body, theme=theme, label="Settings · dark" if dark else "Settings")
 
 def s_barter():
-    def stop(k, t, d="", extra=""):
+    def stop(k, t, d=""):
         mark = ics("check", 12) if k == "done" else ""
-        dd = f'<small>{d}</small>' if d else ""
-        return f'<div class="n2-vs {k}"><i>{mark}</i><div class="tx"><b>{t}</b>{dd}{extra}</div></div>'
-    tl = (stop("done", "Address", "Riya Sharma, 14 Park Street, Kolkata 700016")
-          + stop("now", "Shipped", "Delhivery · tracking number 4471 2280")
-          + stop("", "Delivered", "Tap Received when it arrives")
+        return f'<div class="n2-vs {k}"><i>{mark}</i><div class="tx"><b>{t}</b><small>{d}</small></div></div>'
+    tl = (stop("done", "Ordered", "Shipping to 14 Park Street, Kolkata 700016")
+          + stop("now", "On the way", "Delhivery · tracking number 4471 2280")
+          + stop("", "Delivered", "Mark it received when it arrives")
           + stop("", "Tasks", "Opens when your order arrives.")
-          + stop("", "Bonus paid", "+₹500 after the brand approves"))
+          + stop("", "Bonus", "+₹500 after the brand approves"))
     body = (
         _bar() +
         f'<div class="xm1-s n2">'
         f'<div class="n2-prod">{_thumb("set", 48)}<div class="tx"><b>Clear skin set</b><small>Lumen Labs · Barter</small></div></div>'
-        f'<div class="n2-card n2-next"><small>Their turn</small><h1>On the way to you</h1></div>'
-        f'<div class="n2-card n2-offer"><div><small>You get</small><b>Free product</b></div><div class="r"><small>Worth</small><b class="num">₹2,400</b></div><div class="r"><small>Bonus</small><b class="num">+₹500</b></div></div>'
+        f'<div class="n2-card n2-next"><h1>On the way to you</h1><p>Free product · worth <span class="num">₹2,400</span> · <span class="num">+₹500</span> bonus</p></div>'
         f'<h2 class="n2-h">Your journey</h2><div class="n2-card n2-vj">{tl}</div>'
         f'</div>'
         f'<div class="n2-bb"><button class="btn p">Track shipment</button></div>')

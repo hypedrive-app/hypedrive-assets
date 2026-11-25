@@ -6,7 +6,6 @@ def s_onboarding():
     return phone(
         f'<div class="xm1-s n1-ob">'
         f'<div class="n1-top">{ic("back", 22)}</div>'
-        f'<div class="n1-prog"><i class="on"></i><i></i></div>'
         f'<p class="n1-step num">Step 1 of 2</p>'
         f'<h1 class="n1-h">Your profile</h1>'
         f'<div class="n1-form">'
@@ -15,17 +14,17 @@ def s_onboarding():
         f'<div class="n1-f"><label>Gender</label><div class="n1-opts">{chip("Female", True)}{chip("Male")}{chip("Other")}</div></div>'
         f'<div class="n1-f"><label>Date of birth</label><div class="n1-in"><span class="num">14 / 03 / 1998</span>{ic("calendar", 18)}</div></div>'
         f'</div>'
-        f'<div class="n1-bar"><button class="btn p lg block">Continue</button></div>'
+        f'<div class="n1-bar"><p class="n1-nx">Next: Verify your PAN · optional</p><button class="btn p lg block">Continue</button></div>'
         f'</div>', label="Onboarding")
 
 def s_browse():
     def card(photo, store, title, lead, bonus, foot, joined=False):
-        return (f'<div class="n1-cc"><div class="n1-ph"><img src="{PH[photo]}" alt=""></div><div class="n1-bd">'
+        return (f'<div class="n1-cc{" dim" if joined else ""}"><div class="n1-ph"><img src="{PH[photo]}" alt=""></div><div class="n1-bd">'
                 f'<span class="n1-sr">{plat(store, 14)}{store.title()}</span><b class="n1-t">{title}</b>'
                 f'<p class="n1-pay">{lead}</p>'
                 f'{f"<span class=n1-bn>+{bonus} bonus</span>" if bonus else ""}'
                 f'{f"<span class=n1-ft>{foot}</span>" if foot else ""}'
-                f'{f"<span class=n1-jn>{ics(chr(99)+chr(104)+chr(101)+chr(99)+chr(107), 14)}Joined</span>" if joined else ""}'
+                f'{"<span class=n1-jn>Joined</span>" if joined else ""}'
                 f'</div></div>')
     chip = lambda t, on=False: f'<span class="n1-chip{" on" if on else ""}">{t}</span>'
     flt = lambda t: f'<span class="n1-flt">{t}{ic("down", 16)}</span>'
@@ -45,7 +44,7 @@ def s_browse():
 def s_enrollments():
     def row(photo, title, st, meta, cls=""):
         return (f'<div class="n1-row"><img src="{PH[photo]}" alt=""><div class="tx"><b>{title}</b>'
-                f'<small class="{cls}"><em>{st}</em>{" · " + meta if meta else ""}</small></div></div>')
+                f'<small class="{cls}">{st}{" · " + meta if meta else ""}</small></div>{ic("chev", 16)}</div>')
     sh = lambda t, n: f'<div class="n1-sh"><h2>{t}</h2><span class="num">{n}</span></div>'
     return phone(
         f'<div class="xm1-s n1-en">'
@@ -56,7 +55,7 @@ def s_enrollments():
         + row("serum", "Glow serum, 30 ml", "Submit tasks", "due in 41 days")
         + row("bottles", "Daily cleanser trio", "Fix tasks", "due in 6 days", "warn")
         + sh("Their turn", 3)
-        + row("set", "Clear skin set", "Shipped", "on the way to you")
+        + row("set", "Clear skin set", "On the way", "Delhivery")
         + row("mask", "Clay mask, 100 g", "Applied", "waiting for the brand")
         + row("cream", "Night cream, 50 g", "In review", "₹990 back after approval")
         + sh("Done", 4)
