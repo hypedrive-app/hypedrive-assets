@@ -116,4 +116,9 @@ XMD = """
 .phone .md-pg .hm-wal p { margin-bottom: 16px; }
 .phone .md-row .md-lk { font-style: normal; font-weight: 600; font-size: 14px; color: var(--hd-link); flex: none; }
 .phone .md-row small .warn { font-style: normal; color: var(--hd-warning-strong); font-weight: 600; }
+.phone .md-trust { padding-bottom: 4px; }
+.phone .md-trust p { margin-bottom: 8px !important; }
+.phone .md-kv { display: flex; justify-content: space-between; align-items: center; height: 40px; border-top: 1px solid var(--hd-edge); font-size: 14px; color: var(--hd-fg); }
+.phone .md-kv b { font-weight: 600; }
+.phone .md-kv.mute { color: var(--hd-fg-subtle); }
 """

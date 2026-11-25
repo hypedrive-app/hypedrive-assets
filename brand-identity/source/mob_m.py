@@ -129,17 +129,19 @@ def s_m_wallet():
 
 # ------------------------------------------------------------------ 7 TrustDrive
 def s_m_trust():
-    stat = lambda k, v, sub="": f'<div><b class="num">{v}</b><small>{k}</small></div>'
-    stars = ics("star", 14) * 5
-    rev = lambda name, date: (f'<div class="md-row md-rv"><div class="tx"><b>{name}{vhex(14)}</b><small><span class="st">{stars}</span>{date} · <em class="warn">Needs reply</em></small></div>'
-                              f'<button class="btn s sm">Reply</button></div>')
-    take = (f'<div class="md-row"><span class="x-tile md-tl">{ic("users", 20)}</span><div class="tx"><b>Takeover request</b><small><em class="warn">2 days left</em></small></div></div>')
+    """TrustDrive overview: what needs Kavya, then how shoppers see her. One row style, one big number."""
+    link = lambda t: f'<em class="md-lk">{t}</em>'
+    tile = lambda i: f'<span class="x-tile md-tl">{ic(i, 20)}</span>'
+    kv = lambda k, v, mute=False: f'<div class="md-kv{" mute" if mute else ""}"><span>{k}</span><b class="num">{v}</b></div>'
     return phone('<div class="md-pg"><div class="md-top"><h1>TrustDrive</h1></div>' + tabs(["Overview", "Reviews", "Requests", "Listing"], "Overview")
-                 + sh("To do", "3") + take + rev("Calm otter", "18 Nov") + rev("Brave finch", "16 Nov")
+                 + sh("To do", "3")
+                 + row(tile("users"), "Takeover request", "<em class='warn'>Answer within 2 days</em>", link("Review"))
+                 + row(tile("star"), "Calm otter reviewed you", "5 stars · 18 Nov", link("Reply"))
+                 + row(tile("star"), "Brave finch reviewed you", "5 stars · 16 Nov", link("Reply"))
                  + sh("How shoppers see you")
-                 + '<div class="md-stats"><div class="hero"><b class="num">95%</b><small>Paid back</small><span>38 of 40</span></div>'
-                   '<div class="hero"><b class="num">4.8</b><small>Rating</small><span>31 reviews</span></div></div>'
-                 + '<div class="md-stats2">' + stat("Confirmed", 36) + stat("In progress", 2) + stat("Partly paid", 1) + stat("Disputed", 1) + stat("Complaints", 0) + '</div>'
-                 + '</div>' + dock(""), label="Mediator · TrustDrive")
+                 + '<div class="hm-wal md-trust"><small>Paid back</small><b class="num">95%</b>'
+                   '<p><span class="num">38</span> of 40 shoppers · <span class="num">4.8</span> from 31 reviews</p>'
+                   + kv("Confirmed", 36) + kv("In progress", 2) + kv("Partly paid", 1) + kv("Disputed", 1) + kv("Complaints", 0, True)
+                 + '</div></div>' + dock(""), label="Mediator · TrustDrive")
 
 MED = [s_m_today, s_m_deals, s_m_store, s_m_enroll, s_m_enrollments, s_m_wallet, s_m_trust]
