@@ -7,11 +7,11 @@ Owner rules: `~/Downloads/hypedrive-wordmark/BRAND/HANDOFF.md`. Skills to apply:
 ## Hard rules (the owner rejects anything that breaks these)
 - **No bloat.** Polish = fewer things done better. Never add badges, overlays, chips, legends, counters, captions, support codes or decorative bars that don't carry real info. If something you see is decoration, remove it. Modern, calm, premium (Linear / Vercel / Apple).
 - **Crisp edges.** The owner's display has a fractional DPR (1.8125). In-flow surfaces (cards, rows, panels, inputs) use a real CSS `border: 1px solid var(--hd-edge)`, never a box-shadow ring and never SVG strokes. Squircle script (`squircle.js`) is limited to `.x-go, .x-disc`; don't change it.
-- **Buttons:** primary = flat deep Cobalt (`--hd-accent`), no gradient, no coloured glow, faint top highlight + 1px neutral contact; secondary = white + 1px hairline + soft contact; ghost = text; sizes 36/44/52, radius 10/12/14.
+- **Buttons:** primary = flat accent blue (`--hd-accent`, E5 #0071e2 since 2026-11-26), no gradient, no coloured glow, faint top highlight + 1px neutral contact; secondary = white + 1px hairline + soft contact; ghost = text; sizes 36/44/52, radius 10/12/14.
 - **Icon containers** = white tile + 1px hairline + soft two-layer shadow, glyph in the meaning colour (`.x-tile` classes). No tinted or grey slabs behind icons.
 - **Tints** only through tokens (`--hd-*-subtle` backgrounds, `--hd-*-strong` text). Badges/chips tinted, no border, with a solid status icon.
 - Icons: Nucleo UI Outline 18 via `ic(name)` idle; exact Fill 18 twin via `ics(name)` active. Names in `NMAP` (uikit.py) — don't edit NMAP; list any new names you need.
-- Radius scale 4/6/8/10/12/14/16/24/full; 4px spacing grid; Bricolage for headings and hero numbers, Geist for UI; ₹ no space, Indian grouping, U+2212 minus; no emoji, no gradient text, no uppercase tracked labels; people photos never larger than 72px.
+- Radius scale 4/6/8/10/12/14/16/24/full; 4px spacing grid; Bricolage for headings and hero numbers, Allo for UI (since 2026-11-26); ₹ no space, Indian grouping, U+2212 minus; no emoji, no gradient text, no uppercase tracked labels; people photos never larger than 72px.
 - Data must agree: Glow serum ₹1,240 · 84/120; Night cream ₹990 · 42/100; Clear skin set ₹980 · Full 60/60; Daily cleanser trio ₹640 · 18/90; all Lumen Labs; HDFC ••6093; Riya Sharma = `people/women-68.jpg`; today Fri Nov 20 2026.
 - Light AND dark must both be excellent.
 
@@ -139,3 +139,6 @@ Each of these was flagged by the owner in the kit. Fix every other occurrence of
     - Tinted borders and glows.
 
 Method: render each section (light + dark), list every instance, fix them in a batch, re-render, and save a before/after image per section. Read each before/after and revert anything that isn't better. Report every fix.
+
+## KIT = APP TOKENS (2026-11-26)
+The kit draws in the app's iOS E5 colours and Allo UI text. `e5_tokens.py` generates BRAND/tokens/colors-app.css from the repo's generated E5 colours; uikit.py reads it. The brand book keeps colors.css (its cobalt/vermilion/marigold palette pages). Never hard-code accent or status hexes in layers: use the --hd-* roles.

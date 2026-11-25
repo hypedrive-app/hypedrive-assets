@@ -41,7 +41,7 @@ XQ1 = r"""
 :root:root:root .phone .xq-cp .cp-sec h2 { margin: 0 0 12px; font-size: 17px; line-height: 22px; font-weight: 600; }
 :root:root:root .phone .xq-cp .cp-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 :root:root:root .phone .xq-cp .cp-st { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; line-height: 18px; font-weight: 520; letter-spacing: -0.005em; }
-:root:root:root .phone .xq-cp .cp-st i { font-style: normal; width: 24px; height: 24px; border-radius: 12px; display: grid; place-items: center; font-size: 13px; font-family: 'Geist', sans-serif; font-weight: 600; box-shadow: inset 0 0 0 1px var(--hd-edge); color: var(--hd-fg-muted); }
+:root:root:root .phone .xq-cp .cp-st i { font-style: normal; width: 24px; height: 24px; border-radius: 12px; display: grid; place-items: center; font-size: 13px; font-family: var(--font-ui); font-weight: 600; box-shadow: inset 0 0 0 1px var(--hd-edge); color: var(--hd-fg-muted); }
 :root:root:root .phone .xq-cp .cp-task { display: flex; gap: 12px; align-items: center; min-height: 64px; padding: 10px 14px; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--hd-edge); margin-bottom: 8px; }
 :root:root:root .phone .xq-cp .cp-task .tx b { display: block; font-size: 15px; line-height: 20px; font-weight: 600; }
 :root:root:root .phone .xq-cp .cp-task .tx small { display: block; font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
