@@ -122,7 +122,7 @@ def form_inputs(theme):
     av_empty = (f'<div class="n-avu"><div class="n-av empty"><span class="n-ph">{ic("camera", 24)}</span></div><div class="n-avt"><b>Profile photo</b><span class="t-small muted">JPG or PNG, 400 × 400 or larger</span>'
                 f'<div class="n-act">{btn("s sm", "Upload")}</div></div></div>')
     av_fill = (f'<div class="n-avu"><div class="n-av"><img src="{pe("women-68")}" alt="Riya Sharma"></div><div class="n-avt"><b>Riya Sharma</b><span class="t-small muted">riya-portrait.jpg · 1.4 MB</span>'
-               f'<div class="n-act">{btn("s sm", "Change")}{btn("g sm", "Remove")}</div></div></div>')
+               f'<div class="n-act">{btn("g sm n-ch", "Change")}{btn("g sm n-rm", "Remove")}</div></div></div>')
     av_up = (f'<div class="n-avu"><div class="n-av up"><img src="{pe("women-68")}" alt="">{ring(64)}</div><div class="n-avt"><b>Uploading · 64%</b><span class="t-small muted num">riya-portrait.jpg · 0.9 of 1.4 MB</span>'
              f'<div class="n-act">{btn("g sm", "Cancel")}</div></div></div>')
 

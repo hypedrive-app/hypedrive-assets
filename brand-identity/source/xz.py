@@ -293,4 +293,9 @@ html body .btn.prs:not(.sm) { height: 44px !important; }
 .n-avt .n-act .btn.g { color: var(--hd-fg-muted) !important; } .n-avt .n-act .btn.g:last-child:not(:first-child) { color: var(--btn-red, #d92d20) !important; }
 
 html body img.plat.sfav, html body .sec img.plat.sfav, html body .phone img.plat.sfav { display: inline-block !important; width: 14px !important; height: 14px !important; min-width: 0 !important; border-radius: 3px !important; margin: 0 4px 0 0 !important; vertical-align: -2px !important; object-fit: contain !important; box-shadow: none !important; border: 0 !important; flex: none !important; }
+
+/* avatar row actions: two quiet text actions, no box, no red on the row */
+.n-avt .n-act .btn.n-ch, .n-avt .n-act .btn.n-rm { background: none !important; box-shadow: none !important; border: 0 !important; padding: 0 8px !important; font-weight: 600 !important; }
+.n-avt .n-act .btn.n-ch { color: var(--hd-fg) !important; }
+.n-avt .n-act .btn.n-rm, .n-avt .n-act .btn.g.n-rm:last-child { color: var(--hd-fg-muted) !important; }
 """
