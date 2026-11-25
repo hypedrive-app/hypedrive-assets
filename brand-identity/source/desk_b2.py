@@ -81,32 +81,32 @@ def _inv(week, num, n, total, status):
             f'<div class="b2-iamt"><b class="num">{inr(total)}</b><small class="num">GST {inr(gst)}</small></div>{badge}<a class="btn g sm b2-dl" aria-label="Download">{ic("download", 16)}</a></div>')
 
 def d_wallet():
-    head = (f'<div class="ph"><div class="t"><div class="t-h1">Wallet</div></div>'
-            f'<button class="btn s sm">Withdraw</button><button class="btn p sm">{ic("plus", 16)}Add money</button><button class="btn s sm b2-sq" aria-label="More">{ic("more", 18)}</button></div>')
-    tiles = ('<div class="b2-tiles"><div class="b2-card b2-tile"><span>Available balance</span><b class="b2-big num">₹1,84,500</b><small>Pays for each approval.</small></div>'
-             '<div class="b2-card b2-tile"><span>On hold</span><b class="b2-big num">₹96,320</b><small>Held for creators who have joined.</small></div></div>')
-    acts = "".join([
-        _arow(ic("plus", 18), "Money added", "Razorpay · 19 Nov", "+₹2,00,000", "in"),
-        _arow(ic("rupee", 18), "Enrollment paid", "Ananya Das · Glow serum · 19 Nov", "−₹1,580"),
-        _arow(ic("clock", 18), "On hold", "Kabir Singh · Glow serum · 18 Nov", "−₹1,580"),
-        _arow(ic("refresh", 18), "Hold released", "Tanvi Shah · Clear skin set · 17 Nov", "+₹2,900", "in"),
-        _arow(ic("bank", 18), "Withdrawal", "HDFC Bank ••6093 · 12 Nov", "−₹50,000"),
-        _arow(ic("receipt", 18), "Refund", "Order cancelled · 10 Nov", "+₹1,580", "in"),
-        _arow(ic("sliders", 18), "Adjustment", "Hypedrive · 9 Nov", "+₹320", "in")])
-    left = (f'<div class="b2-col"><div class="b2-tabs"><span class="on">Activity</span><span>Statements</span></div><div class="b2-list">{acts}</div></div>')
-    invs = "".join([_inv("9 Nov to 15 Nov", "LL/2627/0042", 31, 141120, "Paid"), _inv("2 Nov to 8 Nov", "LL/2627/0041", 27, 122780, "Paid"),
-                    _inv("26 Oct to 1 Nov", "LL/2627/0040", 24, 109950, "Paid"), _inv("19 Oct to 25 Oct", "LL/2627/0039", 22, 98360, "Void")])
-    inv_card = (f'<div class="b2-card b2-inv"><div class="b2-sh2"><b>Invoices</b><span>FY 2026-27</span></div>'
-                '<div class="b2-sums"><div><span>Invoiced</span><b class="num">₹18,42,300</b></div><div><span>GST (18%)</span><b class="num">₹2,81,029</b></div><div><span>Credit notes</span><b class="num">₹0</b></div></div>'
-                f'<div class="b2-irs">{invs}</div></div>')
-    q = lambda n, r, s, act="": (f'<div class="b2-ir"><div class="b2-tt"><b>{n}</b>{f"<small>{r}</small>" if r else ""}</div>{act}{s}</div>')
-    tds = (f'<div class="b2-card b2-tds"><div class="b2-sh"><b>TDS certificates</b><span>Send it to have the TDS deposited credited to your wallet.</span></div>'
-           '<div class="b2-sums two"><div><span>TDS deducted</span><b class="num">₹34,860</b></div><div><span>TDS credited</span><b class="num">₹23,240</b></div></div>'
-           + q("Q1 Apr–Jun", "", '<span class="badge success">Credited 12 Aug</span>')
-           + q("Q2 Jul–Sep", "", '<span class="badge success">Credited 12 Nov</span>')
-           + q("Q3 Oct–Dec", "Due by 31 Jan 2027", '<span class="badge neutral">Open</span>', '<button class="btn s sm">Send certificate</button>') + '</div>')
-    right = f'<div class="b2-col">{inv_card}{tds}</div>'
-    page = f'{head}{tiles}<div class="b2-two">{left}{right}</div>'
+    """Wallet: one balance, a quiet ledger, invoices and TDS as plain lists. Paid and Credited are the normal case, so only exceptions are marked."""
+    head = '<div class="ph"><div class="t"><div class="t-h1">Wallet</div></div></div>'
+    bal = ('<div class="bw-bal"><div class="bw-bm"><small>Available</small><b class="num">₹1,84,500</b>'
+           '<p><span class="num">₹96,320</span> on hold for creators who joined · each approval is paid from here</p></div>'
+           f'<div class="bw-act"><button class="btn s">Withdraw</button><button class="btn p">{ic("plus", 18)}Add money</button></div></div>')
+    led = lambda t, d, date, amt, cr=False: (f'<div class="bw-lr"><div class="bw-tx"><b>{t}</b><small>{d}</small></div><span class="bw-d">{date}</span>'
+                                             f'<b class="num bw-a{" cr" if cr else ""}">{amt}</b></div>')
+    ledger = ('<div class="bw-card"><div class="bw-h"><b>Activity</b><em class="bw-lk">Statements</em></div>'
+              + led("Money added", "Razorpay", "19 Nov", "+₹2,00,000", True)
+              + led("Enrollment paid", "Ananya Das · Glow serum", "19 Nov", "−₹1,580")
+              + led("On hold", "Kabir Singh · Glow serum", "18 Nov", "−₹1,580")
+              + led("Hold released", "Tanvi Shah · Clear skin set", "17 Nov", "+₹2,900", True)
+              + led("Withdrawal", "HDFC Bank ••6093", "12 Nov", "−₹50,000")
+              + led("Refund", "Order cancelled", "10 Nov", "+₹1,580", True)
+              + led("Adjustment", "Hypedrive", "9 Nov", "+₹320", True) + '</div>')
+    dl = ic("download", 16)
+    inv = lambda wk, num, n, amt, void=False: (f'<div class="bw-lr{" void" if void else ""}"><div class="bw-tx"><b>{wk}</b><small>{num} · {n} enrollments{" · Void" if void else ""}</small></div>'
+                                              f'<b class="num bw-a">{amt}</b><span class="bw-ic">{dl}</span></div>')
+    invoices = ('<div class="bw-card"><div class="bw-h"><b>Invoices</b><span><span class="num">₹18,42,300</span> invoiced in FY 2026-27</span></div>'
+                + inv("9 – 15 Nov", "LL/2627/0042", 31, "₹1,41,120") + inv("2 – 8 Nov", "LL/2627/0041", 27, "₹1,22,780")
+                + inv("26 Oct – 1 Nov", "LL/2627/0040", 24, "₹1,09,950") + inv("19 – 25 Oct", "LL/2627/0039", 22, "₹98,360", True) + '</div>')
+    q = lambda n, d, act="": f'<div class="bw-lr"><div class="bw-tx"><b>{n}</b><small>{d}</small></div>{act}</div>'
+    tds = ('<div class="bw-card"><div class="bw-h"><b>TDS certificates</b><span><span class="num">₹23,240</span> credited of <span class="num">₹34,860</span></span></div>'
+           + q("Q3 Oct – Dec", "Due by 31 Jan 2027", '<em class="bw-lk">Send certificate</em>')
+           + q("Q2 Jul – Sep", "Credited 12 Nov") + q("Q1 Apr – Jun", "Credited 12 Aug") + '</div>')
+    page = f'{head}{bal}<div class="bw-grid"><div>{ledger}</div><div class="bw-side">{invoices}{tds}</div></div>'
     return shell(NAV_WALLET, ["Lumen Labs", "Wallet"], page)
 
 # ====================================================================== 7 · team and settings
