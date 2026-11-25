@@ -8,6 +8,21 @@ XLEAD = r"""
 .badge.warning { background: var(--hd-warning-subtle) !important; }
 .badge.danger { background: var(--hd-danger-subtle) !important; }
 .tbl tr.sel-row td { background: color-mix(in oklab, var(--hd-accent) 9%, var(--hd-surface)) !important; }
+/* the -subtle roles themselves are deepened so EVERY tinted surface reads (alerts, tiles, counts, ranges, selected states) */
+:root, [data-theme="light"] {
+  --hd-accent-subtle: color-mix(in oklab, #2d58ee 18%, #ffffff);
+  --hd-info-subtle: color-mix(in oklab, #2d58ee 18%, #ffffff);
+  --hd-success-subtle: color-mix(in oklab, #0a8a5c 22%, #ffffff);
+  --hd-warning-subtle: color-mix(in oklab, #ffc83c 48%, #ffffff);
+  --hd-danger-subtle: color-mix(in oklab, #e04f10 19%, #ffffff);
+}
+[data-theme="dark"] {
+  --hd-accent-subtle: color-mix(in oklab, #2d58ee 30%, #16181d);
+  --hd-info-subtle: color-mix(in oklab, #2d58ee 30%, #16181d);
+  --hd-success-subtle: color-mix(in oklab, #0a8a5c 32%, #16181d);
+  --hd-warning-subtle: color-mix(in oklab, #ffc83c 22%, #16181d);
+  --hd-danger-subtle: color-mix(in oklab, #e04f10 28%, #16181d);
+}
 /* swipe rows, iOS-true: one clipped container, actions flush and full-height behind, the row slides with a soft edge */
 .n-swr { border: 1px solid var(--hd-edge, rgba(16,20,38,.16)) !important; border-radius: 14px !important; overflow: hidden !important; background: var(--hd-surface); }
 .n-swr > .row.n-sr { border: 0 !important; border-radius: 0 !important; box-shadow: none !important; margin: 0 !important; position: relative; z-index: 1; background: var(--hd-surface) !important; }

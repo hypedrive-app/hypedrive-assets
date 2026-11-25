@@ -5,8 +5,8 @@ OUT = os.path.join(B, "ui")
 os.makedirs(OUT, exist_ok=True)
 T = json.load(open(os.path.join(B, "tokens", "tokens.json")))
 SC = T["scales"]; C, V, M, I, N = (SC[k] for k in ("cobalt", "vermilion", "marigold", "ink", "mint"))
-# The kit draws in the app's E5 colours and Allo (owner, 2026-11-26); the brand book keeps colors.css.
-TOK = open(os.path.join(B, "tokens", "colors-app.css")).read()
+# The kit draws in the brand colours (colors.css) with Allo for UI text (owner, 2026-11-26).
+TOK = open(os.path.join(B, "tokens", "colors.css")).read()
 FONT = base64.b64encode(open("/tmp/hdwm/fonts/Bricolage.ttf", "rb").read()).decode()
 GEIST = base64.b64encode(open("/tmp/hdwm/fonts/Geist.ttf", "rb").read()).decode()
 GMONO = base64.b64encode(open("/tmp/hdwm/fonts/GeistMono.ttf", "rb").read()).decode()

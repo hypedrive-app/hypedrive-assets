@@ -144,7 +144,7 @@ def interaction(theme="light"):
 def kit_more(theme="light"):
     sec = lambda t, d, b: f'<section class="sec"><h2>{t}</h2><p>{d}</p>{b}</section>'
     lab = lambda t: f'<div class="lbl">{t}</div>'
-    charts = sec("Charts", "Flat accent series: past periods tinted, the current one solid. Hairline grid, labels in Allo, comparisons dashed and neutral.",
+    charts = sec("Charts", "Flat Cobalt series: past periods tinted, the current one solid. Hairline grid, labels in Allo, comparisons dashed and neutral.",
         f'<div class="grid chrow" style="grid-template-columns:1.4fr 1fr;gap:22px"><div class="panel cc">{_chhead("Tasks submitted", "91", "+42% vs last period")}{chart_line2(REV, PREV2, WEEKS, 5)}</div>'
         f'<div class="panel cc">{_chhead("Tasks per week", "91", "+8% vs last week", False)}{chart_bars2(REV, WEEKS)}</div></div>'
         f'<div class="grid g4 sxrow" style="gap:22px;margin-top:22px">'

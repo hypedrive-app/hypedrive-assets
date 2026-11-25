@@ -160,7 +160,7 @@ def journey():
             mark = ics("check", 12) if i < cur else f'<span class="num">{i+1}</span>'
             out += f'<div class="s {k}"><i>{mark}</i><span>{s}</span></div>'
         return f'<div class="dm-jr" style="--n:{len(steps)}">{out}</div>'
-    return _g("Enrollment journey", "Online purchase has four stops; barter has five. Where you are is the one accent ring.",
+    return _g("Enrollment journey", "Online purchase has four stops; barter has five. Where you are is the one cobalt ring.",
               _cell("Online purchase · tasks next", j(["Proof", "Tasks", "Review", "Paid"], 1))
               + _cell("Barter · waiting on the parcel", j(["Join", "Ship", "Tasks", "Review", "Done"], 1)), 2)
 
