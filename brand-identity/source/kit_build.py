@@ -282,76 +282,85 @@ def s_join_receipt():
                  f'<div class="jf-act"><button class="btn p lg block">Join and earn ₹1,339</button></div>'
                  f'<p class="jf-note">You\'ll have 45 days to post after you join.</p></div></div>', label="Join · receipt", sbar_color="#fff")
 
+def _e1_bar(left="", right="", title=""):
+    return f'<div class="xm1-bar xm1-s e1-bar">{left}{f"<b class=e1-bt>{title}</b>" if title else ""}<span class="e1-r">{right}</span></div>'
+
+def _e1_row(lead, title, meta, tail="", cls=""):
+    return f'<div class="hm-row e1-row {cls}">{lead}<div class="tx"><b>{title}</b><small>{meta}</small></div>{tail}</div>'
+
 def s_track():
-    tl = vtl([("done", "Approved", "Nov 12, 4:10 pm"), ("done", "Shipped", "Nov 13 · Delhivery 4471 2280"), ("now", "Out for delivery", "6 stops away in Kolkata"), ("", "Delivered", "Expected today")])
-    return phone(f'<i class="xm2m" data-s="track"></i><div class="topbar">{ic("back")}<span class="ttl"></span>{ic("more")}</div><div class="body">'
-                 f'<div class="xm2-hero"><img src="{PH["scooter"]}" alt=""><div><div class="xm2-big">Arrives by 7 pm</div><span class="xm2-sub">Kick scooter · out for delivery today</span></div></div>'
-                 f'{tl}'
-                 f'<div class="xm2-c xm2-cour"><span class="x-tile bankt"><img class="bankl" src="assets/banks/delhivery.png" alt="Delhivery" width="22" height="22"></span><div class="tx"><b>Ravi, Delhivery</b><small>4471 2280</small></div><button class="btn s icon" aria-label="Call Ravi">{ic("phone", 18)}</button></div>'
-                 f'<div class="xy-due">{ic("clock", 18)}<span>Review due Fri, Nov 27 · 7 days after delivery</span></div></div>{tabbar("Enrolled")}', label="Parcel tracking")
+    """The enrollment page in its other state: their turn, in review (Night cream)."""
+    from scr_n2 import s_enrollment_detail
+    return s_enrollment_detail("review")
 
 def s_review():
-    th = "".join(f'<div class="xm2-ph"><img src="{PH[i]}" alt=""><span aria-label="Remove">{ic("x", 10, "currentColor", 3)}</span></div>' for i in ("serum", "bottles"))
-    return phone(f'<i class="xm2m" data-s="review"></i><div class="topbar">{ic("x")}<span class="ttl"></span><span class="t-small" style="color:var(--hd-fg-subtle);font-weight:600">Draft saved</span></div><div class="body">'
-                 f'<div><div class="xm2-h">Your review</div><span class="xm2-sub">Night cream · due Mon, Nov 23</span></div>'
-                 f'<div class="field"><label>How was it?</label><div class="stars">' + "".join(ic("star", 32, "var(--hd-tone-marigold)", 1.5, "var(--hd-tone-marigold)") for _ in range(4)) + ic("star", 32, "var(--hd-track-strong)", 1.5) + '</div></div>'
-                 f'<div class="field"><label>Photos and video</label><div class="xm2-phs">{th}<div class="xm2-add">{ic("plus", 22)}</div></div></div>'
-                 f'<div class="field"><label>Post link</label><div class="input">{soc("Instagram", 18)}<span class="t-body">instagram.com/p/C9x…</span></div></div>'
-                 f'<div class="field"><label>A few words</label><div class="input textarea t-body">Used it every night for a week. Rich but not greasy, and my skin feels softer by morning.</div><span class="help xm2-cnt">86 of 600</span></div></div>'
-                 f'<div class="cta"><button class="btn s">Preview</button><button class="btn p" style="flex:1">Submit review</button></div>', label="Submit review")
+    """Submit tasks: link + 1-6 screenshots per task, one button, attestation."""
+    def shot(i): return f'<div class="e1-sh"><img src="{PH[i]}" alt=""><span aria-label="Remove">{ic("x", 10, "currentColor", 3)}</span></div>'
+    add = f'<div class="e1-sh e1-add">{ic("plus", 20)}</div>'
+    def task(logo, t, lab, ph, shots, n, hint):
+        return (f'<div class="e1-card e1-tk"><div class="e1-th">{logo}<b>{t}</b><small>{hint}</small></div>'
+                f'<label>{lab}</label><div class="e1-in">{ph}</div>'
+                f'<label>Screenshots <span class="num">{n}</span></label><div class="e1-shs">{"".join(shot(s) for s in shots)}{add}</div></div>')
+    return phone(_e1_bar(f'<span class="e1-ib">{ic("x", 22)}</span>', '<span class="e1-note">Draft saved</span>')
+                 + f'<div class="xm1-s hm e1-pg"><div class="e1-hb"><h1 class="hm-h">Submit tasks</h1><p>Glow serum, 30 ml · due in 41 days</p></div>'
+                 + task(soc("Instagram", 22), "Instagram reel", "Link to your reel", '<span>instagram.com/reel/C9xQ2…</span>', ("serum", "flatlay", "sand"), "3 of 6", "#ad · Paid partnership")
+                 + task(plat("nykaa", 22), "Nykaa review", "Link to your review", '<span>nykaa.com/reviews/glow-serum…</span>', ("bottles",), "1 of 6", "40+ words")
+                 + '<p class="e1-att">By submitting you confirm these are your own posts and they are live.</p></div>'
+                 f'<div class="cta e1-cta"><button class="btn p lg block">Submit 2 tasks</button></div>', label="Submit tasks")
 
 def s_wallet():
-    tx = [("trolley", "Kitchen trolley", "Review approved · Wed, Nov 18", "+₹640", "in"), ("bank", "Payout to HDFC ••6093", "Sent · Mon, Nov 16", "−₹2,000", "out"), ("chair", "Ergo office chair", "Review approved · Wed, Nov 11", "+₹480", "in")]
-    from uikit2 import spark_area
-    def lead(i): return bank("hdfc", 24, tile=True) if i == "bank" else f'<img class="lead" src="{PH[i]}" alt="">'
-    rows = "".join(f'<div class="xm2-c xm2-tx">{lead(i)}<div class="tx"><b>{t}</b><small>{d}</small></div><b class="num w-amt {k}">{a}</b></div>' for i, t, d, a, k in tx)
-    return phone(f'<i class="xm2m" data-s="wallet"></i><div class="topbar x-large"><span class="ttl x-page">Wallet</span>{ic("clock")}{ic("settings")}</div><div class="body">'
-                 f'<div class="xm2-wh"><small>Available</small><div class="xm2-wr"><div class="xm2-wb num"><span>₹</span>6,820</div><button class="btn p">Withdraw</button></div><small>₹990 held · next payout Tue, Nov 24</small></div>'
-                 f'<div class="xm2-c xm2-earn"><div><small>Earned this month</small><b class="num">₹8,460</b></div><div class="xm2-sp">{spark_area(EARN, uid="wm")}</div><em>+24%</em></div>'
-                 f'<div class="xm2-ah"><b>Activity</b><button class="btn link">See all</button></div>'
-                 f'<div class="xm2-list">{rows}</div></div>{tabbar("Wallet")}', label="Wallet")
+    """Wallet: Available is the one number; on hold and earned so far sit under it; real money movements below."""
+    def mv(lead, t, d, a, cls=""):
+        return _e1_row(lead, t, d, f'<b class="num e1-amt {cls}">{a}</b>')
+    tile = lambda i, c="": f'<span class="x-tile e1-tile {c}">{ic(i, 20)}</span>'
+    rows = (mv(tile("clock"), "On hold", "Glow serum · after approval", "₹1,339", "mut")
+            + mv(bank("hdfc", 22, tile=True), "Withdrawal", "HDFC ••6093 · 16 Nov 2026", "−₹2,000")
+            + mv(f'<img src="{PH["bottles"]}" alt="">', "Cashback", "Face wash, 100 ml · 12 Nov 2026", "+₹540", "pos"))
+    return phone(_e1_bar(f'<b class="e1-bt e1-bt0">Wallet</b>', f'<span class="e1-ib">{ic("settings", 22)}</span>')
+                 + f'<div class="xm1-s hm e1-pg">'
+                 f'<div class="hm-wal e1-w"><small>Available</small><b class="num">₹6,820</b>'
+                 f'<p><span class="num">₹1,339</span> on hold · <span class="num">₹24,610</span> earned so far</p>'
+                 f'<div class="e1-wf"><button class="btn p block">Withdraw</button></div></div>'
+                 + _e1_row(bank("hdfc", 22, tile=True), "Payout to HDFC ••6093", "Usually within minutes · fee ₹0", f'<button class="btn link e1-lk">Change</button>')
+                 + f'<div class="hm-sh"><h2>Activity</h2><button class="btn link">Statements</button></div>'
+                 + rows + '</div>' + tabbar("Wallet"), label="Wallet")
 
 def s_success():
-    return phone(f'<div class="topbar"><span class="ttl"></span>{ic("x")}</div><div class="body xm3-s xm3-succ">'
-                 f'<img src="{ILL[("approved","light")]}" alt="">'
-                 f'<h1 class="xm3-h">Review approved</h1>'
-                 f'<div class="xy-pay">{bank("hdfc", 24, tile=True)}<div class="tx"><b><span class="num">₹990</span> to HDFC ••6093</b><small>Lands by Tue, Nov 24</small></div></div></div>'
-                 f'<div class="cta xm3-cta"><button class="btn p lg block">Find your next drop</button><button class="btn s block">Share your review</button></div>', label="Success")
+    """Tasks submitted: the moment after Submit 2 tasks."""
+    return phone(_e1_bar("", f'<span class="e1-ib">{ic("x", 22)}</span>')
+                 + f'<div class="xm1-s hm e1-pg e1-ok"><div class="e1-ill"><img src="{ILL[("approved","light")]}" alt=""></div>'
+                 f'<div class="e1-okt"><h1 class="hm-h">Tasks submitted</h1><p>Lumen Labs will review your 2 tasks. We\'ll tell you the moment they\'re approved.</p></div>'
+                 + _e1_row(f'<img src="{PH["serum"]}" alt="">', "Glow serum, 30 ml", "₹1,339 back after approval") +
+                 '</div>'
+                 f'<div class="cta e1-cta e1-cta2"><button class="btn p lg block">View enrollment</button><button class="btn g block">Back to Home</button></div>', label="Tasks submitted")
 
 def s_notifs():
-    def item(tile, text, sub, time, unread=False):
-        return (f'<div class="xm3-nr">{tile}<div class="xm3-nt"><p>{text}</p><small>{sub}</small></div>'
-                f'<div class="xm3-ne"><span class="num">{time}</span><i class="{"on" if unread else ""}"></i></div></div>')
-    t = lambda c, i: f'<span class="x-tile {c}">{ics(i, 20)}</span>'
-    today = (item(t("cobalt", "box"), "<b>Glow serum</b> is open for you", "Lumen Labs · 36 slots left", "2m", True)
-             + item(t("mint", "fast"), "<b>Kick scooter</b> is out for delivery", "Arrives by 7 pm", "1h", True)
-             + item(t("marigold", "clock"), "<b>Night cream</b> review due Monday", "Nov 23 · 3 days left", "4h"))
-    week = (item(bank("hdfc", 22, tile=True), "<b>₹2,000</b> sent to HDFC ••6093", "Lands by Tue, Nov 24", "Mon")
-            + item(t("vermilion", "linkbroken"), "Your post link is private", "Make it public so we can verify it", "Wed"))
-    return phone(f'<div class="topbar x-large"><span class="ttl x-page">Notifications</span><button class="btn link">Mark all read</button></div><div class="body xm3-s xm3-notifs">'
-                 f'<span class="xm3-day">Today</span><div class="xm3-nl">{today}</div><span class="xm3-day">This week</span><div class="xm3-nl">{week}</div></div>', label="Notifications")
+    """Inbox: real events only. One unread signal (the dot); tabs by meaning."""
+    def item(tile, title, sub, time, unread=False):
+        return (f'<div class="hm-row e1-row e1-nr">{tile}<div class="tx"><b>{title}</b><small>{sub} · {time}</small></div>'
+                f'<div class="e1-ne"><i class="{"on" if unread else ""}"></i></div></div>')
+    t = lambda c, i: f'<span class="x-tile e1-tile {c}">{ics(i, 20)}</span>'
+    today = (item(t("cobalt", "campaign"), "Glow serum is open", "Lumen Labs · 8 spots left", "2m", True)
+             + item(t("mint", "filecheck"), "Receipt checked", "Glow serum, 30 ml · submit 2 tasks next", "4h", True)
+             + item(t("vermilion", "alert"), "Your enrollment needs a change", "Daily cleanser trio · Fix 1 task", "6h", True))
+    earlier = (item(t("mint", "wallet"), "Your earnings have landed", "₹540 from Face wash, 100 ml", "Wed")
+               + item(bank("hdfc", 22, tile=True), "Withdrawal sent", "₹2,000 to HDFC ••6093", "Mon"))
+    tabs = "".join(f'<span class="{"on" if i == 0 else ""}">{n}</span>' for i, n in enumerate(("All", "To do", "Money", "Campaigns")))
+    return phone(_e1_bar(f'<span class="e1-ib">{ic("back", 22)}</span>', '<button class="btn link e1-mk">Mark all read</button>')
+                 + f'<div class="xm1-s hm e1-pg"><h1 class="hm-h">Inbox</h1><div class="e1-tabs">{tabs}</div>'
+                 f'<div class="hm-sh"><h2>Today</h2></div>{today}<div class="hm-sh"><h2>Earlier</h2></div>{earlier}</div>', label="Inbox")
 
 def s_profile():
-    chev = f'<span class="chevr">{ic("chev", 18)}</span>'
-    def gi(icon, label, tail=chev): return f'<div class="xm3-gi">{ic(icon, 20)}<b>{label}</b>{tail}</div>'
-    account = (gi("user", "Personal details") + gi("link", "Linked accounts", soc("Instagram", 18) + soc("Youtube", 18) + chev) +
-               gi("bank", "Payout method", f'<span class="meta xz-bk">{bank("hdfc", 16)}••6093</span>{chev}'))
-    prefs = gi("bell", "Notifications", '<span class="switch on"></span>') + gi("privacy", "Privacy") + gi("help", "Help and support")
-    stats = "".join(f'<div><b class="num">{v}</b><small>{kk}</small></div>' for v, kk in (("52", "Reviews"), ("4.9", "Rating"), ("18.4k", "Reach")))
-    return phone(f'<div class="topbar xm3-top xz-ptop"><span class="ttl">You</span>{ic("settings")}</div><div class="body xm3-s xm3-prof xz-prof">'
-                 f'<div class="xz-idc"><div class="xm3-id"><img src="{PEOPLE["women-68"]}" alt=""><div><div class="xm3-nm">Riya Sharma {vhex(16)}</div><span>@riya.glows · Kolkata</span></div><button class="btn s sm">Edit</button></div>'
-                 f'<div class="xm3-stats">{stats}</div></div>'
-                 f'<div class="xm3-grp">{account}</div><div class="xm3-grp">{prefs}</div>'
-                 f'<div class="xm3-grp xz-outg"><div class="xm3-out">{ic("logout", 20)}<b>Log out</b></div></div></div>{tabbar("You")}', "dark", "Profile · dark", "#fff")
+    """Settings in dark mode: the same page as the light Settings screen."""
+    from scr_n2 import s_settings
+    return s_settings("dark")
 
 def s_empty():
-    pop = [("lipstick", "Lip balm"), ("drop", "Face mist"), ("headphones", "Earbuds"), ("lamp", "Desk lamp"), ("shirt", "Linen shirt")]
-    sim = [("serum", "Glow serum, 30 ml", "Lumen Labs", "+₹1,240"), ("cream", "Night cream", "Lumen Labs", "+₹990"), ("bottles", "Daily cleanser trio", "Lumen Labs", "+₹640")]
-    rows = "".join(f'<div class="xm3-lr"><img src="{PH[i]}" alt=""><div class="xm3-lt"><b>{t}</b><small>{b}</small></div><b class="num xm3-amt">{r}</b></div>' for i, t, b, r in sim)
+    sim = [("serum", "nykaa", "Glow serum, 30 ml", "Nykaa", "60% back"), ("cream", "amazon", "Night cream, 50 g", "Amazon", "50% back"), ("bottles", "nykaa", "Daily cleanser trio", "Nykaa", "55% back")]
+    rows = "".join(_e1_row(f'<img src="{PH[i]}" alt="">', t, f'{plat(p, 14)}{s} · Lumen Labs', f'<b class="num e1-amt">{r}</b>', "e1-lr") for i, p, t, s, r in sim)
     return phone(f'<div class="searchbar"><div class="search foc">{ic("search", 18)}<span class="q">matcha whisk</span><span class="clr">{ic("x", 11, sw=3)}</span></div><button class="btn link" style="text-decoration:none">Cancel</button></div>'
-                 f'<div class="body xm3-s xm3-emp"><div class="xm3-nil xz-nil2"><b>No results for “matcha whisk”</b><p>We’ll tell you when a brand lists one. <a class="xz-al">{ic("bell", 15)}Turn on alert</a></p></div>'
-                 f'<div class="xm3-sec"><b>Popular right now</b><div class="xm3-chips">' + "".join(f'<span>{ic(i, 16)}{p}</span>' for i, p in pop) + '</div></div>'
-                 f'<div class="xm3-sec"><div class="xm3-sh"><b>Live now</b><button class="btn link">See all</button></div><div class="xm3-ll">{rows}</div></div></div>{tabbar("Campaigns")}', label="Empty search")
+                 f'<div class="xm1-s hm e1-pg"><div class="e1-nil"><b>No campaigns found</b><p>Nothing matches “matcha whisk”. Check the spelling or try a shorter word.</p></div>'
+                 f'<div class="hm-sh"><h2>Open now</h2><button class="btn link">See all</button></div>{rows}</div>{tabbar("Campaigns")}', label="Empty search")
 
 from scr_n1 import s_onboarding, s_browse, s_enrollments
 from scr_n2 import s_enrollment_detail, s_withdraw, s_settings, s_barter
