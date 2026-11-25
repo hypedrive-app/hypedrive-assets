@@ -388,10 +388,10 @@ def content_b(theme):
         shot(PH["flatlay"], "Screenshot 3", "Instagram reel", "Instagram")])
 
     # ---- task rows -----------------------------------------------------------------------
-    def lr(src, t, who, badge, bcls, bic):
-        return (f'<div class="row m-lr"><span class="m-lt"><img src="{src}" alt=""></span><div class="tx"><b>{t}</b><small>{who}</small></div><span class="badge {bcls}">{ics(bic, 13)}{badge}</span></div>')
-    lrs = (lr(PH["serum"], "Instagram reel", f'{soc("Instagram", 13)}Link and 2 screenshots', "In review", "warning", "clock")
-           + lr(PH["cream"], "Nykaa review", "Link and 1 screenshot · at least 40 words", "Fix tasks", "danger", "alert"))
+    def lr(tile, t, who, state, cls):
+        return (f'<div class="row m-lr2"><span class="x-tile m-lt2">{tile}</span><div class="tx"><b>{t}</b><small>{who}</small></div><span class="m-st {cls}">{state}</span></div>')
+    lrs = (lr(soc("Instagram", 20), "Instagram reel", "Link and 2 screenshots · sent 21 Nov", f'{ics("check", 14)}Sent', "sent")
+           + lr(_u.plat("nykaa", 20), "Nykaa review", "Needs 40+ words · 28 so far", f'{ics("alert", 14)}Fix needed', "fix"))
 
     # ---- review photo mosaic + upload tiles -------------------------------------------------
     mos = (f'<div class="m-mos"><img class="b" src="{PH["flatlay"]}" alt=""><img src="{PH["serum"]}" alt="" style="object-position:10% 40%">'
