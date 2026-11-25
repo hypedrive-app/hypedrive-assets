@@ -291,4 +291,6 @@ html body .btn.prs:not(.sm) { height: 44px !important; }
 .n-avt > .n-act { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 4px; align-items: center; margin: 0 !important; }
 .n-avt .n-act .btn { height: 32px !important; min-height: 0 !important; padding: 0 12px !important; font-size: 13.5px !important; }
 .n-avt .n-act .btn.g { color: var(--hd-fg-muted) !important; } .n-avt .n-act .btn.g:last-child:not(:first-child) { color: var(--btn-red, #d92d20) !important; }
+
+html body img.plat.sfav, html body .sec img.plat.sfav, html body .phone img.plat.sfav { display: inline-block !important; width: 14px !important; height: 14px !important; min-width: 0 !important; border-radius: 3px !important; margin: 0 4px 0 0 !important; vertical-align: -2px !important; object-fit: contain !important; box-shadow: none !important; border: 0 !important; flex: none !important; }
 """
