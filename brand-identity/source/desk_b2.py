@@ -126,8 +126,8 @@ def d_team():
                        mrow(1, "Sanjay Iyer", False, "sanjay@lumenlabs.in", "Viewer", "Active 3 days ago")])
     inv = (f'<div class="row v3-mem"><span class="x-tile">{ic("mail", 20)}</span><div class="tx"><b>aman@lumenlabs.in</b><small>Sent on WhatsApp · Expires in 7 days</small></div>'
            f'<div class="v3-rc"><span class="chip">Campaign manager</span></div><span class="v3-acts"><em>Resend</em><em>Cancel invite</em></span></div>')
-    link = (f'<div class="panel v3-linkc"><div class="tx"><b>Invite link</b><small>Anyone with it joins as the role you pick.</small></div>'
-            f'<span class="chip">Viewer{ic("down", 14)}</span><div class="input n-copy"><span class="n-val">hypedrive.in/join/lumen-labs</span><button class="btn s">{ic("copy", 16)}Copy invite link</button></div><em class="v3-lk">Turn off link</em></div>')
+    link = (f'<div class="panel b9-link"><div class="b9-h"><div><b>Invite link</b><small>Anyone with the link joins as <span class="b9-role">Viewer{ic("down", 14)}</span></small></div><input type="checkbox" class="switch" checked aria-label="Invite link on"></div>'
+            f'<div class="b9-url">{ic("link", 16)}<span>hypedrive.in/join/lumen-labs</span><em class="v3-lk">{ic("copy", 16)}Copy</em></div></div>')
     rail_item = lambda i, t, on=False: f'<div class="b2-ri{" on" if on else ""}">{ics(i, 18) if on else ic(i, 18)}{t}</div>'
     rail = ('<div class="b2-rail"><div class="b2-rg">Workspace</div>' + rail_item("settings", "Workspace") + rail_item("users", "Team", True) + rail_item("receipt", "Tax")
             + rail_item("bank", "Bank account") + rail_item("bell", "Notifications") + '<div class="b2-rg">You</div>' + rail_item("user", "Profile") + rail_item("lock", "Security") + '</div>')

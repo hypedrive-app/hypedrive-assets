@@ -101,4 +101,14 @@ XB6 = """
 .v3-shots:has(.v3-quote) { align-items: flex-start; }
 .v3-shots .v3-quote { align-self: flex-start; padding-top: 8px; }
 .b7-c .b7-ph { overflow: hidden; }
+/* b9: invite link, two calm lines */
+.b9-link { padding: 18px 20px !important; display: flex; flex-direction: column; gap: 14px; }
+.b9-h { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.b9-h b { display: block; font-size: 15px; font-weight: 600; }
+.b9-h small { display: flex; align-items: center; gap: 4px; margin-top: 2px; font-size: 13.5px; color: var(--hd-fg-muted); }
+.b9-role { display: inline-flex; align-items: center; gap: 2px; color: var(--hd-fg); font-weight: 600; }
+.b9-url { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; border-radius: 12px; background: var(--hd-bg-subtle); color: var(--hd-fg-muted); }
+.b9-url > span { flex: 1; font-size: 14px; color: var(--hd-fg); font-variant-numeric: tabular-nums; }
+.b9-url .v3-lk { display: inline-flex; align-items: center; gap: 6px; font-style: normal; font-weight: 600; color: var(--hd-link); }
+.panel.b9-link { margin-top: 10px !important; }
 """
