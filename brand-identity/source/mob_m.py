@@ -55,7 +55,7 @@ def payto(action):
     return f'{bank("hdfc", 20)}<span>To kavya@okhdfc</span>{action}'
 
 def _today():
-    money = mcard("You can withdraw", "₹3,240", "<b class=num>₹2,440</b> is held until you pay 2 shoppers back",
+    money = mcard("You can withdraw", "₹3,240", "<b class=num>₹2,440</b> is held for paybacks",
                   payto(lk("Withdraw")))
     pay = (f'<div class="w5-row m7-due"><img class="m6-pa" src="{AV["asha"]}" alt=""><div class="tx"><b>Pay Asha ₹1,195</b>'
            f'<small>Glow serum · 20 Nov</small></div><button class="btn p sm">Mark paid</button></div>')
@@ -128,7 +128,7 @@ def s_m_enrollments():
 
 # ------------------------------------------------------------------ 6 Wallet
 def s_m_wallet():
-    money = mcard("You can withdraw", "₹3,240", "<b class=num>₹2,440</b> is held until you pay 2 shoppers back",
+    money = mcard("You can withdraw", "₹3,240", "<b class=num>₹2,440</b> is held for paybacks",
                   payto('<button class="btn p sm">Withdraw</button>'))
     r = lambda k, t, m, a: wrow(PH[k], t, m, f'<b class="num m6-amt">{a}</b>')
     return phone(bar(h1("Wallet", True), ic("settings", 22))

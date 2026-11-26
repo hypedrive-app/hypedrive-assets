@@ -17,7 +17,7 @@ def kit_v7(theme="light"):
         '<div class="grid g3 k7-g">'
         + '<div>' + lbl("Creator · blocked") + _ph('<div class="m7-money"><small>Available</small><b class="num">₹6,820</b><p><b class=num>₹1,339</b> on hold · <b class=num>₹24,610</b> earned so far</p>'
               f'<div class="m7-ft">{ics("privacy", 18, "var(--hd-accent)")}<span>Verify your PAN to withdraw</span>{lk("Verify")}</div></div>', canvas=True) + '</div>'
-        + '<div>' + lbl("Mediator · withdraw") + _ph('<div class="m7-money"><small>You can withdraw</small><b class="num">₹3,240</b><p><b class=num>₹2,440</b> is held until you pay 2 shoppers back</p>'
+        + '<div>' + lbl("Mediator · withdraw") + _ph('<div class="m7-money"><small>You can withdraw</small><b class="num">₹3,240</b><p><b class=num>₹2,440</b> is held for paybacks</p>'
               f'<div class="m7-ft">{bank("hdfc", 20)}<span>To kavya@okhdfc</span><button class="btn p sm">Withdraw</button></div></div>', canvas=True) + '</div>'
         + '<div>' + lbl("Score with breakdown bar") + _ph(
               '<div class="m7-money m7-score"><small>Paid back on time</small><b class="num">95%</b><p><b class=num>38</b> of 40 shoppers</p><div class="m7-bar">'

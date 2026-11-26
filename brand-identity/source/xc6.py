@@ -134,4 +134,6 @@ XC6 = """
 .phone .c6-auto { margin: 14px 0 0; text-align: center; font-size: 13.5px; color: var(--hd-fg-muted); }
 .phone .c6-otp .c6-auto { text-align: left; margin-top: 12px; }
 .phone .c6-aux2 { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; font-size: 14px; color: var(--hd-fg-muted); }
+.phone .c6-shc { position: absolute; inset: 0; border-radius: 12px; overflow: hidden; }
+.phone .c6-shc > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 """

@@ -84,7 +84,8 @@ def c6_receipt():
 
 def c6_submit(theme="light"):
     def task(logo, t, req, lab, link, shots):
-        th = "".join(f'<span class="c6-sh1"><img src="{PH[k]}" alt=""><i>{ic("x", 10, "currentColor", 3)}</i></span>' for k in shots)
+        Z = ["40% 40%", "80% 25%", "20% 80%", "60% 70%"]   # every screenshot shows Glow serum, framed differently
+        th = "".join(f'<span class="c6-sh1"><span class="c6-shc"><img src="{PH["serum"]}" alt="" style="transform-origin:{Z[n % 4]};transform:scale(2)"></span><i>{ic("x", 10, "currentColor", 3)}</i></span>' for n, k in enumerate(shots) if k)
         return (f'<div class="c6-tk"><div class="c6-th">{_task_tile(logo)}<div class="tx"><b>{t}</b><small>{req}</small></div></div>'
                 f'<label class="w5-f c6-f"><div class="w5-in c6-in">{ic("link", 16)}<em>{link}</em></div></label>'
                 f'<div class="c6-fl"><div class="c6-shots">{th}<span class="c6-add">{ic("plus", 20)}</span></div></div></div>')
