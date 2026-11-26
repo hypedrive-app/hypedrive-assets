@@ -95,7 +95,6 @@ XS = r"""
 :root:root div.e > b { font-size:20px !important; }
 :root:root div.flexw > b { font-size:15px !important; }
 :root:root div.row.n-lr > div.tx > b { font-size:15px !important; }
-:root:root p > b { font-size:15px !important; }
 :root:root span.m-up.err > b { font-size:12.5px !important; }
 :root:root span.n-sub > b { font-size:13.5px !important; }
 :root:root span.t-small > b { font-size:13.5px !important; }
@@ -143,7 +142,6 @@ XS = r"""
 :root:root div.xa-h { font-size:20px !important; }
 :root:root div.sheet > div.xm2-h { font-size:24px !important; }
 :root:root div.xm2-c.xm2-earn > em { font-size:13.5px !important; }
-:root:root small > em { font-size:13.5px !important; }
 :root:root div.xm3-nil > h2 { font-size:20px !important; }
 :root:root section.sec > h2 { font-size:28px !important; }
 :root:root section.sec.nw.nw1 > h2 { font-size:28px !important; }
@@ -155,10 +153,8 @@ XS = r"""
 :root:root section.sec.nw.nw7 > h2 { font-size:28px !important; }
 :root:root section.sec.nw.nw8 > h2 { font-size:28px !important; }
 :root:root section.sec.nw.nw9 > h2 { font-size:28px !important; }
-:root:root b > i { font-size:13.5px !important; }
 :root:root div.cft > span > kbd.kbd { font-size:13.5px !important; }
 :root:root span.t-cap.muted > kbd.kbd { font-size:12.5px !important; }
-:root:root label { font-size:13.5px !important; }
 :root:root div.panel.rcard2 > p { font-size:15px !important; }
 :root:root div.xm3-nt > p { font-size:15px !important; }
 :root:root section.sec > p { font-size:15px !important; }
@@ -396,11 +392,9 @@ XS = r"""
 :root:root div.xm2-h { font-weight:600 !important; }
 :root:root div.xm2-wb.num { font-weight:600 !important; }
 :root:root div.xm3-nm { font-weight:600 !important; }
-:root:root em { font-weight:600 !important; }
 :root:root div.xm1-copy > h1.xm1-h { font-weight:600 !important; }
 :root:root h1.xm3-h { font-weight:600 !important; }
 :root:root div.xm3-nil > h2 { font-weight:600 !important; }
-:root:root b > i { font-weight:500 !important; }
 :root:root div.n-cin > kbd.kbd { font-weight:500 !important; }
 :root:root div.n-cf > span > kbd.kbd { font-weight:500 !important; }
 :root:root div.sg-f > span > kbd.kbd { font-weight:500 !important; }
@@ -408,8 +402,6 @@ XS = r"""
 :root:root span.n-go > kbd.kbd { font-weight:500 !important; }
 :root:root span.n-ci > span.n-k > kbd.kbd { font-weight:500 !important; }
 :root:root span.sub > kbd.kbd { font-weight:500 !important; }
-:root:root label { font-weight:600 !important; }
-:root:root mark { font-weight:600 !important; }
 :root:root div.tabbar > div > span { font-weight:600 !important; }
 :root:root div > div.flexw.t-small > span { font-weight:600 !important; }
 :root:root div.input > span { font-weight:500 !important; }
@@ -465,17 +457,13 @@ XS = r"""
 :root:root span.xa-more { font-weight:600 !important; }
 :root:root span.xm3-day { font-weight:600 !important; }
 :root:root td.num { font-weight:600 !important; }
-:root:root th { font-weight:600 !important; }
-:root:root u { font-weight:600 !important; }
 :root:root div.n-more2 > button.btn.s.sm { border-radius:10px !important; }
 :root:root button.btn.s.sm.n-sortb { border-radius:10px !important; }
 :root:root div.card.t-ctxcard.t-comps > div.t-comp > div.t-field { border-radius:24px !important; }
 :root:root div.t-field.on { border-radius:24px !important; }
 :root:root div.xm1-card { border-radius:16px !important; }
 :root:root div.xm2-wh { border-radius:16px !important; }
-:root:root div > img { border-radius:16px !important; }
 :root:root a.n-popl > svg { width:16px !important;height:16px !important; }
-:root:root b > svg { width:20px !important;height:20px !important; }
 :root:root button.btn.g.icon.icon > svg { width:20px !important;height:20px !important; }
 :root:root div.flexw.t-small > svg { width:16px !important;height:16px !important; }
 :root:root div.flexw.t-small.muted > svg { width:16px !important;height:16px !important; }
@@ -484,8 +472,6 @@ XS = r"""
 :root:root div.xm1-bar > svg { width:20px !important;height:20px !important; }
 :root:root div.xm1-bar.xm1-s > svg { width:20px !important;height:20px !important; }
 :root:root div.xm2-add > svg { width:20px !important;height:20px !important; }
-:root:root small > svg { width:12px !important;height:12px !important; }
-:root:root div > span > svg { width:16px !important;height:16px !important; }
 :root:root div.sxleg.num > span > svg { width:16px !important;height:16px !important; }
 :root:root div.xm2-ph > span > svg { width:12px !important;height:12px !important; }
 :root:root span.badge.danger > svg { width:12px !important;height:12px !important; }

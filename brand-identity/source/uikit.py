@@ -5,10 +5,12 @@ OUT = os.path.join(B, "ui")
 os.makedirs(OUT, exist_ok=True)
 T = json.load(open(os.path.join(B, "tokens", "tokens.json")))
 SC = T["scales"]; C, V, M, I, N = (SC[k] for k in ("cobalt", "vermilion", "marigold", "ink", "mint"))
+# The kit draws in the brand colours (colors.css) with Allo for UI text (owner, 2026-11-26).
 TOK = open(os.path.join(B, "tokens", "colors.css")).read()
 FONT = base64.b64encode(open("/tmp/hdwm/fonts/Bricolage.ttf", "rb").read()).decode()
 GEIST = base64.b64encode(open("/tmp/hdwm/fonts/Geist.ttf", "rb").read()).decode()
 GMONO = base64.b64encode(open("/tmp/hdwm/fonts/GeistMono.ttf", "rb").read()).decode()
+ALLO = base64.b64encode(open("/tmp/hdwm/fonts/Allo-latin.woff2", "rb").read()).decode()
 
 def uri_file(p):
     return "data:image/svg+xml;base64," + base64.b64encode(open(p, "rb").read()).decode()
@@ -62,7 +64,7 @@ NMAP = {"home": "House6", "search": "Magnifier", "box": "Box3", "wallet": "Walle
         "link": "Link", "more": "Dots", "info": "CircleInfo", "alert": "TriangleWarning", "lock": "Lock", "spark": "StarTrail", "grid": "Grid", "list": "BulletList",
         "logout": "RectLogout", "bank": "Storehouse", "bag": "BagShopping",
         "users": "Users2", "help": "CircleQuestion", "privacy": "ShieldCheck", "fast": "TruckFast", "linkbroken": "LinkBroken", "edit": "Pen", "copy": "Copy",
-        "trash": "Trash", "download": "Download", "sliders": "Sliders", "play": "CirclePlay", "rupee": "CurrencyRupee", "receipt": "Receipt", "campaign": "Megaphone",
+        "trash": "Trash", "download": "Download", "sliders": "Sliders", "play": "CirclePlay", "rupee": "CurrencyRupee", "receipt": "Receipt", "campaign": "Megaphone", "enrolled": "ClipboardCheck", "external": "SquareArrowUpRight",
         "overview": "GridLayout", "reports": "ChartBar", "trend": "ArrowTrendUp", "gift": "Gift", "eye": "Eye", "calendar": "Calendar", "mail": "Envelope", "send": "PaperPlane2", "login": "RectLogin", "ok": "CircleCheck", "bolt": "Bolt", "phone": "Phone", "drop": "Droplet", "lipstick": "Lipstick", "shirt": "TShirt", "lamp": "DeskLamp", "headphones": "Headphones2", "payouts": "HandHoldingCoin", "pause": "MediaPause", "live": "MediaPlay", "foryou": "Compass", "trending": "Flame", "film": "Film", "minus": "Minus", "wifioff": "WifiOff", "clip": "Paperclip", "checkdouble": "CheckDouble", "file": "File", "filecheck": "FileCheck", "archive": "Archive", "sort": "SortArrows", "refresh": "Refresh", "pin": "MapPin"}
 P = {k: None for k in NMAP}
 def ic(name, size=22, color="currentColor", sw=None, fill="none"):
@@ -110,6 +112,7 @@ CSS = f"""
 @font-face {{ font-family: 'Bricolage Grotesque'; src: url(data:font/ttf;base64,{FONT}) format('truetype'); font-weight: 200 800; font-stretch: 75% 100%; }}
 @font-face {{ font-family: 'Geist'; src: url(data:font/ttf;base64,{GEIST}) format('truetype'); font-weight: 100 900; }}
 @font-face {{ font-family: 'Geist Mono'; src: url(data:font/ttf;base64,{GMONO}) format('truetype'); font-weight: 100 900; }}
+@font-face {{ font-family: 'Allo'; src: url(data:font/woff2;base64,{ALLO}) format('woff2'); font-weight: 100 900; font-display: block; }}
 {TOK}
 * {{ box-sizing: border-box; }}
 body {{ margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-variation-settings: 'opsz' 16; color: var(--hd-fg); background: #e9eaee; -webkit-font-smoothing: antialiased; }}
@@ -203,7 +206,7 @@ img[src*="/products/p"] {{ object-fit: cover; border-radius: 10px; }} img[src*="
 :root {{ --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); --hairline: var(--hd-border); }}
 [data-theme="dark"] {{ --hairline: rgba(255,255,255,.07); }}
 /* font pairing: Bricolage = brand voice (display, headings, hero numbers) · Geist = interface text · Geist Mono = codes */
-:root {{ --font-brand: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; --font-ui: 'Geist', ui-sans-serif, system-ui, sans-serif; --font-mono: 'Geist Mono', ui-monospace, monospace; }}
+:root {{ --font-brand: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; --font-ui: 'Allo', ui-sans-serif, system-ui, sans-serif; --font-mono: 'Geist Mono', ui-monospace, monospace; }}
 body, .btn, .input, .chip, .badge, .tbl, .toast, .tooltip, .menu {{ font-family: var(--font-ui); font-variation-settings: normal; }}
 .t-display, .t-h1, .t-h2, .hero-num {{ font-family: var(--font-brand); }}
 .mono {{ font-family: var(--font-mono); font-size: .92em; letter-spacing: 0; }}
@@ -377,7 +380,7 @@ def phone(inner, theme="light", label="", sbar_color=None):
 
 def tabbar(active):
     """Labelled 4-item tab bar: every destination keeps its name (icon-only tabs hurt recognition); the active one is solid + Cobalt."""
-    items = [("home", "Home"), ("box", "Drops"), ("wallet", "Wallet"), ("user", "You")]
+    items = [("home", "Home"), ("campaign", "Campaigns"), ("enrolled", "Enrolled"), ("wallet", "Wallet")]
     return '<div class="tabbar">' + "".join(f'<div class="{"on" if n == active else ""}">{ics(i, 24) if n == active else ic(i, 24)}<span>{n}</span></div>' for i, n in items) + '</div>'
 
 from xcss import XCSS

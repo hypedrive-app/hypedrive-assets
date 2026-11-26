@@ -2,7 +2,7 @@
 XM1 = r"""
 /* shared: plain surface, not the grey canvas */
 .phone .scr:has(.xm1-s) { background: var(--hd-surface); }
-.phone .xm1-s { font-family: 'Geist', sans-serif; }
+.phone .xm1-s { font-family: var(--font-ui); }
 
 /* ---------- welcome (dark) ---------- */
 .phone .scr:has(.xm1-wel) { background: #0d0e12; }

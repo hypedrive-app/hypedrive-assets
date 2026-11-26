@@ -11,7 +11,7 @@ Owner rules: `~/Downloads/hypedrive-wordmark/BRAND/HANDOFF.md`. Skills to apply:
 - **Icon containers** = white tile + 1px hairline + soft two-layer shadow, glyph in the meaning colour (`.x-tile` classes). No tinted or grey slabs behind icons.
 - **Tints** only through tokens (`--hd-*-subtle` backgrounds, `--hd-*-strong` text). Badges/chips tinted, no border, with a solid status icon.
 - Icons: Nucleo UI Outline 18 via `ic(name)` idle; exact Fill 18 twin via `ics(name)` active. Names in `NMAP` (uikit.py) — don't edit NMAP; list any new names you need.
-- Radius scale 4/6/8/10/12/14/16/24/full; 4px spacing grid; Bricolage for headings and hero numbers, Geist for UI; ₹ no space, Indian grouping, U+2212 minus; no emoji, no gradient text, no uppercase tracked labels; people photos never larger than 72px.
+- Radius scale 4/6/8/10/12/14/16/24/full; 4px spacing grid; Bricolage for headings and hero numbers, Allo for UI (since 2026-11-26); ₹ no space, Indian grouping, U+2212 minus; no emoji, no gradient text, no uppercase tracked labels; people photos never larger than 72px.
 - Data must agree: Glow serum ₹1,240 · 84/120; Night cream ₹990 · 42/100; Clear skin set ₹980 · Full 60/60; Daily cleanser trio ₹640 · 18/90; all Lumen Labs; HDFC ••6093; Riya Sharma = `people/women-68.jpg`; today Fri Nov 20 2026.
 - Light AND dark must both be excellent.
 
@@ -99,3 +99,46 @@ Apply the ADDENDUM language and every owner rule to real app screens (390×844):
   - Home: a full-bleed hero, a horizontal rail, photo categories, and an in-progress row.
   - Every screen should feel full and editorial, never like a wireframe. Fill it with REAL content from the data, never filler.
 - Dark screens (Profile, Welcome) keep the dark surface with the same type.
+
+## DESIGN SYSTEM BY BUSINESS LOGIC (2026-11-25)
+The owner asked: "redesign the design system according to the business logic, all primitives and components". Every kit component must show REAL product concepts, vocabulary, states and data from /tmp/hdwm/CREATOR-SPEC.md (also: brand side = campaigns, review queue, funding; mediator = deals for shoppers).
+
+- Replace invented concepts. Examples: "drops" → campaigns; "slots" → spots; "You earn" → "₹X back" / "+₹X bonus"; review stars/form → tasks (link + 1–6 screenshots).
+- Status badges = the real enrollment statuses: Applied · Ready to join · Submit tasks · In review · Fix tasks · Paid · Not approved · Cancelled · Expired. Campaign availability: Open · Closing soon · Full · Paused · Closed · Opens {date}.
+- Real blocked, empty and error states:
+  - eligibility blockers ("Verify your PAN to join", "Complete your profile to join")
+  - withdraw blockers (cooling, below minimum, PAN required)
+  - "Campaign not found"
+  - "Your account is on hold"
+  - offline
+- Visual standard unchanged: white canvas, Bricolage display / Geist UI, tactile cobalt, the calm-controls rules, no tinted borders or glows, no bloat. Redesign = content and structure, NOT a new visual direction.
+- Before/after image for every section changed, read it, and revert what isn't better.
+
+## THE OWNER'S "UGLY / BROKEN" PATTERNS (2026-11-25). Hunt every instance, everywhere.
+Each of these was flagged by the owner in the kit. Fix every other occurrence of the same pattern.
+
+1. **Noisy card.** Too many devices in one block: a bar + legend + pill + chip + footer all together. Keep one big number, one muted line and one hairline footer, and cut the rest.
+2. **Fat buttons.** Kit buttons are 44 (sm 36, xs 32). 48 only for a phone screen's bottom bar. Nothing 52+.
+3. **Mismatched action styles side by side.** For example a bordered button next to red text. Paired row actions must share one style; quiet text actions are fine. Red is only for the final destructive confirm, never on a row.
+4. **Wrong imagery.**
+   - Product photos used where the item is a task, notification, platform or action. Use a white icon tile or the platform/store logo instead.
+   - Person avatars must be round.
+   - Product thumbnails are square with radius 10.
+5. **Wrong state vocabulary.** For example task rows showing enrollment statuses. Tasks: To do / Sent / Fix needed / Locked. Enrollments: Applied · Ready to join · Submit tasks · In review · Fix tasks · Paid · Not approved · Cancelled · Expired.
+6. **Half-empty layouts.**
+   - Stats that fill 2 of 3 columns, or a half-width button in a card. Use equal columns and full-width actions.
+   - Avoid big dead space inside cards.
+7. **Blown-up or misplaced icons.** Icons in text rows are 16–20, tiles 36–40. Watch for broad CSS rules hitting nested svgs.
+8. **Missing store or platform logos.** Where a store or platform is named as the identity (store chips, store lists, task tiles), show the 14–22px logo. Don't overdo it in prose.
+9. **Broken layout.** Text splitting into columns, flex children shrinking (cards collapsing), overflow, clipping, doubled elements, legend dots blown up by class-name clashes. Prefix your new class names to avoid clashes.
+10. **Dated or loud colour.**
+    - Bright yellow or orange bars.
+    - Tinted pills on everything.
+    - Dashed borders on finished components (dashed is only for drop targets and empty avatar slots).
+    - Grey slabs behind text.
+    - Tinted borders and glows.
+
+Method: render each section (light + dark), list every instance, fix them in a batch, re-render, and save a before/after image per section. Read each before/after and revert anything that isn't better. Report every fix.
+
+## KIT LOOK (2026-11-26)
+Owner compared the kit in iOS E5 vs its own colours and chose the kit's own colours (cobalt + deepened tints, colors.css) with Allo for UI text. Do not switch the kit to E5. The app is expected to move to these colours later.
