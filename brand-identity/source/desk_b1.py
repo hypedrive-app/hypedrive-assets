@@ -45,30 +45,35 @@ def _cc3(photo, store, title, line, money, state="", n=None, m=None, cls=""):
 
 
 def d_campaigns_list():
-    from uikit2 import stat, goal
-    P = lambda kind, icon, t: f'<span class="dm-pill {kind}">{ics(icon, 13) if icon else ""}{t}</span>'
-    cards = "".join([
-        _cc3("serum", "nykaa", "Glow serum, 30 ml", "Ends 26 Nov", "₹1,16,920", P("warn", "clock", "9 to review"), 112, 120),
-        _cc3("cream", "amazon", "Night cream, 50 g", "Ends 12 Dec", "₹46,020", "", 42, 100),
-        _cc3("bottles", "nykaa", "Daily cleanser trio", "Ends 5 Dec", "₹9,540", "", 18, 90),
-        _cc3("set", "barter", "Clear skin set", "Ends 30 Nov", "₹24,190", P("mute", "", "Full"), 60, 60),
-        _cc3("sand", "nykaa", "Sunscreen SPF 50, 50 ml", "Sent 19 Nov", "", P("info", "clock", "In review"), cls="off"),
-        _cc3("mask", "nykaa", "Hair oil, 100 ml", "Sent back 18 Nov", "", P("warn", "alert", "Sent back"), cls="off"),
-        _cc3("flatlay", "nykaa", "Vitamin C drops, 15 ml", "Edited 19 Nov", "", P("mute", "", "Draft"), cls="off"),
-        _cc3("serum", "nykaa", "Lip balm duo", "Ended 31 Oct", "₹88,340", P("mute", "", "Ended"), 70, 70, cls="off"),
+    """Campaigns: the approved Home campaign card (photo, store, name, creators bar) in two calm groups; exceptions sit on the photo."""
+    def card(photo, store, title, foot_l, foot_r="", n=None, m=None, money="", tag="", warn=False, cls=""):
+        sr = (f'{plat(store, 14)}{store.title()}' if store in ("nykaa", "amazon") else f'{ic("gift", 14)}We ship it to them')
+        img = (f'<img src="{PH[photo]}" alt="">' if photo else f'<div class="b7-noph">{ic("camera", 22)}<span>No photo yet</span></div>')
+        tg = f'<span class="b7-tag">{tag}</span>' if tag else ""
+        bar = f'<div class="bar"><i style="width:{round(n*100/m)}%"></i></div>' if n else '<div class="bar b7-nobar"></div>'
+        return (f'<div class="bd2-camp b7-c {cls}"><div class="b7-ph">{img}{tg}</div><div class="b"><span class="s">{sr}</span><b>{title}</b>{bar}'
+                f'<small><span>{foot_l}</span><span class="{"warn" if warn else ""}">{foot_r}</span></small><small class="m">{money}</small></div></div>')
+    live = "".join([
+        card("serum", "nykaa", "Glow serum, 30 ml", "112 of 120 creators", "Ends in 6 days", 112, 120, "₹1,16,920 spent · 31 posts", f'{ics("clock", 14, "var(--hd-tone-marigold)")}9 to review', True),
+        card("cream", "amazon", "Night cream, 50 g", "42 of 100 creators", "Ends 12 Dec", 42, 100, "₹46,020 spent · 9 posts"),
+        card("bottles", "nykaa", "Daily cleanser trio", "18 of 90 creators", "Ends 5 Dec", 18, 90, "₹9,540 spent · 4 posts"),
+        card("set", "barter", "Clear skin set", "60 of 60 creators", "Full", 60, 60, "₹24,190 spent · 8 posts"),
     ])
-    strip = (goal("Creators joined", 232, 370) + stat("Spent this month", "₹96,380", "+31%", True, spark=[10, 14, 13, 18, 22, 26, 31], uid="cl1")
-             + stat("Posts live this week", "18", "+42%", True, spark=[6, 9, 11, 10, 13, 15, 18], kind="bars"))
-    tabs = "".join(f'<span class="{"on" if i == 0 else ""}">{t}<span class="cnt-b">{c}</span></span>' for i, (t, c) in enumerate(
-        (("All", 8), ("Active", 4), ("Action required", 1), ("Draft and in review", 2), ("Ended", 1))))
-    page = (f'<div class="b1-wrap tall v3k"><div class="v3-head"><div class="t"><h1 class="b1-h1">Campaigns</h1>'
-            f'<p class="b1-sub">Glow serum is <b>93% full</b> and has <b>9 submissions</b> waiting for you. 4 campaigns are live.</p></div>'
-            f'<div class="b1-acts">{ibtn("more", "More")}{btn("Create campaign", "p", "", "plus")}</div></div>'
-            f'<div class="v3-strip">{strip}</div>'
-            f'<div class="tabs">{tabs}</div>'
-            f'<div class="v3-tool"><div class="input">{ic("search", 18)}<span class="ph">Search campaigns</span></div><span style="flex:1"></span>'
-            f'<span class="chip">Sort: Recent{ic("down", 14)}</span>{btn("Select", "s", "md")}</div>'
-            f'<div class="v3-grid4">{cards}</div></div>')
+    rest = "".join([
+        card("mask", "nykaa", "Hair oil, 100 ml", "Sent back", "2 changes asked", money='<em class="b7-lk">Make the changes</em>', warn=True),
+        card("sand", "nykaa", "Sunscreen SPF 50, 50 ml", "In review", "Sent 19 Nov", money="We check it within a day"),
+        card(None, "nykaa", "Vitamin C drops, 15 ml", "Draft", "Edited 19 Nov", money='<em class="b7-lk">Finish the draft</em>'),
+        card("flatlay", "nykaa", "Lip balm duo", "70 of 70 creators", "Ended 31 Oct", 70, 70, "₹88,340 spent · 22 posts", cls="b7-end"),
+    ])
+    tabs = "".join(f'<span class="{"on" if i == 0 else ""}">{ics(n, 16, c)}{t} <span class="tc">{k}</span></span>' for i, (n, c, t, k) in enumerate((
+        ("grid", "var(--hd-accent)", "All", 8), ("bolt", "var(--hd-success)", "Live", 4), ("alert", "var(--hd-tone-marigold)", "Needs you", 2),
+        ("edit", "var(--hd-fg-muted)", "Drafts", 2), ("archive", "var(--hd-fg-subtle)", "Ended", 1))))
+    page = (f'<div class="b1-wrap tall v3k b7"><div class="v3-head"><div class="t"><h1 class="b1-h1">Campaigns</h1>'
+            f'<p class="b1-sub">Glow serum is <b>93% full</b> and has <b>9 submissions</b> waiting for you. Hair oil needs 2 changes.</p></div>'
+            f'<div class="b1-acts">{btn("Create campaign", "p", "", "plus")}</div></div>'
+            f'<div class="b7-bar"><div class="tabs b6-tabs">{tabs}</div><span class="b7-tools">{ibtn("search", "Search")}<span class="chip">Recent{ic("down", 14)}</span></span></div>'
+            f'<div class="bd2-sh b7-sh"><h2>Live</h2><em class="b7-n">4</em></div><div class="bd2-camps">{live}</div>'
+            f'<div class="bd2-sh b7-sh"><h2>Not live</h2><em class="b7-n">4</em></div><div class="bd2-camps">{rest}</div></div>')
     return shell("Campaigns", ["Lumen Labs", "Campaigns"], page)
 
 
@@ -80,7 +85,7 @@ def d_campaign():
         k = (f'{soc("Instagram", 14)}Reel' if kind == "ig" else f'{plat("nykaa", 14)}Review')
         return (f'<div class="v3-post"><div class="th"><img src="{PH[ph]}" alt=""><span class="k">{k}</span></div>'
                 f'<div class="who"><img src="{PP(who)}" alt=""><div><b>{name}</b><small>{meta}</small></div></div></div>')
-    posts = "".join([post("mask", "ig", "women-68", "Riya Sharma", "Posted 2 days ago"), post("bottles", "ig", "men-12", "Kabir Singh", "Posted 3 days ago"),
+    posts = "".join([post("mask", "ig", "women-21", "Tanvi Nair", "Posted 2 days ago"), post("bottles", "ig", "men-12", "Kabir Singh", "Posted 3 days ago"),
                      post("cream", "ny", "women-44", "Meera Joshi", "Posted 3 days ago"), post("flatlay", "ig", "women-21", "Ananya Das", "Posted 4 days ago")])
     def task(icon_html, title, meta):
         return (f'<div class="row"><span class="x-tile">{icon_html}</span><div class="tx"><b>{title}</b><small>{meta}</small></div></div>')
@@ -96,17 +101,17 @@ def d_campaign():
     brief = (f'<div class="panel v3-brief"><span class="k">Title</span><h4>Try the Glow serum</h4>'
              f'<div class="v3-dd"><div><span class="k">Do</span><p class="ok">{ic("check", 16)}Show the texture on skin</p></div>'
              f'<div><span class="k">Don’t</span><p class="no">{ic("x", 16)}No before and after claims</p></div></div></div>')
-    ink = (f'<div class="mn-hero ink"><div class="mn-hl">Spent so far · 74 approved</div><div class="mn-hn num">₹1,16,920</div>'
-           f'<a class="mn-hold"><span class="num">₹60,040</span>&nbsp;on hold for 38 creators in progress</a>'
-           f'<div class="mn-hb"><button class="btn inv">{ic("download", 16)}Export CSV</button></div></div>')
+    ink = (f'<div class="v3-money"><span class="l">Spent so far · 74 approved</span><b class="n num">₹1,16,920</b>'
+           f'<p><span class="num">₹60,040</span> on hold for 38 creators in progress</p>'
+           f'<div class="a b6-lk">Export CSV</div></div>')
     def ln(k, v, b=False): return f'<div class="mn-ln"><span>{k}</span><span class="num{" b" if b else ""}">{v}</span></div>'
     cost = (f'<div class="mn-card mn-rc"><div class="mn-rh"><div class="mn-rt"><b>Your cost per approval</b><small>Listed at ₹1,899 on Nykaa</small></div></div>'
             f'<div class="mn-lns">{ln("Order funding · 60% of the order", "₹1,339")}{ln("Bonus per creator", "₹200")}{ln("GST (18%)", "₹241")}{ln("Total", "₹1,580", True)}</div></div>')
     page = (f'<div class="b1-wrap tall v3k"><div class="v3-prod"><img class="ph" src="{PH["serum"]}" alt="">'
-            f'<div class="tx"><div class="top"><span class="badge success">{ics("ok", 13)}Live</span><span class="b1-meta">Ends 26 Nov 2026</span></div>'
+            f'<div class="tx"><div class="top"><span class="b1-meta">Live · Ends 26 Nov 2026</span></div>'
             f'<h1 class="b1-h1 big">Glow serum, 30 ml</h1>'
             f'<p class="b1-sub">31 of 52 posts so far came from this campaign. <b>9 submissions</b> are waiting for you.</p>'
-            f'<div class="cr"><div class="lab"><b class="num">112 of 120</b> creators joined<span>8 spots left</span></div>{segs(112/120, 24)}</div></div>'
+            f'<div class="cr"><div class="lab"><b class="num">112 of 120</b> creators joined<span>8 creators left</span></div>{segs(112/120, 24)}</div></div>'
             f'<div class="b1-acts">{ibtn("more", "More")}{btn("Review 9", "p")}</div></div>'
             f'<div class="v3-cols"><div class="v3-main">'
             f'<div><div class="v3-sechd"><h2>Posts from creators</h2><span>31 posts live</span></div><div class="v3-posts">{posts}</div></div>'
@@ -157,7 +162,7 @@ def d_composer(theme="light"):
             f'{reward}{creators}{dates}{tasks}{read}</div>')
     summ = (f'<aside class="v3-sum"><img class="ph" src="{PH["flatlay"]}" alt=""><div class="pr"><div class="b1-title">Vitamin C drops, 15 ml</div>'
             f'<div class="st">{plat("nykaa", 14)}Nykaa · ₹1,299</div></div>'
-            f'<div class="fig"><span>Your cost per approval</span><b class="num">₹885</b><small>₹650 order funding + ₹100 bonus + ₹135 GST (18%)</small></div>'
+            f'<div class="v3-money"><span class="l">Your cost per approval</span><b class="n num">₹885</b><p>₹650 order funding + ₹100 bonus + ₹135 GST (18%)</p></div>'
             f'<dl><div><dt>Campaign type</dt><dd>Online purchase</dd></div><div><dt>Creators</dt><dd class="num">60</dd></div><div><dt>Dates</dt><dd>23 Nov to 22 Dec</dd></div></dl>'
             f'<div class="notice info">{icf("info")}<span>Hypedrive reviews every campaign before it goes live. You can still edit it until then.</span></div></aside>')
     foot = f'<div class="b1-foot">{btn("Back", "s")}{btn("Review", "p")}</div>'

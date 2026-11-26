@@ -51,7 +51,7 @@ def sidebar2(active, theme="light"):
             cnt = f'<span class="cnt">{c}</span>' if c else ""
             nav += f'<div class="nav {"on" if n == active else ""}">{ics(i, 18) if n == active else ic(i, 18)}{n}{cnt}</div>'
     UD = f'<svg class="ic" width="16" height="16" viewBox="0 0 18 18" stroke-width="1.5" aria-hidden="true">{NO["ChevronExpandYOutline18"]}</svg>'
-    return (f'<aside class="sb"><img src="{LOGO[theme]}" alt="Hypedrive" style="height:22px;align-self:flex-start;margin:6px 8px 16px">'
+    return (f'<aside class="sb"><img class="sb-lg sb-lg-l" src="{LOGO["light"]}" alt="Hypedrive" style="height:22px;align-self:flex-start;margin:6px 8px 16px"><img class="sb-lg sb-lg-d" src="{LOGO["dark"]}" alt="" style="height:22px;align-self:flex-start;margin:6px 8px 16px">'
             f'<div class="ws">{av("LL", 2, 28)}<div style="flex:1;min-width:0"><b>Lumen Labs</b></div>{UD}</div>{nav}'
             f'<div class="sbfoot"><div class="me">{av("NK", 2, 32)}<div style="flex:1;min-width:0"><b>Neha Kapoor</b><small>Owner</small></div>{ic("more", 18)}</div></div></aside>')
 

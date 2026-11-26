@@ -266,12 +266,7 @@ XB1 += """
 .v3-brief .v3-dd { display: flex; flex-direction: column; gap: 14px; } .v3-brief p { margin: 4px 0 0; display: flex; gap: 8px; font-size: 14.5px; }
 .v3-brief p.ok .ic { color: var(--hd-success); } .v3-brief p.no .ic { color: var(--hd-danger); }
 /* ink hero: the kit's money hero in its Ink variant (creator Home wallet) */
-.v3k .mn-hero.ink { background: #121417; border-color: #121417; border-radius: 20px; padding: 22px; gap: 2px; }
-.v3k .mn-hero.ink .mn-hl, .v3k .mn-hero.ink .mn-hold, .v3k .mn-hero.ink .mn-hs { color: rgba(255,255,255,.68); }
-.v3k .mn-hero.ink .mn-hn { color: #fff; font-size: 44px; } .v3k .mn-hero.ink .mn-hold .num { color: #fff; font-weight: 600; }
-.v3k .mn-hero.ink .mn-hb { display: flex; gap: 10px; align-items: center; width: 100%; }
 .b1-wrap .btn.inv, .v3k .btn.inv { background: #fff !important; color: #121417 !important; border: 0 !important; box-shadow: none !important; }
-.v3k .mn-hero.ink .mn-hb .btn { width: auto; }
 """
 XB1 += """
 .v3-main .v3-sechd { margin-top: 0; }
@@ -297,13 +292,47 @@ XB1 += """
 .v3-sum > .ph { width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block; }
 .v3-sum .pr .b1-title { font: 650 20px/26px var(--font-brand); letter-spacing: -.01em; }
 .v3-sum .pr .st { display: flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--hd-fg-muted); margin-top: 4px; }
-.v3-sum .fig { background: #121417; color: #fff; border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 2px; }
-.v3-sum .fig span { font-size: 13.5px; color: rgba(255,255,255,.68); } .v3-sum .fig b { font: 700 40px/46px var(--font-brand); letter-spacing: -.03em; }
-.v3-sum .fig small { font-size: 13px; color: rgba(255,255,255,.68); }
 .v3-sum dl { margin: 0; display: flex; flex-direction: column; } .v3-sum dl > div { display: flex; justify-content: space-between; padding: 9px 0; border-top: 1px solid var(--hd-edge); font-size: 14px; }
 .v3-sum dt { color: var(--hd-fg-muted); } .v3-sum dd { margin: 0; font-weight: 560; }
 .shell.b1-focus .b1-body { grid-template-columns: 680px 340px; }
 """
 XB1 += """
-[data-theme="dark"] .v3k .mn-hero.ink, [data-theme="dark"] .v3-sum .fig { background: #1d2028; border: 1px solid #2c303a; }
+"""
+
+XB1 += """
+/* q3: kit chips and segments are white with a hairline; selected = accent-subtle */
+.v3k .chip, .v3-fc .chip, .v3-note .chip { background: var(--hd-surface); border: 1px solid var(--hd-edge); box-shadow: none; color: var(--hd-fg); font-weight: 550; }
+.v3k .chip.on, .v3-fc .chip.on, .v3-note .chip.on { background: var(--hd-accent-subtle); border-color: transparent; color: var(--hd-info-strong); }
+.v3-fc .chip { height: 34px; padding: 0 14px; border-radius: 10px; font-size: 14px; }
+.v3-fc .seg, .v3-vd.seg { background: transparent; box-shadow: none; padding: 0; gap: 8px; }
+.v3-fc .seg > span { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 10px; box-shadow: none; color: var(--hd-fg); }
+.v3-fc .seg > span.on { background: var(--hd-accent-subtle); border-color: transparent; color: var(--hd-info-strong); }
+.v3-vd.seg > span { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 10px; box-shadow: none; color: var(--hd-fg-muted); }
+.v3-vd.good > span.on { background: var(--hd-success-subtle); border-color: transparent; }
+.v3-vd.fix > span.on { background: var(--hd-warning-subtle); border-color: transparent; }
+.v3-fc .v3-pay, .v3-fc .v3-inl { gap: 20px; }
+.v3-fc { gap: 18px; }
+.v3-dg { gap: 40px; } .v3-dg .field > label { margin-bottom: 8px; }
+.v3-mute { font-size: 13px; font-weight: 550; color: var(--hd-fg-muted); white-space: nowrap; }
+.v3-note .v3-chips { margin: 2px 0 6px; }
+.v3-note { gap: 14px; }
+"""
+
+XB1 += """
+.v3-fc .chip.on, .v3k .chip.on, .v3-note .chip.on { background: var(--hd-accent-subtle) !important; border-color: transparent !important; color: var(--hd-info-strong) !important; }
+.v3-money { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; align-items: flex-start; }
+.v3-money .l { font-size: 13px; color: var(--hd-fg-muted); }
+.v3-money .n { font: 700 38px/44px var(--font-brand); letter-spacing: -.03em; color: var(--hd-fg); margin-top: 4px; }
+.v3-money p { margin: 6px 0 0; font-size: 14px; line-height: 20px; color: var(--hd-fg-muted); } .v3-money p .num { color: var(--hd-fg); font-weight: 600; }
+.v3-money .a { display: flex; align-items: center; gap: 14px; margin-top: 18px; } .v3-money .a em { font-style: normal; font-weight: 600; font-size: 14px; color: var(--hd-link); }
+.v3-money.wide { flex-direction: row; align-items: center; justify-content: space-between; padding: 26px 28px; margin-bottom: 20px; }
+.v3-money.wide .n { font-size: 48px; line-height: 56px; } .v3-money.wide .a { margin-top: 0; }
+"""
+
+XB1 += """
+.v3-dg { gap: 24px; } .v3-dg .v3-chips { flex-wrap: nowrap; gap: 6px; } .v3-dg .chip { padding: 0 11px; }
+"""
+
+XB1 += """
+.v3-money.wide > div:first-child { display: flex; flex-direction: column; align-items: flex-start; }
 """

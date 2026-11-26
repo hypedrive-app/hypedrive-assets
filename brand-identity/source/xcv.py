@@ -9,16 +9,16 @@ XCV = """
 .cv-hi { display: flex; align-items: flex-end; justify-content: space-between; padding: 6px 20px 0; }
 .cv-hi small { display: block; font-size: 13px; color: var(--hd-fg-muted); margin-bottom: 2px; }
 .cv-hi h1 { font-family: var(--font-brand); font-size: 30px; line-height: 34px; font-weight: 700; letter-spacing: -0.025em; font-variation-settings: 'opsz' 96; margin: 0; }
-/* the wallet: ink, the parcel pattern fading in at the corner */
-.cv-wal { position: relative; overflow: hidden; margin: 0 16px; border-radius: 22px; background: #121417; color: #fff; padding: 20px 20px 0; }
+/* the wallet: the money card (white, one hero number) */
+.cv-wal { position: relative; overflow: hidden; margin: 0 16px; border-radius: 20px; background: var(--hd-surface); border: 1px solid var(--hd-edge); color: var(--hd-fg); padding: 18px 18px 0; }
 .cv-wal > * { position: relative; }
-.cv-wal small { font-size: 13px; color: rgba(255,255,255,.66); }
+.cv-wal small { font-size: 13px; color: var(--hd-fg-muted); }
 .cv-wal .big { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 2px; }
 .cv-wal b.num { font-family: var(--font-brand); font-size: 42px; line-height: 46px; font-weight: 700; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96; }
-.cv-wal .wd { height: 36px; padding: 0 14px; border-radius: 10px; background: #fff; color: #121417; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; border: 0; }
-.cv-wal p { margin: 6px 0 18px; font-size: 13.5px; color: rgba(255,255,255,.72); } .cv-wal p .num { color: #fff; font-weight: 600; }
-.cv-wal .ft { display: flex; align-items: center; gap: 10px; margin: 0 -20px; padding: 13px 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 14px; }
-.cv-wal .ft span { flex: 1; } .cv-wal .ft em { font-style: normal; font-weight: 600; color: #a0c6ff; }
+.cv-wal .wd { height: 36px; padding: 0 14px; border-radius: 10px; background: var(--hd-accent); color: #fff; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; border: 0; }
+.cv-wal p { margin: 4px 0 16px; font-size: 13.5px; color: var(--hd-fg-muted); } .cv-wal p .num { color: var(--hd-fg); font-weight: 600; }
+.cv-wal .ft { display: flex; align-items: center; gap: 10px; margin: 0 -18px; padding: 13px 18px; border-top: 1px solid var(--hd-edge); font-size: 14px; }
+.cv-wal .ft span { flex: 1; } .cv-wal .ft em { font-style: normal; font-weight: 600; color: var(--hd-link); }
 .cv-sh { display: flex; align-items: baseline; justify-content: space-between; padding: 0 20px; margin-bottom: -10px; }
 .cv-sh h2 { font-family: var(--font-brand); font-size: 20px; line-height: 26px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
 .cv-sh span { font-size: 13px; color: var(--hd-fg-muted); } .cv-sh em { font-style: normal; font-weight: 600; font-size: 14px; color: var(--hd-link); }

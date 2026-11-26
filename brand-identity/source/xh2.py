@@ -211,4 +211,24 @@ XH2 += """
 """
 XH2 += """
 :root:root:root:root .phone .scr[data-theme="dark"] .v1-wal .cv-wal { box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.phone .x-tile.e1-tile img.plat { width: 22px !important; height: 22px !important; }
+"""
+
+XH2 += """
+:root:root:root .phone .xm1-wel .v1-wph { position: absolute; left: 0; right: 0; top: 64px; height: 420px; z-index: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 250px, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 250px, transparent 100%); }
+:root:root:root .phone .xm1-wel .v1-wph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; }
+:root:root:root .phone .xm1-otp .v1-verify { margin: 12px 0 0; }
+:root:root:root .phone .xm1-otp { gap: 24px; padding-top: 20px; }
+:root:root:root .phone .v1-otph img { margin: 0 0 14px -8px; }
+:root:root:root .phone .v1-det .c4-hero { height: 214px; }
+:root:root:root .phone .v1-det .c4-h { margin: 16px 4px 8px; }
+:root:root:root .phone .v1-det .v1-offer .big { font-size: 40px; line-height: 44px; }
+:root:root:root .phone .v1-det .c4-body { padding-bottom: 16px; }
+:root:root:root .phone .v1-rev .dm-shots .s.add { background: var(--hd-surface); border: 1px solid var(--hd-edge); }
+"""
+XH2 += """
+:root:root:root .phone .v1-wal .v1-led { margin: 0 16px; }
+"""
+XH2 += """
+:root:root:root .phone .v1-det .c4-hero::after { background: linear-gradient(180deg, rgba(8,10,16,.34) 0%, rgba(8,10,16,0) 26%, rgba(8,10,16,.10) 40%, rgba(8,10,16,.82) 100%); }
 """

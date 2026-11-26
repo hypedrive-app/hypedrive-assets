@@ -9,7 +9,7 @@ The maturity pass made pages correct but flat and samey, shaped like the existin
 
 ## The two approved references (study the PNG and the code before touching anything)
 - **Creator Home:** ~/Downloads/hypedrive-wordmark/BRAND/ui/screens/03-home.png (code /tmp/hdwm/scr_home.py, CSS /tmp/hdwm/xcv.py).
-  - Ink wallet card (money is the hero, the PAN step built in).
+  - WHITE money card (money is the hero, the PAN step built in) — dark Ink cards were rejected by the owner, never use them.
   - Big photo action cards for "Your turn" (deadline, progress, one action).
   - A live shipment card with the brand's isometric illustration.
   - One editorial photo pick.

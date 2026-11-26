@@ -46,8 +46,8 @@ XMD = KIT_WIDE + """
 .phone .md-pg .dm-cc .dm-pay { gap: 8px; } .phone .md-pg .dm-cc .dm-ft .btn { flex: none; }
 .phone .md-pg .dm-cc .dm-cb { gap: 4px; }
 /* store card: dm-cc with a three-photo strip */
-.phone .md-pg .v4-strip { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2px; height: 96px; background: var(--hd-canvas); } .phone .md-pg .v4-strip img { width: 100%; height: 96px; object-fit: cover; display: block; border-radius: 0; }
-.phone .md-pg .v4-link { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; margin-top: 6px; border-radius: 10px; background: var(--hd-control); font-size: 14px; color: var(--hd-fg-muted); }
+.phone .md-pg .v4-strip { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2px; height: 72px; background: var(--hd-canvas); } .phone .md-pg .v4-strip img { width: 100%; height: 72px; object-fit: cover; display: block; border-radius: 0; }
+.phone .md-pg .v4-link { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; margin-top: 6px; border-radius: 10px; background: var(--hd-surface); border: 1px solid var(--hd-edge); font-size: 14px; color: var(--hd-fg-muted); }
 .phone .md-pg .v4-sw { display: flex; align-items: center; gap: 12px; margin-top: 6px; } .phone .md-pg .v4-sw b { flex: 1; font-size: 15px; font-weight: 600; }
 .phone .md-pg .v4-btns { display: flex; gap: 8px; margin-top: 8px; } .phone .md-pg .v4-btns .btn { flex: 1; }
 /* sheets */
@@ -65,7 +65,8 @@ XMD = KIT_WIDE + """
 .phone .md-sheet .row .tick { color: var(--hd-accent); display: flex; flex: none; }
 /* enrollment */
 .phone .md-pg .dm-po { padding: 14px 16px 16px !important; } .phone .md-pg .dm-po6 .btn { margin-top: 14px; }
-.phone .md-pg .dm-jr { padding: 16px 8px 14px; } .phone .md-pg .dm-jr .s { font-size: 12px; text-align: center; }
+.phone .md-pg .dm-jr { padding: 18px 4px 16px; } .phone .md-pg .dm-jr .s { font-size: 12px; text-align: center; white-space: nowrap; }
+.phone .md-pg .md-hd + .cv-wal { margin-top: 4px; }
 .phone .md-pg .v4-two { display: flex; gap: 8px; } .phone .md-pg .v4-two .btn { flex: 1; }
 /* wallet / trust */
 .phone .md-pg .mn-gl { width: 48px; height: 48px; display: block; } .phone .md-pg .mn-gl img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; display: block; }
@@ -81,4 +82,22 @@ XMD = KIT_WIDE + """
 XMD += """
 [data-theme="dark"] .phone .md-pg .ringw > svg:not(:first-child) { stroke: #9db6ff; }
 .phone .md-pg .v4-score .mix { margin-bottom: 8px; }
+.phone .md-pg { padding-bottom: 20px; }
+"""
+XMD += """
+.phone .md-pg .md-chips .chip { background: var(--hd-surface); border: 1px solid var(--hd-edge); }
+.phone .md-pg .md-chips .chip.on { background: var(--hd-accent-subtle); border-color: var(--hd-edge); color: var(--hd-link); }
+.phone .md-pg .v4-strip, .phone .md-pg .v4-strip img { height: 56px; }
+.phone .md-sheet .md-sh2 + .md-sl { margin-top: 4px; }
+"""
+XMD += """
+.phone .md-pg .md-money { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.phone .md-money small { font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
+.phone .md-money .big { display: flex; align-items: center; justify-content: space-between; }
+.phone .md-money .big b { font: 700 38px/44px var(--font-brand); letter-spacing: -.02em; color: var(--hd-fg); }
+.phone .md-money p { margin: 0; font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); } .phone .md-money p span { color: var(--hd-fg); font-weight: 600; }
+.phone .md-money .ft { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hd-edge); font-size: 14px; } .phone .md-money .ft span { flex: 1; color: var(--hd-fg-muted); }
+"""
+XMD += """
+.phone .md-pg .dm-cc .dm-ph.v4-strip { height: 64px; aspect-ratio: auto; } .phone .md-pg .dm-cc .v4-strip img { height: 64px; }
 """

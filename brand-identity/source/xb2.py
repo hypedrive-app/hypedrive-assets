@@ -214,3 +214,13 @@ XB2 += """
 XB2 += """
 .v3-tmain .v3-sechd { margin: 26px 0 12px; } .v3-tmain .v3-head + .v3-sechd { margin-top: 0; }
 """
+
+XB2 += """
+/* q3: role selectors are quiet text with a chevron; owner is plain text */
+.v3-rc .chip, .v3-linkc > .chip { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 0; height: 32px; font-size: 14px; font-weight: 550; color: var(--hd-fg); gap: 6px; }
+.v3-rc .chip .ic, .v3-linkc > .chip .ic { color: var(--hd-fg-muted); }
+.v3-tmain .v3-head { margin-bottom: 28px; } .v3-tmain .v3-head + .v3-sechd { margin-top: 0; }
+.v3-tmain .v3-mlist { margin-bottom: 6px; }
+.v3-tmain .mn-list { margin-bottom: 8px; }
+.v3-vd .ic { flex: none; }
+"""

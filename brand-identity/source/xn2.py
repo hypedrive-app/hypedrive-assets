@@ -28,3 +28,10 @@ XN2 = """
 .phone .n2-moment p { margin: 4px 0 0; font-size: 14px; line-height: 20px; color: var(--hd-fg-muted); }
 """
 
+XN2 += """
+.phone .n2-money { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 18px; padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.phone .n2-money small { font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
+.phone .n2-money b { font-family: var(--font-brand); font-size: 38px; line-height: 44px; font-weight: 700; letter-spacing: -0.025em; color: var(--hd-fg); }
+.phone .n2-money p { margin: 2px 0 0; font-size: 14px; line-height: 20px; color: var(--hd-fg-muted); }
+.phone .dm-ns .n2-pn { font-size: 13px; line-height: 18px; color: var(--hd-fg-muted); }
+"""

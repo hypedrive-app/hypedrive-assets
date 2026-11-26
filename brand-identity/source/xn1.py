@@ -50,3 +50,14 @@ XN1 = _harvest(_R3, _R4, _T3) + """
 .phone .n1-sh { padding: 0 4px; margin: 8px 0 -2px; }
 .phone .n1-en .row { flex: none; }
 """
+XN1 += """
+.phone .n1-chips .chip { background: var(--hd-surface); border: 1px solid var(--hd-edge); box-shadow: none; }
+"""
+XN1 += """
+.phone .n1-seg { background: transparent; box-shadow: none; padding: 0; gap: 8px; }
+.phone .n1-seg > span { background: var(--hd-surface); border: 1px solid var(--hd-edge); box-shadow: none; border-radius: 12px; height: 44px; align-items: center; color: var(--hd-fg-muted); }
+.phone .n1-seg > span.on { background: var(--hd-accent-subtle, #e8efff); border-color: var(--hd-accent, #2f5bea); color: var(--hd-accent, #2f5bea); }
+"""
+XN1 += """
+.phone .n1-chips .chip { background: var(--hd-surface) !important; border: 1px solid var(--hd-edge) !important; box-shadow: none !important; }
+"""

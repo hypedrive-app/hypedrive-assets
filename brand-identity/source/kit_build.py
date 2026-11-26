@@ -186,6 +186,8 @@ def kit(theme="light"):
         + em("privacy", "Verify your PAN to withdraw", "Your ₹6,820 stays safe until you do.", btn("s sm", "Verify PAN"))
         + em("lock", "Your account is on hold", "Support is reviewing it. We’ll email you.", btn("s sm", "Contact support"))
         + em("search", "Campaign not found", "It may have closed or the link is wrong.", btn("s sm", "Browse campaigns")) + '</div></div></div>'))
+    from kit7 import kit_v7
+    o.append(kit_v7(theme))
     o.append(kit_more(theme))
     from kit3 import kit_new
     o.append(kit_new(theme))
@@ -201,21 +203,12 @@ def avs(ps, size=30): return '<span class="x-avs">' + "".join(f'<img src="{PEOPL
 def meta(*items): return '<div class="x-meta">' + "".join(f'<div>{ic(i, 18)}<b class="num">{v}</b> {k}</div>' for i, v, k in items) + '</div>'
 
 def s_welcome():
-    col = lambda *ks: '<div>' + "".join(f'<img src="{PH[k]}" alt="" style="height:{h}px">' for k, h in ks) + '</div>'
-    return phone(f'<div class="xm1-wel"><img class="xm1-logo" src="{LOGO["dark"]}" alt="Hypedrive"><div class="xm1-mos" aria-hidden="true">'
-                 + col(("sand", 168), ("serum", 168), ("set", 168)) + col(("cream", 168), ("flatlay", 168), ("bottles", 168)) + col(("mask", 168), ("bottles", 168), ("serum", 168)) + '</div><div class="xm1-fade"></div>'
-                 f'<div class="xm1-copy"><h1 class="xm1-h">Products in.<br><span>Hype out.</span></h1>'
-                 f'<p class="xm1-p">Try new products free, tell your people, and get paid for honest reviews.</p>'
-                 f'<div class="xm1-act"><button class="btn p lg block">Get started</button><button class="btn g block">I already have an account</button></div></div></div>', "dark", "Welcome", "#fff")
+    from scr_n2 import c6_welcome
+    return c6_welcome()
 
 def s_otp():
-    cells = "".join(f'<span>{d}</span>' for d in "482") + '<span class="on"></span><span></span><span></span>'
-    keys = [('1', ''), ('2', 'ABC'), ('3', 'DEF'), ('4', 'GHI'), ('5', 'JKL'), ('6', 'MNO'), ('7', 'PQRS'), ('8', 'TUV'), ('9', 'WXYZ'), ('', ''), ('0', ''), ('⌫', '')]
-    return phone(f'<div class="xm1-bar" style="padding:0 16px">{ic("back")}</div><div class="xm1-s xm1-otp"><div class="v1-otph"><img src="{uri_file(os.path.join(B, "assets", "illustrations", "hypedrive-ill-shield-light.svg"))}" alt=""><h1 class="xm1-h">Verify your phone</h1><p class="xm1-sub">Enter the 6-digit code sent to <b class="num">+91 98•••• 4821</b></p></div>'
-                 f'<div class="xm1-code num" role="group" aria-label="6-digit code">{cells}</div>'
-                 f'<div class="xm1-aux"><span>Resend code in <span class="num">0:24</span></span><button class="btn link">Change number</button></div>'
-                 f'<div style="flex:1"></div><button class="btn p lg block dis xy-verify">Verify</button></div>'
-                 f'<div class="xm1-pad">' + "".join(f'<span><b>{ic("back", 22) if a == "⌫" else a}</b><small>{b}</small></span>' for a, b in keys) + '</div>', label="Verify phone")
+    from scr_n2 import c6_otp
+    return c6_otp()
 
 def s_home():
     """Creator Home, evolved (scr_home.py)."""
@@ -229,17 +222,8 @@ def _offer(extra_cls=""):
 
 
 def s_detail():
-    from kit4 import _g
-    task = lambda tile, t, d: _e1_row(f'<span class="x-tile e1-tile">{tile}</span>', t, d)
-    jr = ('<div class="dm-jr" style="--n:3">' + "".join(f'<div class="s {"now" if i == 0 else ""}"><i><span class="num">{i+1}</span></i><span>{s}</span></div>' for i, s in enumerate(("Buy it", "Post 2 tasks", "Get paid"))) + '</div>')
-    return phone(f'<div class="xm1-s xm1-det xq-cp c4 c5 v1-det"><div class="c4-hero"><img src="{PH["serum_hero"]}" alt=""><div class="tb"><span class="x-disc">{ic("back", 22)}</span><span style="display:flex;gap:10px"><span class="x-disc">{ic("heart", 20)}</span><span class="x-disc">{ic("share", 20)}</span></span></div>'
-                 f'<div class="c4-hb"><span class="c4-store">{plat("nykaa", 16)}Buy on Nykaa</span><h1>Glow serum, 30 ml</h1><p class="c5-by"><b>Lumen Labs</b>{vhex(14)}<span>·</span>Closes 26 Nov · 8 spots left</p></div></div>'
-                 f'<div class="c4-body">{_offer()}'
-                 f'<h2 class="c4-h">How it works</h2>{jr}'
-                 f'<h2 class="c4-h">What you\'ll create</h2>'
-                 f'<div class="p1-tasks">{task(soc("Instagram", 22), "Instagram reel", "Link, screenshots · #ad, Paid partnership")}'
-                 f'{task(plat("nykaa", 22), "Nykaa review", "Link, screenshot · 40+ words")}</div></div>'
-                 f'<div class="cp-bar"><button class="btn p lg block">Join campaign</button></div></div>', label="Campaign", sbar_color="#fff")
+    from scr_n2 import c6_detail
+    return c6_detail()
 
 def _join_under():
     return f'<div class="jf-under"><img src="{PH["serum_hero"]}" alt=""></div><div class="scrim"></div>'
@@ -248,20 +232,12 @@ def _hold(left, pct):
     return f'<div class="jf-hold2 dm-h2">{ics("clock", 16)}<span>Spot held · <b class="num">{left}</b> left</span><button class="jf-add">Add 10 min</button></div>'
 
 def s_apply():
-    return phone(_join_under() + f'<div class="overlay"><div class="sheet jf"><div class="grab"></div>'
-                 f'<div class="jf-hd"><div><small>Step 1 of 2</small><h2>Buy it first</h2></div><span class="x-disc jf-x">{ic("x", 18)}</span></div>'
-                 + _hold("9:41", 97) + _offer("v1-sheetoffer") +
-                 f'<div class="jf-act"><button class="btn p lg block"><span style="display:inline-flex;align-items:center;gap:6px">Buy on {plat("nykaa", 16)}Nykaa</span></button><button class="btn s lg block">I\'ve ordered — add receipt</button></div>'
-                 f'<p class="jf-note">You can leave before you buy.</p></div></div>', label="Join · buy", sbar_color="#fff")
+    from scr_n2 import c6_apply
+    return c6_apply()
 
 def s_join_receipt():
-    rc = (f'<div class="dm-rc v1-rc"><div class="file"><i>{ic("file", 18)}</i><div><b>nykaa-order-4471.pdf</b><small>284 KB</small></div><button class="btn link e1-lk">Replace</button></div>'
-          f'<div class="res ok">{ics("success", 22)}<div><b>Your receipt is verified</b><small>Nykaa · <span class="num">₹1,899</span> · 20 Nov 2026</small></div></div></div>')
-    return phone(_join_under() + f'<div class="overlay"><div class="sheet jf"><div class="grab"></div>'
-                 f'<div class="jf-hd"><div><small>Step 2 of 2</small><h2>Add your receipt</h2></div><span class="x-disc jf-x">{ic("x", 18)}</span></div>'
-                 + _hold("6:12", 62) + rc +
-                 f'<div class="jf-act"><button class="btn p lg block">Join and earn ₹1,339</button></div>'
-                 f'<p class="jf-note">You\'ll have 45 days to post after you join.</p></div></div>', label="Join · receipt", sbar_color="#fff")
+    from scr_n2 import c6_receipt
+    return c6_receipt()
 
 def _e1_bar(left="", right="", title=""):
     return f'<div class="xm1-bar xm1-s e1-bar">{left}{f"<b class=e1-bt>{title}</b>" if title else ""}<span class="e1-r">{right}</span></div>'
@@ -275,65 +251,20 @@ def s_track():
     return s_enrollment_detail("review")
 
 def s_review(theme="light"):
-    """Submit tasks: kit task cards (dm-task) and the kit submit bar (dm-sb)."""
-    from kit4 import _st
-    def shot(k): return f'<div class="s"><img src="{PH[k]}" alt=""><i>{ic("x", 10, "currentColor", 3)}</i></div>'
-    add = f'<div class="s add">{ic("plus", 20)}</div>'
-    def task(logo, t, chips, lab, link, shots, n):
-        ch = '<div class="dm-chips">' + "".join(f'<span>{x}</span>' for x in chips) + '</div>'
-        return (f'<div class="dm-task"><div class="dm-th">{logo}<div class="tx"><b>{t}</b></div>{_st("info", "", "To do")}</div>{ch}'
-                f'<div class="f"><label>{lab}</label><div class="input">{ic("link", 16)}<span class="t-body">{link}</span></div></div>'
-                f'<div class="f"><label>Screenshots</label><div class="dm-shots">{"".join(shot(k) for k in shots)}{add}</div></div></div>')
-    bar = (f'<div class="dm-sb"><div class="r"><div><b>2 of 2 ready</b><small>Due in 41 days</small></div><button class="btn p lg">Submit 2 tasks</button></div>'
-           f'<p class="at">{ics("privacy", 14)}I confirm these posts are mine, live now, and follow the brief.</p></div>')
-    return phone(_e1_bar(f'<span class="e1-ib">{ic("x", 22)}</span>', '<span class="e1-note">Draft saved</span>')
-                 + f'<div class="xm1-s hm e1-pg v1-rev"><div class="e1-hb"><h1 class="hm-h">Submit tasks</h1><p>Glow serum, 30 ml · Lumen Labs</p></div>'
-                 + task(soc("Instagram", 24), "Instagram reel", ("#ad", "Paid partnership label"), "Link to your reel", "instagram.com/reel/C9xQ2…", ("serum", "flatlay", "sand"), 3)
-                 + task(plat("nykaa", 24), "Nykaa review", ("40+ words", "1 screenshot"), "Link to your review", "nykaa.com/reviews/glow-serum…", ("bottles",), 1)
-                 + f'</div><div class="cta e1-cta v1-sb">{bar}</div>', theme=theme, label="Submit tasks")
+    from scr_n2 import c6_submit
+    return c6_submit(theme)
 
 def s_wallet(theme="light"):
-    """Wallet: the same Ink money card as Home, then a calm kit ledger (kit5 movement rows)."""
-    from kit5 import _mrow
-    rows = (_mrow("bank", "Withdrawal", "HDFC ••6093 · 16 Nov 2026", "−₹2,000", None, True)
-            + _mrow("rupee", "Cashback", "Face wash · 12 Nov 2026", "+₹540")
-            + _mrow("bank", "Withdrawal", "HDFC ••6093 · 2 Nov 2026", "−₹3,000", None, True))
-    chips = "".join(f'<span class="mn-chip{" on" if i == 0 else ""}">{t}</span>' for i, t in enumerate(["All", "Money in", "Money out"]))
-    return phone(_e1_bar(f'<b class="e1-bt e1-bt0">Wallet</b>', f'<span class="e1-ib">{ic("settings", 22)}</span>')
-                 + f'<div class="xm1-s cv v1-wal">'
-                 f'<div class="cv-wal"><small>Available</small><div class="big"><b class="num">₹6,820</b><span class="wd">Withdraw</span></div>'
-                 f'<p><span class="num">₹1,339</span> on hold · <span class="num">₹24,610</span> earned so far</p>'
-                 f'<div class="ft">{ics("privacy", 16, "#a0c6ff")}<span>Verify your PAN to withdraw</span><em>Verify</em></div></div>'
-                 f'<div class="cv-sh"><h2>Activity</h2><em>Statements</em></div>'
-                 f'<div class="mn-chips v1-chips">{chips}</div>'
-                 f'<div class="mn-card mn-list v1-led">{rows}</div></div>' + tabbar("Wallet"), theme=theme, label="Wallet")
+    from scr_n2 import c6_wallet
+    return c6_wallet(theme)
 
 def s_success(theme="light"):
-    """Tasks submitted: the brand illustration, one line, the kit next-step card."""
-    from kit4 import _st
-    ns = (f'<div class="dm-ns"><img src="{PH["serum"]}" alt=""><div class="tx">{_st("mute", "", "In review")}<b>Glow serum, 30 ml</b>'
-          f'<small>{ics("clock", 14)}₹1,339 back after approval</small></div></div>')
-    return phone(_e1_bar("", f'<span class="e1-ib">{ic("x", 22)}</span>')
-                 + f'<div class="xm1-s hm e1-pg e1-ok v1-ok"><div class="e1-ill"><img src="{ILL[("approved", theme)]}" alt=""></div>'
-                 f'<div class="e1-okt"><h1 class="hm-h">Tasks submitted</h1><p>Lumen Labs will review your 2 tasks. We\'ll tell you the moment they\'re approved.</p></div>'
-                 + ns + '</div>'
-                 f'<div class="cta e1-cta e1-cta2"><button class="btn p lg block">View enrollment</button><button class="btn g block">Back to Home</button></div>', theme=theme, label="Tasks submitted")
+    from scr_n2 import c6_success
+    return c6_success(theme)
 
 def s_notifs(theme="light"):
-    """Inbox: real events only. One unread signal (the dot); kit underline tabs."""
-    def item(tile, title, sub, time, unread=False):
-        return (f'<div class="hm-row e1-row e1-nr">{tile}<div class="tx"><b>{title}</b><small>{sub} · {time}</small></div>'
-                f'<div class="e1-ne"><i class="{"on" if unread else ""}"></i></div></div>')
-    t = lambda c, i: f'<span class="x-tile e1-tile {c}">{ics(i, 20)}</span>'
-    today = (item(t("cobalt", "campaign"), "Glow serum is open", "Lumen Labs · 8 spots left", "2m", True)
-             + item(t("cobalt", "filecheck"), "Receipt checked", "Glow serum, 30 ml · submit 2 tasks next", "4h", True)
-             + item(t("marigold", "alert"), "Your enrollment needs a change", "Daily cleanser trio · Fix 1 task", "6h", True))
-    earlier = (item(t("mint", "wallet"), "Your earnings have landed", "₹540 from Face wash, 100 ml", "Wed")
-               + item(bank("hdfc", 22, tile=True), "Withdrawal sent", "₹2,000 to HDFC ••6093", "Mon"))
-    tabs = "".join(f'<span class="{"on" if i == 0 else ""}">{n}</span>' for i, n in enumerate(("All", "To do", "Money", "Campaigns")))
-    return phone(_e1_bar(f'<span class="e1-ib">{ic("back", 22)}</span>', '<button class="btn link e1-mk">Mark all read</button>')
-                 + f'<div class="xm1-s hm e1-pg v1-inb"><h1 class="hm-h">Inbox</h1><div class="tabs xa-tabs v1-tabs">{tabs}</div>'
-                 f'<div class="hm-sh"><h2>Today</h2></div>{today}<div class="hm-sh"><h2>Earlier</h2></div>{earlier}</div>', theme=theme, label="Inbox")
+    from scr_n2 import c6_inbox
+    return c6_inbox(theme)
 
 def s_profile():
     """Settings in dark mode: the same page as the light Settings screen."""
@@ -341,11 +272,8 @@ def s_profile():
     return s_settings("dark")
 
 def s_empty(theme="light"):
-    sim = [("serum", "nykaa", "Glow serum, 30 ml", "Nykaa", "60% back"), ("cream", "amazon", "Night cream, 50 g", "Amazon", "50% back"), ("bottles", "nykaa", "Daily cleanser trio", "Nykaa", "55% back")]
-    rows = "".join(_e1_row(f'<img src="{PH[i]}" alt="">', t, f'{plat(p, 14)}{s} · Lumen Labs', f'<b class="num e1-amt">{r}</b>', "e1-lr") for i, p, t, s, r in sim)
-    return phone(f'<div class="searchbar"><div class="search foc">{ic("search", 18)}<span class="q">matcha whisk</span><span class="clr">{ic("x", 11, sw=3)}</span></div><button class="btn link" style="text-decoration:none">Cancel</button></div>'
-                 f'<div class="xm1-s hm e1-pg v1-emp"><div class="card eb-empty2"><img src="{ILL[("search", theme)]}" alt=""><b class="e2t">No campaigns found</b><p class="e2p">Nothing matches “matcha whisk”. Check the spelling or try a shorter word.</p></div>'
-                 f'<div class="hm-sh"><h2>Open now</h2><button class="btn link">See all</button></div>{rows}</div>{tabbar("Campaigns")}', theme=theme, label="Empty search")
+    from scr_n2 import c6_empty
+    return c6_empty(theme)
 
 from scr_n1 import s_onboarding, s_browse, s_enrollments
 from scr_n2 import s_enrollment_detail, s_withdraw, s_settings, s_barter
@@ -385,8 +313,8 @@ def _snap(css):
     css = _re.sub(r"font-size:\s*(\d+\.\d)px", lambda m: "font-size:" + _FS.get(m.group(1), m.group(1)) + "px", css)
     return _re.sub(r"(font:[^;}\"]*?)(\d+\.\d)px", lambda m: m.group(1) + _FS.get(m.group(2), m.group(2)) + "px", css)
 def _late():
-    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz, xh, xh2, xn1, xn2, xb1, xb2, xmd, xcv, xbd
-    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ + xh.XH + xh2.XH2 + xn1.XN1 + xn2.XN2 + xb1.XB1 + xb2.XB2 + xmd.XMD + xcv.XCV + xbd.XBD
+    import importlib, xlead, xa, xb, xc, xd, xe, xf, xg, xm1, xm2, xm3, xs, xy, xq1, xq2, xr1, xr2, xr3, xr4, xt1, xt2, xt3, xz, xh, xh2, xn1, xn2, xb1, xb2, xmd, xcv, xbd, xv5, xc6, xm6, xb6
+    return xlead.XLEAD + xa.XA + xb.XB + xc.XC + xd.XD + xe.XE + xf.XF + xg.XG + xm1.XM1 + xm2.XM2 + xm3.XM3 + xs.XS + xy.XY + xq1.XQ1 + xq2.XQ2 + xr1.XR1 + xr2.XR2 + xr3.XR3 + xr4.XR4 + xt1.XT1 + xt2.XT2 + xt3.XT3 + xz.XZ + xh.XH + xh2.XH2 + xn1.XN1 + xn2.XN2 + xb1.XB1 + xb2.XB2 + xmd.XMD + xcv.XCV + xbd.XBD + xv5.XV5 + xc6.XC6 + xm6.XM6 + xb6.XB6 + __import__('kit7').K7
 
 import re as _re
 _STORES = {"Nykaa": "nykaa", "Amazon": "amazon", "Myntra": "myntra", "Flipkart": "flipkart", "Meesho": "meesho"}

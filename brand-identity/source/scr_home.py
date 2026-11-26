@@ -11,9 +11,9 @@ def home():
         f'<div class="xm1-bar xm1-s"><img class="av" src="{STOCK}/people/women-68.jpg" alt="Riya Sharma">{ic("search")}<span class="bell">{ic("bell")}<i></i></span></div>'
         f'<div class="xm1-s cv">'
         f'<div class="cv-hi"><div><small>Friday, 20 Nov</small><h1>Hi, Riya</h1></div></div>'
-        f'<div class="cv-wal"><small>Available</small><div class="big"><b class="num">₹6,820</b><span class="wd">Withdraw</span></div>'
+        f'<div class="cv-wal"><small>Available</small><div class="big"><b class="num">₹6,820</b></div>'
         f'<p><span class="num">₹1,339</span> on hold · <span class="num">₹990</span> pending approval</p>'
-        f'<div class="ft">{ics("privacy", 16, "#a0c6ff")}<span>Verify your PAN to withdraw</span><em>Verify</em></div></div>'
+        f'<div class="ft">{ics("privacy", 16, "var(--hd-accent)")}<span>Verify your PAN to withdraw</span><em>Verify</em></div></div>'
         f'<div class="cv-sh"><h2>Your turn</h2><span>2</span></div>'
         f'<div class="cv-rail">'
         + act("serum", f'{plat("nykaa", 14)}Glow serum', "Due in 41 days", "Submit 2 tasks", "", 8, "0 of 2 sent", "Start")

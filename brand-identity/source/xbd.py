@@ -23,11 +23,6 @@ XBD = """
 .bd2-more .btn { height: 40px; }
 /* wallet: ink, like the creator wallet */
 .bd2-side { display: flex; flex-direction: column; gap: 20px; }
-.bd2-wal { border-radius: 20px; background: #121417; color: #fff; padding: 22px; display: flex; flex-direction: column; }
-.bd2-wal > * { position: relative; }
-.bd2-wal small { font-size: 13px; color: rgba(255,255,255,.66); }
-.bd2-wal b.num { font-family: var(--font-brand); font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -0.03em; margin-top: 2px; }
-.bd2-wal p { margin: 6px 0 18px; font-size: 14px; color: rgba(255,255,255,.72); } .bd2-wal p .num { color: #fff; font-weight: 600; }
 /* live campaigns as visual cards */
 .bd2-camps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .bd2-camp { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 18px; overflow: hidden; }
@@ -48,9 +43,6 @@ XBD = """
 .bd2-post { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; } .bd2-post > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .bd2-post span { position: absolute; left: 6px; bottom: 6px; width: 24px; height: 24px; border-radius: 7px; background: rgba(255,255,255,.94); display: grid; place-items: center; }
 .bd2-post span img { width: 14px; height: 14px; }
-.bd2-wal .acts { display: flex; align-items: center; justify-content: space-between; }
-.bd2-wal .acts .w { height: 40px; padding: 0 16px; border-radius: 12px; background: #fff; color: #121417; font-weight: 600; font-size: 14.5px; display: inline-flex; align-items: center; gap: 6px; }
-.bd2-wal .acts em { font-style: normal; font-weight: 600; font-size: 14px; color: #a0c6ff; }
 .bd2-inb { padding: 6px 20px; flex: 1; }
 .bd2-inb .bd2-sh { margin: 12px 0 4px; }
 .bd2-ir { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-top: 1px solid var(--hd-edge); }

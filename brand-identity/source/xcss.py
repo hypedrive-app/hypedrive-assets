@@ -157,9 +157,9 @@ XCSS = r"""
 .badge.solid { background: var(--hd-accent) !important; color: #fff !important; padding: 0 7px !important; }
 .bdot { display: none !important; }
 /* ===== chips: tinted fill, icon always, no border; selected = accent tint + solid icon ===== */
-.chip { background: var(--hd-control) !important; border: 0 !important; box-shadow: none !important; color: var(--hd-fg) !important; font-weight: 560; }
+.chip { background: var(--hd-surface) !important; border: 1px solid var(--hd-edge) !important; box-shadow: none !important; color: var(--hd-fg) !important; font-weight: 560; }
 .chip .ic { color: var(--hd-fg-muted); } .chip .plat, .chip img { border-radius: 5px; }
-.chip.on { background: var(--hd-accent-subtle) !important; color: var(--hd-link) !important; } .chip.on .ic { color: var(--hd-accent) !important; }
+.chip.on { background: var(--hd-accent-subtle) !important; border-color: transparent !important; color: var(--hd-link) !important; } .chip.on .ic { color: var(--hd-accent) !important; }
 .chip.foc { box-shadow: 0 0 0 2px var(--ring-gap, var(--hd-surface)), 0 0 0 4px var(--hd-focus) !important; }
 /* photo under the status bar: a soft top scrim so time and icons stay legible (iOS pattern) */
 .x-photo::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 120px; z-index: 1; pointer-events: none;
