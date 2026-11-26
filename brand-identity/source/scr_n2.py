@@ -17,7 +17,7 @@ STORE = lambda n: plat(n, 13) + n.title()
 _T = lambda lead, t, m, end="", cls="": (f'<div class="w5-row {cls}">{lead}<div class="tx"><b>{t}</b><small>{m}</small></div>{end}</div>')
 _task_tile = lambda logo: f'<span class="x-tile w5-ti">{logo}</span>'
 _OFFER = (f'<div class="w5-sum c6-offer"><small>You get back</small><b class="num">₹1,339</b><dl>'
-          '<dt>Order on Nykaa</dt><dd>₹2,278</dd><dt>Cashback, 50%</dt><dd class="in">₹1,139</dd><dt>Bonus</dt><dd class="in">₹200</dd></dl>'
+          '<dt>Order on Nykaa</dt><dd>₹1,899</dd><dt>Cashback, 60%</dt><dd class="in">₹1,139</dd><dt>Bonus</dt><dd class="in">₹200</dd></dl>'
           '<p>Paid to your wallet when Lumen Labs approves</p></div>')
 
 
@@ -69,15 +69,15 @@ def _sheet(step, title, left, inner, act, note):
 
 
 def c6_apply():
-    inner = (_T(f'<img src="{PH["serum"]}" alt="">', "Glow serum, 30 ml", "You pay ₹2,278 on Nykaa")
-             + '<dl class="c6-dl"><dt>You get back</dt><dd class="in">₹1,339</dd><dt>It costs you</dt><dd>₹939</dd></dl>')
+    inner = (_T(f'<img src="{PH["serum"]}" alt="">', "Glow serum, 30 ml", "You pay ₹1,899 on Nykaa")
+             + '<dl class="c6-dl"><dt>You get back</dt><dd class="in">₹1,339</dd><dt>It costs you</dt><dd>₹560</dd></dl>')
     act = f'<button class="btn p lg block"><span class="c6-bn">Buy on {plat("nykaa", 16)}Nykaa</span></button><button class="btn g block">I\'ve ordered, add receipt</button>'
     return phone(_sheet("Step 1 of 2", "Buy it first", "9:41", inner, act, "You can leave before you buy."), label="Join · buy", sbar_color="#fff")
 
 
 def c6_receipt():
     inner = (_T(f'<span class="x-tile w5-ti">{ic("file", 20)}</span>', "nykaa-order-4471.pdf", "284 KB", '<span class="w5-lk">Replace</span>')
-             + f'<div class="c6-ok">{ics("success", 20)}<div><b>Your receipt is verified</b><small>Nykaa · <span class="num">₹2,278</span> · 20 Nov 2026</small></div></div>')
+             + f'<div class="c6-ok">{ics("success", 20)}<div><b>Your receipt is verified</b><small>Nykaa · <span class="num">₹1,899</span> · 20 Nov 2026</small></div></div>')
     act = '<button class="btn p lg block">Join and earn ₹1,339</button>'
     return phone(_sheet("Step 2 of 2", "Add your receipt", "6:12", inner, act, "You\'ll have 45 days to post after you join."), label="Join · receipt", sbar_color="#fff")
 

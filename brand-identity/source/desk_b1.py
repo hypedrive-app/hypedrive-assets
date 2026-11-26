@@ -55,7 +55,7 @@ def d_campaigns_list():
                 f'<small><span>{foot_l}</span><span class="{"warn" if warn else ""}">{foot_r}</span></small><small class="m">{money}</small></div></div>')
     live = "".join([
         card("serum", "nykaa", "Glow serum, 30 ml", "112 of 120 creators", "Ends in 6 days", 112, 120, "₹1,16,920 spent · 31 posts", f'{ics("clock", 14, "var(--hd-tone-marigold)")}9 to review', True),
-        card("cream", "amazon", "Night cream, 50 g", "42 of 100 creators", "Ends 12 Dec", 42, 100, "₹46,020 spent · 9 posts"),
+        card("cream", "amazon", "Night cream, 50 g", "42 of 80 creators", "Ends 12 Dec", 42, 80, "₹46,020 spent · 9 posts"),
         card("bottles", "nykaa", "Daily cleanser trio", "18 of 90 creators", "Ends 5 Dec", 18, 90, "₹9,540 spent · 4 posts"),
         card("set", "barter", "Clear skin set", "60 of 60 creators", "Full", 60, 60, "₹24,190 spent · 8 posts"),
     ])

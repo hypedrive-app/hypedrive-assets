@@ -38,8 +38,8 @@ def kit_v7(theme="light"):
         + lbl("Progress steps") + _ph('<div class="w5-steps">' + "".join(
             f'<div class="w5-st {k}"><i>{ics("check", 12, "#fff") if k == "done" else ""}</i><span>{t}</span></div>'
             for t, k in [("Joined", "done"), ("Bought", "done"), ("Tasks", "now"), ("Review", ""), ("Paid", "")]) + '</div>')
-        + lbl("Money breakdown") + _ph('<div class="w5-sum k7-sum"><small>You get back</small><b class="num">₹1,339</b><dl><dt>Order on Nykaa</dt><dd>₹2,278</dd>'
-            '<dt>Cashback, 50%</dt><dd class="in">₹1,139</dd><dt>Bonus</dt><dd class="in">₹200</dd></dl><p>Paid to your wallet when Lumen Labs approves</p></div>')
+        + lbl("Money breakdown") + _ph('<div class="w5-sum k7-sum"><small>You get back</small><b class="num">₹1,339</b><dl><dt>Order on Nykaa</dt><dd>₹1,899</dd>'
+            '<dt>Cashback, 60%</dt><dd class="in">₹1,139</dd><dt>Bonus</dt><dd class="in">₹200</dd></dl><p>Paid to your wallet when Lumen Labs approves</p></div>')
         + '</div></div>')
     media = (
         '<div class="grid g2 k7-g"><div>' + lbl("Featured photo card · one scrim") + _ph(

@@ -94,7 +94,7 @@ def s_enrollment_detail(state="turn"):
         title, sub, cur = "Submit 2 tasks", "Due in 41 days · post, then add the links here", 2
         tasks = [(soc("Instagram", 22), "Instagram reel", "Link + screenshots · #ad", "Start"),
                  (plat("nykaa", 22), "Nykaa review", "Link + screenshot · 40+ words", "Start")]
-        money = ("₹1,339", [("Order on Nykaa", "₹2,278", ""), ("Cashback, 50%", "₹1,139", "in"), ("Bonus", "₹200", "in")], "Paid to your wallet when Lumen Labs approves")
+        money = ("₹1,339", [("Order on Nykaa", "₹1,899", ""), ("Cashback, 60%", "₹1,139", "in"), ("Bonus", "₹200", "in")], "Paid to your wallet when Lumen Labs approves")
         foot = '<div class="w5-bb"><button class="btn p lg block">Start the Instagram reel</button></div>'
     task = lambda lead, t, m, act: (f'<div class="w5-row w5-task"><span class="x-tile w5-ti">{lead}</span><div class="tx"><b>{t}</b><small>{m}</small></div>'
                                     + (ic("chev", 16) if act else ics("check", 18, "var(--hd-success-strong)")) + '</div>')

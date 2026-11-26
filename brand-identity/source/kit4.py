@@ -29,7 +29,7 @@ def _st(kind, icon, text):
 def cards():
     c = [
         _cell("Open · 8 spots left", _cc("serum", "nykaa", "Glow serum, 30 ml", "Lumen Labs", "60% back", "₹200", "8 spots left")),
-        _cell("Joined", _cc("cream", "amazon", "Night cream, 50 g", "Lumen Labs", "50% back", "", "", _st("ok", "check", "Joined"))),
+        _cell("Joined", _cc("cream", "amazon", "Night cream, 50 g", "Lumen Labs", "50% back", "", "", _st("mute", "check", "Joined"))),
         _cell("Closing soon", _cc("bottles", "nykaa", "Daily cleanser trio", "Lumen Labs", "55% back", "₹100", "3 spots left", _st("warn", "clock", "Closing soon"))),
         _cell("Full", _cc("mask", "nykaa", "Clay mask, 100 g", "Lumen Labs", "45% back", "", "", _st("mute", "", "Full"), cls="muted")),
         _cell("Opens {date}", _cc("flatlay", "nykaa", "Skin routine kit", "Lumen Labs", "40% back", "₹150", "", _st("mute", "calendar", "Opens 28 Nov 2026"))),

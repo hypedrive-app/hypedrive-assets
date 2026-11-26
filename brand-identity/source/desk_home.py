@@ -40,7 +40,7 @@ def page():
         '<div class="bd2-ir"><b>Glow serum is 93% full</b><small>8 creators left · ends in 6 days</small></div></div></div></div>'
         f'<div><div class="bd2-sh"><h2>Live campaigns</h2><em>All campaigns</em></div><div class="bd2-camps">'
         + camp("serum", "nykaa", "Glow serum, 30 ml", 112, 120, "Ends in 6 days", True, "₹1,16,920 spent · 31 posts")
-        + camp("cream", "amazon", "Night cream, 50 g", 42, 100, "Ends 12 Dec", "", "₹46,020 spent · 9 posts")
+        + camp("cream", "amazon", "Night cream, 50 g", 42, 80, "Ends 12 Dec", "", "₹46,020 spent · 9 posts")
         + camp("bottles", "nykaa", "Daily cleanser trio", 18, 90, "Ends 5 Dec", "", "₹9,540 spent · 4 posts")
         + camp("set", "nykaa", "Clear skin set", 60, 60, "Full", "", "₹24,190 spent · 8 posts")
         + '</div></div>'

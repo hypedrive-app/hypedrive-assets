@@ -47,3 +47,4 @@ Owner: "cleaner and more polished pages". The pages already use the design syste
 ## Data consistency, keep it
 - Riya: Glow serum, Submit 2 tasks, not yet sent. Night cream Amazon review in review. Daily cleanser, Fix 1 task. Clear skin set on the way. Skin routine kit, Ready to join. Clay mask, Applied. Face wash, Paid. PAN not verified.
 - The brand reviews Arjun Kapoor's Glow serum submission.
+- Glow serum is ₹1,899 on Nykaa, 60% cashback (₹1,139) + ₹200 bonus = ₹1,339 back, costs the creator ₹560 (BRAND-SPEC, MEDIATOR-SPEC). Asha gets 55% (₹1,195), the mediator keeps ₹144. Night cream: Amazon, 50%, 80 creators. Never invent prices.

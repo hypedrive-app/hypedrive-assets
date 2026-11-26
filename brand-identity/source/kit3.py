@@ -484,4 +484,4 @@ def content_c(theme):
 
 
 def kit_new(theme="light"):
-    return "".join([form_fields(theme), form_inputs(theme), flow_a(theme), flow_b(theme), feedback_a(theme), feedback_b(theme), content_a(theme), content_b(theme), content_c(theme)])
+    return "".join([form_fields(theme), form_inputs(theme), flow_a(theme), flow_b(theme), feedback_a(theme), feedback_b(theme), content_b(theme), content_c(theme)])

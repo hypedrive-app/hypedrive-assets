@@ -119,11 +119,11 @@ def s_m_enrollments():
     steps = ('<div class="w5-steps">' + "".join(
         f'<div class="w5-st {k}"><i>{ics("check", 12, "#fff") if k == "done" else ""}</i><span>{t}</span></div>'
         for t, k in [("Joined", "done"), ("Tasks", "done"), ("Approved", "done"), ("Paid out", "done"), ("Payback", "now")]) + '</div>')
-    sm = mcard("Asha is owed", "₹1,195", "Hypedrive paid you <b class=num>₹1,339</b> for her ₹2,278 order. You keep <b class=num>₹144</b>.",
+    sm = mcard("Asha is owed", "₹1,195", "55% back on her ₹1,899 order. Hypedrive paid you <b class=num>₹1,339</b>, you keep <b class=num>₹144</b>.",
                '<span class="m7-hint">Send by UPI or bank, then mark it paid</span><button class="btn p sm">Mark paid</button>')
     return phone(bar(ic("back", 22), ic("more", 22))
                  + page(prod, h1("Pay Asha back"), lead_("Asha confirms once she gets it."), steps, sm, sh("Her order"),
-                        wrow(PH["serum"], "Glow serum, 30 ml", f'{plat("nykaa", 13)} Nykaa · ordered 13 Nov · ₹2,278', ""))
+                        wrow(PH["serum"], "Glow serum, 30 ml", f'{plat("nykaa", 13)} Nykaa · ordered 13 Nov · ₹1,899', ""))
                  + dock("Enrollments"), label="Mediator · Enrollment, payback")
 
 # ------------------------------------------------------------------ 6 Wallet
