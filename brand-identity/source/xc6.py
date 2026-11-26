@@ -131,4 +131,7 @@ XC6 = """
 .phone .c6-mos { height: 340px; } .phone .c6-mos .a { height: 340px; } .phone .c6-mos .b, .phone .c6-mos .c { height: 164px; } .phone .c6-mos .c { top: 176px; }
 .phone .c6-ill2 { width: 170px; height: 170px; }
 .phone .c6-vb { margin-top: 26px; }
+.phone .c6-auto { margin: 14px 0 0; text-align: center; font-size: 13.5px; color: var(--hd-fg-muted); }
+.phone .c6-otp .c6-auto { text-align: left; margin-top: 12px; }
+.phone .c6-aux2 { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; font-size: 14px; color: var(--hd-fg-muted); }
 """

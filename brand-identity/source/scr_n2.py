@@ -40,8 +40,8 @@ def c6_otp():
         + '<div class="xm1-s w5 c6-otp"><h1 class="w5-h1">Verify your phone</h1>'
         '<p class="w5-lead">Enter the 6-digit code sent to <b class="num c6-fg">+91 98•••• 4821</b></p>'
         f'<div class="xm1-code num c6-code" role="group" aria-label="6-digit code">{cells}</div>'
-        '<div class="c6-aux"><span>Resend code in <span class="num">0:24</span></span><button class="btn link">Change number</button></div>'
-        '<button class="btn p lg block dis c6-vb">Verify</button></div>'
+        '<p class="c6-auto">We check it as soon as you type the last digit.</p>'
+        '<div class="c6-aux2"><span>Resend code in <span class="num">0:24</span></span><em class="w5-lk">Change number</em></div></div>'
         '<div class="xm1-pad">' + "".join(f'<span><b>{ic("back", 22) if a == "⌫" else a}</b><small>{b}</small></span>' for a, b in keys) + '</div>')
     return phone(body, label="Verify phone")
 

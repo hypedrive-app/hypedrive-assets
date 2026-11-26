@@ -46,9 +46,9 @@ def _cc3(photo, store, title, line, money, state="", n=None, m=None, cls=""):
 
 def d_campaigns_list():
     """Campaigns: the approved Home campaign card (photo, store, name, creators bar) in two calm groups; exceptions sit on the photo."""
-    def card(photo, store, title, foot_l, foot_r="", n=None, m=None, money="", tag="", warn=False, cls=""):
+    def card(photo, store, title, foot_l, foot_r="", n=None, m=None, money="", tag="", warn=False, cls="", zoom=""):
         sr = (f'{plat(store, 14)}{store.title()}' if store in ("nykaa", "amazon") else f'{ic("gift", 14)}We ship it to them')
-        img = (f'<img src="{PH[photo]}" alt="">' if photo else f'<div class="b7-noph">{ic("camera", 22)}<span>No photo yet</span></div>')
+        img = (f'<img src="{PH[photo]}" alt=""{f' style="transform-origin:{zoom};transform:scale(2.2)"' if zoom else ""}>' if photo else f'<div class="b7-noph">{ic("camera", 22)}<span>No photo yet</span></div>')
         tg = f'<span class="b7-tag">{tag}</span>' if tag else ""
         bar = f'<div class="bar"><i style="width:{round(n*100/m)}%"></i></div>' if n else '<div class="bar b7-nobar"></div>'
         return (f'<div class="bd2-camp b7-c {cls}"><div class="b7-ph">{img}{tg}</div><div class="b"><span class="s">{sr}</span><b>{title}</b>{bar}'
@@ -62,8 +62,8 @@ def d_campaigns_list():
     rest = "".join([
         card("mask", "nykaa", "Hair oil, 100 ml", "Sent back", "2 changes asked", money='<em class="b7-lk">Make the changes</em>', warn=True),
         card("sand", "nykaa", "Sunscreen SPF 50, 50 ml", "In review", "Sent 19 Nov", money="We check it within a day"),
-        card(None, "nykaa", "Vitamin C drops, 15 ml", "Draft", "Edited 19 Nov", money='<em class="b7-lk">Finish the draft</em>'),
-        card("flatlay", "nykaa", "Lip balm duo", "70 of 70 creators", "Ended 31 Oct", 70, 70, "₹88,340 spent · 22 posts", cls="b7-end"),
+        card("flatlay", "nykaa", "Vitamin C drops, 15 ml", "Draft", "Edited 19 Nov", money='<em class="b7-lk">Finish the draft</em>'),
+        card("flatlay", "nykaa", "Lip balm duo", "70 of 70 creators", "Ended 31 Oct", 70, 70, "₹88,340 spent · 22 posts", cls="b7-end", zoom="22% 88%"),
     ])
     tabs = "".join(f'<span class="{"on" if i == 0 else ""}">{ics(n, 16, c)}{t} <span class="tc">{k}</span></span>' for i, (n, c, t, k) in enumerate((
         ("grid", "var(--hd-accent)", "All", 8), ("bolt", "var(--hd-success)", "Live", 4), ("alert", "var(--hd-tone-marigold)", "Needs you", 2),

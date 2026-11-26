@@ -100,4 +100,5 @@ XB6 = """
 .v3-shot { overflow: hidden; }
 .v3-shots:has(.v3-quote) { align-items: flex-start; }
 .v3-shots .v3-quote { align-self: flex-start; padding-top: 8px; }
+.b7-c .b7-ph { overflow: hidden; }
 """
