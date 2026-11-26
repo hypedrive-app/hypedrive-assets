@@ -49,7 +49,7 @@ def kit_v7(theme="light"):
         + f'<div class="bd2-camp b7-c"><div class="b7-ph"><img src="{PH["serum"]}" alt=""><span class="b7-tag">{ics("clock", 14, "var(--hd-tone-marigold)")}9 to review</span></div><div class="b"><span class="s">{plat("nykaa", 14)}Nykaa</span><b>Glow serum, 30 ml</b><div class="bar"><i style="width:93%"></i></div><small><span>112 of 120 creators</span><span class="warn">Ends in 6 days</span></small><small class="m">₹1,16,920 spent · 31 posts</small></div></div>'
         + f'<div class="bd2-camp b7-c"><div class="b7-ph"><div class="b7-noph">{ic("camera", 22)}<span>No photo yet</span></div></div><div class="b"><span class="s">{plat("nykaa", 14)}Nykaa</span><b>Vitamin C drops</b><div class="bar b7-nobar"></div><small><span>Draft</span><span>Edited 19 Nov</span></small><small class="m"><em class="b7-lk">Finish the draft</em></small></div></div>'
         + '</div></div></div>')
-    return sec("Page patterns", "What every page is built from now. Money is one white card: label, one figure, one muted sentence, the action in its footer. Lists are separate row cards with one meta line. Status filters are underline tabs with coloured icons. Only exceptions get colour. No dark cards.",
+    return sec("Page patterns", "What every page is built from now. Money is one card on the surface colour (white in light, never a dark slab in light): label, one figure, one muted sentence, the action in its footer. Lists are separate row cards with one meta line. Status filters are underline tabs with coloured icons. Only exceptions get colour.",
                lbl("Money card") + money + rows + media)
 
 K7 = """
