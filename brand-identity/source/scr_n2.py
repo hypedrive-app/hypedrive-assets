@@ -139,7 +139,7 @@ def c6_inbox(theme="light"):
         + '<div class="xm1-s w5 c6-inb">'
         f'<div class="tabs w5-tabs c6-tabs">{chips}</div>'
         '<div class="w5-sh"><h2>Today</h2></div>'
-        + item(img("serum"), "Glow serum is open", "Lumen Labs · 8 spots left", "2m", True)
+        + item(img("sand"), "You can join Skin routine kit", "Approved · join by 26 Nov", "2m", True)
         + item(img("serum"), "Receipt checked", "Submit 2 tasks next", "4h", True)
         + item(img("bottles"), "Fix 1 task", "Daily cleanser trio", "6h", True)
         + '<div class="w5-sh"><h2>Earlier</h2></div>'
@@ -164,12 +164,10 @@ def s_withdraw():
     """Honest state: PAN is not verified, so the page is the blocker, with no keypad."""
     body = (
         _top(ic("back", 22))
-        + '<div class="xm1-s w5 c6-wd"><h1 class="w5-h1">Withdraw</h1><p class="w5-lead">Verify your PAN first. It takes a minute and is needed once.</p>'
+        + '<div class="xm1-s w5 c6-wd m7"><h1 class="w5-h1">Withdraw</h1><p class="w5-lead">Verify your PAN first. It takes a minute and is needed once.</p>'
         f'<img class="c6-ill c6-ill2" src="{BA}/hypedrive-ill-payout-light.svg" alt="">'
-        '<div class="w5-sum"><small>Available to withdraw</small><b class="num">₹6,820</b><dl><dt>On hold</dt><dd>₹1,339</dd></dl>'
-        '<p>Your money stays safe until you verify.</p></div>'
-        '<div class="w5-sh"><h2>To</h2></div>'
-        + _T(bank("hdfc", 28, True), "HDFC ••6093", "Fee ₹0 · within minutes", '<span class="w5-lk">Change</span>')
+        '<div class="m7-money"><small>Available to withdraw</small><b class="num">₹6,820</b><p><b class=num>₹1,339</b> on hold · stays safe until you verify</p>'
+        f'<div class="m7-ft">{bank("hdfc", 20)}<span>To HDFC ••6093 · fee ₹0</span><em class="w5-lk">Change</em></div></div>'
         + '</div><div class="w5-bb"><button class="btn p lg block">Verify PAN</button></div>')
     return phone(body, label="Withdraw")
 

@@ -81,12 +81,13 @@ def d_campaigns_list():
 def d_campaign():
     from uikit2 import segs
     PP = lambda k: f"{STOCK}/people/{k}.jpg"
-    def post(ph, kind, who, name, meta):
+    def post(pos, kind, who, name, meta):
+        """Every post shows the campaign's own product (Glow serum), framed differently."""
         k = (f'{soc("Instagram", 14)}Reel' if kind == "ig" else f'{plat("nykaa", 14)}Review')
-        return (f'<div class="v3-post"><div class="th"><img src="{PH[ph]}" alt=""><span class="k">{k}</span></div>'
+        return (f'<div class="v3-post"><div class="th"><img src="{PH["serum"]}" alt="" style="transform-origin:{pos};transform:scale(1.9)"><span class="k">{k}</span></div>'
                 f'<div class="who"><img src="{PP(who)}" alt=""><div><b>{name}</b><small>{meta}</small></div></div></div>')
-    posts = "".join([post("mask", "ig", "women-21", "Tanvi Nair", "Posted 2 days ago"), post("bottles", "ig", "men-12", "Kabir Singh", "Posted 3 days ago"),
-                     post("cream", "ny", "women-44", "Meera Joshi", "Posted 3 days ago"), post("flatlay", "ig", "women-21", "Ananya Das", "Posted 4 days ago")])
+    posts = "".join([post("45% 40%", "ig", "women-65", "Tanvi Nair", "Posted 2 days ago"), post("80% 20%", "ig", "men-32", "Kabir Singh", "Posted 3 days ago"),
+                     post("15% 30%", "ny", "women-44", "Meera Joshi", "Posted 3 days ago"), post("60% 85%", "ig", "women-21", "Ananya Das", "Posted 4 days ago")])
     def task(icon_html, title, meta):
         return (f'<div class="row"><span class="x-tile">{icon_html}</span><div class="tx"><b>{title}</b><small>{meta}</small></div></div>')
     tasks = "".join([
@@ -106,18 +107,29 @@ def d_campaign():
            f'<div class="a b6-lk">Export CSV</div></div>')
     def ln(k, v, b=False): return f'<div class="mn-ln"><span>{k}</span><span class="num{" b" if b else ""}">{v}</span></div>'
     cost = (f'<div class="mn-card mn-rc"><div class="mn-rh"><div class="mn-rt"><b>Your cost per approval</b><small>Listed at ₹1,899 on Nykaa</small></div></div>'
-            f'<div class="mn-lns">{ln("Order funding · 60% of the order", "₹1,339")}{ln("Bonus per creator", "₹200")}{ln("GST (18%)", "₹241")}{ln("Total", "₹1,580", True)}</div></div>')
-    page = (f'<div class="b1-wrap tall v3k"><div class="v3-prod"><img class="ph" src="{PH["serum"]}" alt="">'
-            f'<div class="tx"><div class="top"><span class="b1-meta">Live · Ends 26 Nov 2026</span></div>'
-            f'<h1 class="b1-h1 big">Glow serum, 30 ml</h1>'
-            f'<p class="b1-sub">31 of 52 posts so far came from this campaign. <b>9 submissions</b> are waiting for you.</p>'
-            f'<div class="cr"><div class="lab"><b class="num">112 of 120</b> creators joined<span>8 creators left</span></div>{segs(112/120, 24)}</div></div>'
-            f'<div class="b1-acts">{ibtn("more", "More")}{btn("Review 9", "p")}</div></div>'
-            f'<div class="v3-cols"><div class="v3-main">'
-            f'<div><div class="v3-sechd"><h2>Posts from creators</h2><span>31 posts live</span></div><div class="v3-posts">{posts}</div></div>'
-            f'<div><div class="v3-sechd"><h2>Tasks</h2><span>Creators do them in this order</span></div><div class="stack" style="gap:8px">{tasks}</div></div>'
-            f'<div class="v3-two"><div><div class="v3-sechd"><h2>Brief</h2></div>{brief}</div><div><div class="v3-sechd"><h2>Details</h2></div>{det}</div></div></div>'
-            f'<div class="v3-side">{ink}{cost}</div></div></div>')
+            f'<div class="mn-lns">{ln("Cashback · 60% of ₹1,899", "₹1,139")}{ln("Bonus per creator", "₹200")}{ln("GST (18%)", "₹241")}{ln("Total", "₹1,580", True)}</div><p class="b8-cn">Charged from your wallet when you approve. Your ₹1,84,500 covers about 116 more approvals.</p></div>')
+    from uikit2 import stat
+    G, A, C = "var(--hd-success)", "var(--hd-accent)", "var(--hd-control)"
+    k = (stat("Creators joined", "112", unit="of 120", kind="split", extra=[("74 approved", 61.7, G), ("38 in progress", 31.7, A), ("8 left", 6.6, C)])
+         + stat("Posts live", "31", "+42%", True, spark=[2, 3, 4, 4, 5, 6, 7], kind="bars")
+         + stat("Spent so far", "₹1,16,920", "+31%", True, spark=[8, 14, 22, 41, 63, 88, 117], uid="b8s")
+         + '<div class="panel stat b8-wait"><div class="sh"><span class="sl">Waiting for you</span></div><div class="sv"><b class="num">9</b><span class="su">submissions</span></div>'
+         + '<div class="vz"><span class="b8-avs">' + "".join(f'<img src="{STOCK}/people/{p_}.jpg" alt="">' for p_ in ("men-12", "women-68", "women-44", "men-32"))
+         + '<i>+5</i></span><small>Oldest 2 days ago</small></div></div>')
+    tasks_ = "".join(f'<div class="b8-task"><span class="x-tile">{i_}</span><div><b>{t}</b><small>{m}</small></div></div>' for i_, t, m in [
+        (ic("receipt", 18, "var(--hd-tone-ink)"), "Order receipt", "Always required"),
+        (soc("Instagram", 18), "Instagram reel", "Link, screenshots, #ad"),
+        (plat("nykaa", 18), "Nykaa review", "Link, screenshot, 40+ words")])
+    page = (f'<div class="b1-wrap tall b8">'
+            f'<div class="b8-head"><img src="{PH["serum"]}" alt=""><div class="t"><span class="b8-meta">{plat("nykaa", 14)}Nykaa · ₹1,899 · Live until 26 Nov</span>'
+            f'<h1 class="b1-h1">Glow serum, 30 ml</h1><p class="b1-sub">31 of your 52 posts came from this campaign. <b>9 submissions</b> are waiting for you.</p></div>'
+            f'<div class="b1-acts">{ibtn("more", "More")}{btn("Review 9 submissions", "p")}</div></div>'
+            f'<div class="grid g4 b8-k">{k}</div>'
+            f'<div class="b8-r2"><div class="panel b8-posts"><div class="phd"><b>Posts from creators</b><span class="b6-lk">See all 31</span></div><div class="v3-posts">{posts}</div></div>'
+            f'<div class="mn-sec b8-cost">{cost}</div></div>'
+            f'<div class="b8-r3"><div class="panel"><div class="phd"><b>Tasks</b><span class="t-small muted">In this order</span></div>{tasks_}</div>'
+            f'<div class="panel"><div class="phd"><b>Brief</b></div>{brief.replace("panel v3-brief", "v3-brief b8-in")}</div>'
+            f'<div class="panel"><div class="phd"><b>Details</b></div>{det.replace("panel v3-facts", "v3-facts b8-in")}</div></div></div>')
     return shell("Campaigns", ["Lumen Labs", "Campaigns", "Glow serum, 30 ml"], page)
 
 
@@ -143,7 +155,7 @@ def d_composer(theme="light"):
         '<p class="v3-hint">Your proposal. Hypedrive sets the final price when it approves.</p>'
         + fld("Bonus per creator (optional)", '<div class="input" style="max-width:220px"><span class="addon">₹</span><span class="num">100</span></div>'))
     creators = card("Creators", '<span class="v3-aside">You can add more later</span>',
-        f'<div class="v3-inl"><span class="seg v3-step"><span>{ic("minus", 16)}</span><span class="on num">60</span><span>{ic("plus", 16)}</span></span>{chips(["10", "25", "50", "100"], "")}</div>')
+        f'<div class="v3-inl"><div class="n-step"><button aria-label="Decrease">{ic("minus", 18)}</button><output class="num">60</output><button aria-label="Increase">{ic("plus", 18)}</button></div>{chips(["10", "25", "50", "100"], "")}</div>')
     dates = card("Dates", '<span class="v3-aside"><b>23 Nov to 22 Dec</b> · 30 days</span>',
         f'<div class="v3-dg">{fld("Starts", chips(["Today", "Tomorrow", "Next Monday"], "Next Monday"))}{fld("Runs for", chips(["2 weeks", "30 days", "60 days", "Custom"], "30 days"))}</div>')
     trow = lambda icon_html, title, meta, tail: f'<div class="row"><span class="x-tile">{icon_html}</span><div class="tx"><b>{title}</b><small>{meta}</small></div>{tail}</div>'
