@@ -150,7 +150,7 @@ def c6_inbox(theme="light"):
 
 
 def c6_empty(theme="light"):
-    sim = [("serum", "nykaa", "Glow serum, 30 ml", "60% back"), ("cream", "amazon", "Night cream, 50 g", "50% back"), ("bottles", "nykaa", "Daily cleanser trio", "55% back")]
+    sim = [("flatlay", "nykaa", "Rose toner", "50% back"), ("sand", "nykaa", "Skin routine kit", "40% back")]   # only campaigns Riya hasn't joined
     rows = "".join(_T(f'<img src="{PH[i]}" alt="">', t, f'{plat(p, 13)}{p.title()} · Lumen Labs', f'<b class="num c6-amt">{r}</b>') for i, p, t, r in sim)
     body = (
         f'<div class="searchbar"><div class="search foc">{ic("search", 18)}<span class="q">matcha whisk</span><span class="clr">{ic("x", 11, sw=3)}</span></div><button class="btn link" style="text-decoration:none">Cancel</button></div>'
@@ -196,9 +196,9 @@ def s_barter():
         f'<div class="c6-bh"><div><h1 class="w5-h1">Arriving Mon, 23 Nov</h1><p class="w5-lead">Delhivery is bringing your Clear skin set</p></div></div>'
         + _steps(["Requested", "On the way", "Delivered"], 1)
         + f'<img class="c6-ill c6-ill3" src="{BA}/hypedrive-ill-tracking-light.svg" alt="">'
-        '<div class="w5-sh"><h2>Your product</h2></div>'
-        '<dl class="c6-dl c6-dl2"><dt>Ship to</dt><dd>14 Park Street, Kolkata 700016</dd><dt>Carrier</dt><dd>Delhivery</dd><dt>Tracking number</dt><dd class="num">4471 2280</dd></dl>'
-        '<div class="w5-sh"><h2>Then</h2></div>'
+        '<div class="w5-sh"><h2>Delivery</h2></div>'
+        '<dl class="c6-dl c6-dl2 c6-card"><dt>Ship to</dt><dd>14 Park Street, Kolkata 700016</dd><dt>Carrier</dt><dd>Delhivery</dd><dt>Tracking</dt><dd class="num">4471 2280</dd></dl>'
+        '<div class="w5-sh"><h2>After it arrives</h2></div>'
         + _T(_task_tile(soc("Instagram", 22)), "Instagram reel", "Opens when your order arrives", ics("lock", 18, "var(--hd-fg-subtle)"))
         + '</div><div class="w5-bb"><button class="btn p lg block">Track shipment</button></div>')
     return phone(body, label="Barter enrollment")

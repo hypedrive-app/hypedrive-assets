@@ -8223,6 +8223,30 @@ html body .row.sel, html body .sec .row.sel, html body .phone .row.sel { backgro
 .phone .w5-dt .w5-sum > b { font-size: 32px; line-height: 38px; }
 .phone .w5-dt .w5-sum dl { margin-top: 8px; row-gap: 5px; }
 .phone .w5-dt .w5-sum p { margin-top: 8px; }
+/* tab roots and detail pages share the Home canvas; full-screen flows (onboarding) stay white */
+.phone .scr:has(.w5-br), .phone .scr:has(.w5-br) .xm1-bar, .phone .scr:has(.w5-en), .phone .scr:has(.w5-en) .xm1-bar,
+.phone .scr:has(.w5-dt), .phone .scr:has(.w5-dt) .xm1-bar { background: var(--hd-canvas) !important; }
+.phone .w5-dt .w5-bb, .phone .w5-bb { background: var(--hd-surface); }
+.phone .w5-br .w5-tabs { border-bottom-color: var(--hd-edge); }
+.phone .w5-dt .w5-sum { border-top: 0; background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 20px; padding: 16px 18px; margin-top: 16px; }
+.phone .w5-dt .w5-sum > b { font-size: 32px; line-height: 38px; }
+.phone .scr:has(.w5-dt):not(:has(.w5-bb)) .home-ind, .phone .scr:has(.m7):not(:has(.w5-bb)):not(:has(.tabbar)):not(:has(.m6-dock)) .home-ind { background: var(--hd-canvas) !important; }
+:root:root:root:root .phone .scr:is(:has(.w5), :has(.m7)):not(:has(.w5-bb)):not(:has(.tabbar)):not(:has(.m6-dock)):not(:has(.xm1-pad)) .home-ind { background: transparent !important; }
+.phone .scr:has(.c6-det), .phone .scr:has(.c6-det) .xm1-bar { background: var(--hd-canvas) !important; }
+.phone .c6-det .w5-sum.c6-offer { border-top: 0 !important; background: var(--hd-surface); border: 1px solid var(--hd-edge) !important; border-radius: 20px; padding: 16px 18px !important; margin-top: 14px; }
+.phone .c6-det .w5-sum.c6-offer > b { font-size: 32px; line-height: 38px; }
+.phone .c6-det .w5-row { background: var(--hd-surface); }
+:root:root:root .phone .scr:has(.c6-det) { position: relative; }
+:root:root:root .phone .scr:has(.c6-det) .sbar { position: absolute; top: 0; left: 0; right: 0; z-index: 6; background: transparent !important; color: #fff !important; }
+.phone .c6-det .c6-hero { margin-top: 0; }
+.phone .c6-det .c6-hero .tb { top: 54px !important; }
+.phone .c6-det .c6-hero::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 96px; z-index: 1; background: linear-gradient(180deg, rgba(10,12,16,.42), rgba(10,12,16,0)); pointer-events: none; }
+.phone .c6-det .c6-hero .tb { z-index: 2; }
+.phone .scr:is(:has(.c6-inb), :has(.c6-emp), :has(.c6-bar)), .phone .scr:is(:has(.c6-inb), :has(.c6-emp), :has(.c6-bar)) .xm1-bar { background: var(--hd-canvas) !important; }
+.phone :is(.c6-inb, .c6-emp, .c6-bar) .w5-row { background: var(--hd-surface); }
+.phone .c6-dl.c6-card { background: var(--hd-surface); border: 1px solid var(--hd-edge); border-radius: 16px; padding: 12px 16px; margin: 0; }
+:root:root:root .phone .scr:has(.c6-emp) .searchbar { background: var(--hd-canvas) !important; }
+:root:root:root .phone .scr:has(.c6-emp) .searchbar .search { background: var(--hd-surface) !important; }
 
 .phone .c6-fg { color: var(--hd-fg); font-weight: 600; }
 .phone .c6-lk { font-size: 15px; font-weight: 600; color: var(--hd-link) !important; }

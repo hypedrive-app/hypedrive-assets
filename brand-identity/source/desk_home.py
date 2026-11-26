@@ -17,7 +17,7 @@ def page():
     leg = "".join(f'<div><i style="background:{c}"></i><span>{n}</span><b>{v}%</b></div>' for n, v, c in plats)
     sub = lambda ph, plat_, who, name, meta, handle="": (f'<div class="bd2-sub"><div class="bd2-th"><img src="{PH[ph]}" alt=""><span class="k">{soc("Instagram", 14) if plat_=="Instagram" else plat(plat_.lower(), 14)}{"Reel" if plat_=="Instagram" else "Review"}</span></div>'
                                              f'<div class="who"><img src="{PPL(who)}" alt=""><div><b>{name}</b><small>{meta}</small></div></div></div>')
-    camp = lambda ph, store, name, n, tot, foot, warn="", money="": (f'<div class="bd2-camp"><img src="{PH[ph]}" alt=""><div class="b"><span class="s">{plat(store, 14)}{store.title()}</span><b>{name}</b>'
+    camp = lambda ph, store, name, n, tot, foot, warn="", money="": (f'<div class="bd2-camp"><img src="{PH[ph]}" alt=""><div class="b"><span class="s">{(plat(store, 14) + store.title()) if store != "barter" else (ic("gift", 14) + "We ship it to them")}</span><b>{name}</b>'
                                                          f'<div class="bar"><i style="width:{round(n*100/tot)}%"></i></div><small><span>{n} of {tot} creators</span><span class="{"warn" if warn else ""}">{foot}</span></small><small class="m">{money}</small></div></div>')
     body = ('<div class="b1-wrap tall"><div class="bd2">'
         f'<div class="ph"><div class="t"><div class="t-h1">Good morning, Neha</div><p>Glow serum drove <b class="num">31</b> of <b class="num">52</b> posts and is 93% full · <b class="num">9</b> submissions are waiting for you</p></div><span class="chip">{ic("calendar", 16)}Last 7 weeks{ic("down", 14)}</span>'
@@ -42,7 +42,7 @@ def page():
         + camp("serum", "nykaa", "Glow serum, 30 ml", 112, 120, "Ends in 6 days", True, "₹1,16,920 spent · 31 posts")
         + camp("cream", "amazon", "Night cream, 50 g", 42, 80, "Ends 12 Dec", "", "₹46,020 spent · 9 posts")
         + camp("bottles", "nykaa", "Daily cleanser trio", 18, 90, "Ends 5 Dec", "", "₹9,540 spent · 4 posts")
-        + camp("set", "nykaa", "Clear skin set", 60, 60, "Full", "", "₹24,190 spent · 8 posts")
+        + camp("set", "barter", "Clear skin set", 60, 60, "Full", "", "₹24,190 spent · 8 posts")
         + '</div></div>'
         + '</div></div>')
     return shell("Home", ["Lumen Labs", "Home"], body)
